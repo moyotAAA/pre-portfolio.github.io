@@ -35,9 +35,9 @@
             if(e) e.stopPropagation();
             modal.style.display = "flex";
             if(type === 'CV') {
-                modalImg.src = "CV-M.TOUIL-Ayoub-9.jpg"; 
+                modalImg.src = "annexes/CV-M.TOUIL-Ayoub-9.jpg"; 
             } else {
-                modalImg.src = "LM-M.TOUIL-Ayoub.jpg";
+                modalImg.src = "annexes/LM-M.TOUIL-Ayoub.jpg";
             }
         }
         function closeModal() {

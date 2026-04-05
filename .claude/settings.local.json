@@ -6,7 +6,14 @@
       "Bash(sed -n '1777,1920p' \"C:/Users/ayoub/Documents/pre-portfolio/index.html\")",
       "Bash(\"C:/Users/ayoub/Documents/pre-portfolio/js/script.js\")",
       "Bash(python3 -:*)",
-      "Bash(python -:*)"
+      "Bash(python -:*)",
+      "Bash(sed -i 's|href=\"\"css/style.css\"\"|href=\"\"style.css\"\"|g' \"C:/Users/ayoub/Documents/pre-portfolio/index.html\")",
+      "Bash(sed -i 's|src=\"\"js/script.js\"\"|src=\"\"script.js\"\"|g' \"C:/Users/ayoub/Documents/pre-portfolio/index.html\")",
+      "Bash(sed -i 's|src=\"\"test_avatar.png\"\"|src=\"\"annexes/test_avatar.png\"\"|g' \"C:/Users/ayoub/Documents/pre-portfolio/index.html\")",
+      "Bash(sed -i 's|src=\"\"CV-M\\\\.TOUIL-Ayoub-9\\\\.jpg\"\"|src=\"\"annexes/CV-M.TOUIL-Ayoub-9.jpg\"\"|g' \"C:/Users/ayoub/Documents/pre-portfolio/index.html\")",
+      "Bash(sed -i 's|src=\"\"LM-M\\\\.TOUIL-Ayoub\\\\.jpg\"\"|src=\"\"annexes/LM-M.TOUIL-Ayoub.jpg\"\"|g' \"C:/Users/ayoub/Documents/pre-portfolio/index.html\")",
+      "Bash(sed -i 's|\"\"CV-M\\\\.TOUIL-Ayoub-9\\\\.jpg\"\"|\"\"annexes/CV-M.TOUIL-Ayoub-9.jpg\"\"|g' \"C:/Users/ayoub/Documents/pre-portfolio/script.js\")",
+      "Bash(sed -i 's|\"\"LM-M\\\\.TOUIL-Ayoub\\\\.jpg\"\"|\"\"annexes/LM-M.TOUIL-Ayoub.jpg\"\"|g' \"C:/Users/ayoub/Documents/pre-portfolio/script.js\")"
     ]
   }
 }

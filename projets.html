@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projets | Ayoub LeBoss</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <button class="theme-toggle-btn" id="theme-toggle"><i class="fas fa-moon"></i></button>
+
+    <div class="liquid-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <nav>
+        <div class="nav-item"><a href="index.html">Accueil</a></div>
+        <div class="nav-item dropdown">
+            <a href="dossier.html">Mon Dossier <i class="fas fa-caret-down" style="font-size:0.8rem; margin-left:5px;"></i></a>
+            <div class="dropdown-menu">
+                <a href="dossier.html#documents"><i class="fas fa-file-alt"></i> CV</a>
+                <a href="dossier.html#documents"><i class="fas fa-envelope-open-text"></i> Lettre de Motivation</a>
+            </div>
+        </div>
+        <div class="nav-item"><a href="projets.html">Projets</a></div>
+        <div class="nav-item"><a href="formations.html">Veilles</a></div>
+        <div class="nav-item"><a href="#contact">Contact</a></div>
+    </nav>
+
+    <section id="projets-section" class="container">
+        <div class="section-header">
+            <h2>Projets & Réalisations</h2>
+            <p>Solutions techniques mises en œuvre en contexte BTS, entreprise et autonomie</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px;">
+
+            <div class="card">
+                <div>
+                    <i class="fas fa-network-wired" style="font-size: 2rem; color: var(--accent-blue); margin-bottom: 15px;"></i>
+                    <h3>Infrastructure VPN</h3>
+                    <p style="font-size:0.95rem; margin-top:5px;margin-bottom:5px;">Mise en place d'un VPN nomade avec PfSense et d'une liaison VPN site-à-site Stormshield.</p>
+                </div>
+                <button class="btn-details" onclick="openTechModal('tech1')">Voir Détails & Schéma</button>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fas fa-phone-alt" style="font-size: 2rem; color: var(--accent-purple); margin-bottom: 15px;"></i>
+                    <h3>Téléphonie sur IP</h3>
+                    <p style="font-size:0.95rem; margin-top:10px;">Déploiement serveur IPBX Asterisk et configuration flotte de téléphones IP.</p>
+                </div>
+                <button class="btn-details" onclick="openTechModal('tech2')">Voir Détails & Config</button>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fas fa-chart-line" style="font-size: 2rem; color: var(--accent-green); margin-bottom: 15px;"></i>
+                    <h3>Supervision Réseau</h3>
+                    <p style="font-size:0.95rem; margin-top:10px;">Installation d'Observium pour le monitoring proactif et gestion des alertes SNMP.</p>
+                </div>
+                <button class="btn-details" onclick="openTechModal('tech3')">Voir Détails & SNMP</button>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fas fa-server" style="font-size: 2rem; color: var(--accent-yellow); margin-bottom: 15px;"></i>
+                    <h3>Haute Disponibilité</h3>
+                    <p style="font-size:0.95rem; margin-top:10px;">Redondance serveur et failover (IP Virtuelle) pour continuité de service.</p>
+                </div>
+                <button class="btn-details" onclick="openTechModal('tech4')">Voir Détails & Script</button>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fas fa-users-cog" style="font-size: 2rem; color: var(--accent-cyan); margin-bottom: 15px;"></i>
+                    <h3>Automatisation AD</h3>
+                    <p style="font-size:0.95rem; margin-top:10px;margin-bottom:10px;">Gestion centralisée utilisateurs et GPO via scripts PowerShell.</p>
+                </div>
+                <button class="btn-details" onclick="openTechModal('tech5')">Voir Détails & Powershell</button>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fas fa-project-diagram" style="font-size: 2rem; color: var(--accent-red); margin-bottom: 15px;"></i>
+                    <h3>Segmentation VLAN</h3>
+                    <p style="font-size:0.95rem; margin-top:10px;">Configuration switchs Cisco, création VLANs et routage inter-VLAN.</p>
+                </div>
+                <button class="btn-details" onclick="openTechModal('tech6')">Voir Détails & IOS</button>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h2>Travaillons ensemble.</h2>
+        <p style="color:var(--text-secondary); margin-bottom: 30px;">À la recherche d'une alternance.</p>
+        <div style="font-size: 2rem; display:flex; justify-content:center; gap:30px;">
+            <a href="#" style="color: var(--text-primary); transition:0.3s;"><i class="fab fa-linkedin"></i></a>
+            <a href="#" style="color: var(--text-primary); transition:0.3s;"><i class="fab fa-github"></i></a>
+            <a href="mailto:tonemail@gmail.com" style="color: var(--text-primary); transition:0.3s;"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p style="margin-top: 40px; font-size: 0.8rem; color:var(--text-tertiary);">© 2025 Ayoub Leboss.</p>
+    </footer>
+
+    <div id="tech1" class="modal" onclick="closeTechModal(event, 'tech1')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <h2>Infrastructure VPN</h2>
+                <span class="close-modal" onclick="document.getElementById('tech1').style.display='none'" style="position:static; font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div style="margin-bottom:20px;">
+                    <h4 style="color:var(--accent-blue);">Contexte</h4>
+                    <p>Dans le cadre du télétravail pour 20 collaborateurs, sécurisation des accès distants via OpenVPN sur PfSense et interconnexion de deux sites distants (Siège/Agence) via tunnel IPSec Stormshield.</p>
+                </div>
+                <div style="margin-bottom:20px;">
+                    <h4 style="color:var(--accent-blue);">Schéma Réseau</h4>
+                    <div class="network-schema">[Capture d'écran : Topologie VPN PfSense <-> Stormshield]</div>
+                </div>
+                <div>
+                    <h4 style="color:var(--accent-blue);">Extrait Configuration (Firewall Rules)</h4>
+                    <pre># Shell / PfSense Config snippet
+pass in on $WAN proto udp from any to $WAN_IP port 1194
+    keep state label "Allow OpenVPN"
+pass in on $OVPN_IF from 10.0.8.0/24 to 192.168.1.0/24
+    keep state label "Allow VPN to LAN"</pre>
+                </div>
+                <div style="margin-top: 30px; text-align: center;">
+                    <a href="#" target="_blank" class="btn-main" style="display: inline-flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-file-pdf"></i> Voir la Documentation PDF </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="tech2" class="modal" onclick="closeTechModal(event, 'tech2')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <h2>Solution VoIP Asterisk</h2>
+                <span class="close-modal" onclick="document.getElementById('tech2').style.display='none'" style="position:static; font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div style="margin-bottom:20px;">
+                    <h4 style="color:var(--accent-blue);">Contexte</h4>
+                    <p>Migration de la téléphonie analogique vers IP. Configuration d'un IVR (Serveur Vocal Interactif) et de 50 postes Yealink.</p>
+                </div>
+                <div style="margin-bottom:20px;">
+                    <h4 style="color:var(--accent-blue);">Schéma Réseau</h4>
+                    <div class="network-schema">[Capture d'écran : Flux SIP/RTP et Serveur Asterisk]</div>
+                </div>
+                <div>
+                    <h4 style="color:var(--accent-blue);">Extrait Configuration (sip.conf)</h4>
+                    <pre>[general]
+context=public
+allowguest=no
+udpbindaddr=0.0.0.0
+
+[101]
+type=friend
+callerid="Secretariat <101>"
+secret=Pass123!
+host=dynamic
+context=internal-phones</pre>
+                </div>
+                <div style="margin-top: 30px; text-align: center;">
+                    <a href="#" target="_blank" class="btn-main" style="display: inline-flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-file-pdf"></i> Voir la Documentation PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="tech3" class="modal" onclick="closeTechModal(event, 'tech3')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <h2>Supervision Observium</h2>
+                <span class="close-modal" onclick="document.getElementById('tech3').style.display='none'" style="position:static; font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div style="margin-bottom:20px;">
+                    <h4 style="color:var(--accent-blue);">Contexte</h4>
+                    <p>Mise en place d'une surveillance proactive pour un parc de 15 switchs et 10 serveurs. Alertes par mail en cas de surcharge CPU.</p>
+                </div>
+                <div style="margin-bottom:20px;">
+                    <h4 style="color:var(--accent-blue);">Schéma Réseau</h4>
+                    <div class="network-schema">[Capture d'écran : Dashboard Observium]</div>
+                </div>
+                <div>
+                    <h4 style="color:var(--accent-blue);">Configuration SNMP (Linux Client)</h4>
+                    <pre># Bash / Installation SNMP
+apt-get install snmpd
+# Configuration /etc/snmp/snmpd.conf
+rocommunity public 192.168.1.50
+sysLocation "Salle Serveur A"
+service snmpd restart</pre>
+                </div>
+                <div style="margin-top: 30px; text-align: center;">
+                    <a href="#" target="_blank" class="btn-main" style="display: inline-flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-file-pdf"></i> Voir la Documentation PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="tech4" class="modal" onclick="closeTechModal(event, 'tech4')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <h2>Redondance & Failover</h2>
+                <span class="close-modal" onclick="document.getElementById('tech4').style.display='none'" style="position:static; font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div style="margin-bottom:20px;">
+                    <h4 style="color:var(--accent-blue);">Contexte</h4>
+                    <p>Assurer la continuité de service du serveur Web intranet critique. Utilisation d'une IP virtuelle (VIP) basculant automatiquement.</p>
+                </div>
+                <div style="margin-bottom:20px;">
+                    <h4 style="color:var(--accent-blue);">Schéma Réseau</h4>
+                    <div class="network-schema">[Capture d'écran : Architecture Master/Backup]</div>
+                </div>
+                <div>
+                    <h4 style="color:var(--accent-blue);">Script (Keepalived)</h4>
+                    <pre>vrrp_instance VI_1 {
+    state MASTER
+    interface eth0
+    virtual_router_id 51
+    priority 100
+    virtual_ipaddress {
+        192.168.1.200
+    }
+}</pre>
+                </div>
+                <div style="margin-top: 30px; text-align: center;">
+                    <a href="#" target="_blank" class="btn-main" style="display: inline-flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-file-pdf"></i> Voir la Documentation PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="tech5" class="modal" onclick="closeTechModal(event, 'tech5')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <h2>Scripting Active Directory</h2>
+                <span class="close-modal" onclick="document.getElementById('tech5').style.display='none'" style="position:static; font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div style="margin-bottom:20px;">
+                    <h4 style="color:var(--accent-blue);">Contexte</h4>
+                    <p>Automatisation de la création de comptes utilisateurs à partir d'un fichier CSV lors de la rentrée de 150 nouveaux collaborateurs.</p>
+                </div>
+                <div style="margin-bottom:20px;">
+                    <h4 style="color:var(--accent-blue);">Schéma Réseau</h4>
+                    <div class="network-schema">[Capture d'écran : Structure OU Active Directory]</div>
+                </div>
+                <div>
+                    <h4 style="color:var(--accent-blue);">Script PowerShell</h4>
+                    <pre>$Users = Import-Csv "C:\Temp\nouveaux_users.csv"
+ForEach ($User in $Users) {
+    New-ADUser -Name $User.Nom `
+      -SamAccountName $User.Login `
+      -Path "OU=Compta,DC=domaine,DC=local" `
+      -Enabled $true
+}</pre>
+                </div>
+                <div style="margin-top: 30px; text-align: center;">
+                    <a href="#" target="_blank" class="btn-main" style="display: inline-flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-file-pdf"></i> Voir la Documentation PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="tech6" class="modal" onclick="closeTechModal(event, 'tech6')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <h2>Segmentation VLAN</h2>
+                <span class="close-modal" onclick="document.getElementById('tech6').style.display='none'" style="position:static; font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div style="margin-bottom:20px;">
+                    <h4 style="color:var(--accent-blue);">Contexte</h4>
+                    <p>Séparation logique des flux (Data, Voix, Invités) pour améliorer la sécurité et les performances du réseau local.</p>
+                </div>
+                <div style="margin-bottom:20px;">
+                    <h4 style="color:var(--accent-blue);">Schéma Réseau</h4>
+                    <div class="network-schema">[Capture d'écran : Topologie VLAN 10/20]</div>
+                </div>
+                <div>
+                    <h4 style="color:var(--accent-blue);">Configuration Switch (Cisco IOS)</h4>
+                    <pre>vlan 10
+ name DATA
+vlan 20
+ name VOIP
+!
+interface GigabitEthernet0/1
+ switchport mode access
+ switchport access vlan 10
+ switchport voice vlan 20</pre>
+                </div>
+                <div style="margin-top: 30px; text-align: center;">
+                    <a href="#" target="_blank" class="btn-main" style="display: inline-flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-file-pdf"></i> Voir la Documentation PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

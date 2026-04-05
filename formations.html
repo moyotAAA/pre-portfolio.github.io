@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formations | Ayoub LeBoss</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <button class="theme-toggle-btn" id="theme-toggle"><i class="fas fa-moon"></i></button>
+
+    <div class="liquid-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <nav>
+        <div class="nav-item"><a href="index.html">Accueil</a></div>
+        <div class="nav-item dropdown">
+            <a href="dossier.html">Mon Dossier <i class="fas fa-caret-down" style="font-size:0.8rem; margin-left:5px;"></i></a>
+            <div class="dropdown-menu">
+                <a href="dossier.html#documents"><i class="fas fa-file-alt"></i> CV</a>
+                <a href="dossier.html#documents"><i class="fas fa-envelope-open-text"></i> Lettre de Motivation</a>
+            </div>
+        </div>
+        <div class="nav-item"><a href="projets.html">Projets</a></div>
+        <div class="nav-item"><a href="formations.html">Veilles</a></div>
+        <div class="nav-item"><a href="#contact">Contact</a></div>
+    </nav>
+
+    <section id="veilles-section" class="container">
+        <div class="section-header">
+            <h2>Formations</h2>
+            <p>Parcours académique et développement des compétences.</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item featured">
+                <div class="timeline-content">
+                    <div class="timeline-card featured">
+                        <span class="featured-badge">Formation actuelle</span>
+                        <span class="timeline-date">2024 - Présent</span>
+                        <h3>BTS SIO Option SISR</h3>
+                        <p class="institution">Lycée René Descartes, Île-de-France</p>
+
+                        <div class="sigle-explanation">
+                            <strong>SIO :</strong> Services Informatiques aux Organisations<br>
+                            <strong>SISR :</strong> Solutions d'Infrastructure, Systèmes et Réseaux
+                        </div>
+
+                        <p>Spécialité principale : Infrastructures & Sécurité Réseau</p>
+                        <p><strong>Spécialité secondaire :</strong> Mathématiques approfondies</p>
+
+                        <p style="margin-top: 15px; margin-bottom: 8px; font-weight: 600; color: var(--text-primary);">Compétences développées :</p>
+                        <div class="skills-badges">
+                            <span class="skill-badge">Réseaux</span>
+                            <span class="skill-badge">Sécurité</span>
+                            <span class="skill-badge">Admin. Système</span>
+                            <span class="skill-badge">Virtualisation</span>
+                            <span class="skill-badge">Cloud</span>
+                        </div>
+
+                        <div style="margin-top: 15px; font-size: 0.85rem; color: var(--text-secondary); border-top: 1px solid var(--border-glass); padding-top: 12px;">
+                            <strong style="color: var(--text-primary);">Veille Technologique :</strong> La problématique du zéro trust en cybersécurité
+                        </div>
+
+                        <button class="btn-learn-more" onclick="toggleFormationDetails()">En savoir + sur cette formation</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-card">
+                        <span class="timeline-date">2023 - 2024</span>
+                        <h3>Licence Mathématiques</h3>
+                        <p class="institution">Université Sorbonne Paris Nord</p>
+
+                        <p style="margin-top: 12px; line-height: 1.6;">
+                            Développement d'une solide rigueur logique et de compétences analytiques fondamentales.
+                            Approche structurée de la résolution de problèmes complexes.
+                        </p>
+
+                        <div class="specialties" style="margin-top: 12px;">
+                            <span class="specialty-tag">Analyse</span>
+                            <span class="specialty-tag">Algèbre</span>
+                            <span class="specialty-tag">Logique</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-card">
+                        <span class="timeline-date">2023</span>
+                        <h3>Baccalauréat Général</h3>
+                        <p class="institution">Lycée Blaise Cendrars</p>
+
+                        <p style="margin-top: 12px;">
+                            Filière scientifique avec focus technique et mathématique.
+                        </p>
+
+                        <p style="margin-top: 10px;"><strong>Spécialités  </strong></p>
+                        <div class="specialties">
+                            <span class="specialty-tag">Mathématiques</span>
+                            <span class="specialty-tag">Physique-Chimie</span>
+                            <span class="specialty-tag">SES: Sciences Économiques et Sociales</span>
+                        </div>
+
+                        <div style="margin-top: 15px; padding: 12px; background: rgba(100, 210, 255, 0.08); border-radius: 10px; border-left: 3px solid var(--accent-cyan);">
+                            <span style="font-weight: 700; color: var(--accent-cyan);">
+                                <i class="fas fa-award" style="margin-right: 6px;"></i> Mention Bien
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h2>Travaillons ensemble.</h2>
+        <p style="color:var(--text-secondary); margin-bottom: 30px;">À la recherche d'une alternance.</p>
+        <div style="font-size: 2rem; display:flex; justify-content:center; gap:30px;">
+            <a href="#" style="color: var(--text-primary); transition:0.3s;"><i class="fab fa-linkedin"></i></a>
+            <a href="#" style="color: var(--text-primary); transition:0.3s;"><i class="fab fa-github"></i></a>
+            <a href="mailto:tonemail@gmail.com" style="color: var(--text-primary); transition:0.3s;"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p style="margin-top: 40px; font-size: 0.8rem; color:var(--text-tertiary);">© 2025 Ayoub Leboss.</p>
+    </footer>
+
+    <div id="formation-modal" class="formation-modal" onclick="closeFormationModal(event)">
+        <div class="formation-modal-content" onclick="event.stopPropagation()">
+            <span class="close-formation-modal" onclick="closeFormationModal()">&times;</span>
+
+            <h2>BTS SIO - Services Informatiques aux Organisations</h2>
+            <p>Une formation d'État reconnue pour préparer aux métiers de l'informatique en entreprise.</p>
+
+            <div id="step-presentation" class="formation-modal-step active">
+                <h3>Présentation de la formation</h3>
+
+                <div class="org-prog-val-cards">
+                    <div class="org-prog-val-card">
+                        <h5>Organisation</h5>
+                        <ul>
+                            <li>2 ans de formation</li>
+                            <li>1850 heures de formation</li>
+                            <li>10 semaines de stage minimum</li>
+                            <li>Alternance possible</li>
+                        </ul>
+                    </div>
+
+                    <div class="org-prog-val-card">
+                        <h5>Programme</h5>
+                        <ul>
+                            <li>Culture générale et expression</li>
+                            <li>Culture économique, juridique et managériale</li>
+                            <li>Anglais technique</li>
+                            <li>Mathématiques pour l'informatique</li>
+                        </ul>
+                    </div>
+
+                    <div class="org-prog-val-card">
+                        <h5>Validation</h5>
+                        <ul>
+                            <li>Diplôme d'État</li>
+                            <li>Niveau 5 (Bac +2)</li>
+                            <li>120 crédits ECTS (60/an)</li>
+                            <li>Certification professionnelle</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="competences-box">
+                    <h4>Compétences communes</h4>
+                    <p style="text-align: center; color: var(--text-secondary); font-size: 0.9rem;">
+                        Toutes les options du BTS SIO développent ces compétences fondamentales.
+                    </p>
+
+                    <div class="competences-cards">
+                        <div class="competence-card">
+                            <h5>Support et assistance</h5>
+                            <ul>
+                                <li>Gestion du patrimoine informatique</li>
+                                <li>Réponse aux incidents</li>
+                                <li>Développement de la présence en ligne</li>
+                            </ul>
+                        </div>
+
+                        <div class="competence-card">
+                            <h5>Cybersécurité</h5>
+                            <ul>
+                                <li>Protection des données</li>
+                                <li>Sécurisation des équipements</li>
+                                <li>Politique de sécurité</li>
+                            </ul>
+                        </div>
+
+                        <div class="competence-card">
+                            <h5>Gestion de projet</h5>
+                            <ul>
+                                <li>Analyse des besoins</li>
+                                <li>Documentation technique</li>
+                                <li>Travail en équipe</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 40px;">
+                    <button type="button" class="btn-main" onclick="showFormationStep('specialties'); return false;">Découvrir les spécialités</button>
+                </div>
+            </div>
+
+            <div id="step-specialties" class="formation-modal-step">
+                <h3 style="text-align: center; margin-bottom: 20px;">Les spécialités du BTS SIO</h3>
+
+                <div class="specialties-grid">
+                    <div class="specialty-card featured-specialty">
+                        <h4>Option SISR</h4>
+                        <p class="specialty-subtitle">Solutions d'Infrastructure, Systèmes et Réseaux</p>
+
+                        <h5>Compétences techniques</h5>
+                        <ul>
+                            <li>Administration Windows</li>
+                            <li>Administration Linux</li>
+                            <li>Réseaux TCP/IP</li>
+                            <li>Virtualisation</li>
+                        </ul>
+
+                        <h5>Services et sécurité</h5>
+                        <ul>
+                            <li>Active Directory</li>
+                            <li>VPN</li>
+                            <li>Pare-feu</li>
+                            <li>Supervision</li>
+                        </ul>
+
+                        <h5>Débouchés professionnels</h5>
+                        <ul>
+                            <li>Administrateur réseaux</li>
+                            <li>Technicien support</li>
+                            <li>Responsable infrastructure</li>
+                            <li>Consultant cybersécurité</li>
+                        </ul>
+                    </div>
+
+                    <div class="specialty-card">
+                        <h4>Option SLAM</h4>
+                        <p class="specialty-subtitle">Solutions Logicielles et Applications Métiers</p>
+
+                        <h5>Compétences techniques</h5>
+                        <ul>
+                            <li>Développement web</li>
+                            <li>Applications mobiles</li>
+                            <li>Bases de données</li>
+                            <li>Programmation objet</li>
+                        </ul>
+
+                        <h5>Technologies</h5>
+                        <ul>
+                            <li>Java, C#, Python</li>
+                            <li>HTML, CSS, JavaScript</li>
+                            <li>SQL, NoSQL</li>
+                            <li>React, Angular</li>
+                        </ul>
+
+                        <h5>Débouchés professionnels</h5>
+                        <ul>
+                            <li>Développeur d'applications</li>
+                            <li>Développeur web</li>
+                            <li>Analyste programmeur</li>
+                            <li>Chef de projet junior</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 40px;">
+                    <button type="button" class="btn-main" style="margin-right: 15px;" onclick="showFormationStep('presentation'); return false;">Revenir à la présentation</button>
+                    <button type="button" class="btn-main" onclick="closeFormationModal(); return false;">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

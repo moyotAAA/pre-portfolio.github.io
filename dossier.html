@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Dossier | Ayoub LeBoss</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <button class="theme-toggle-btn" id="theme-toggle"><i class="fas fa-moon"></i></button>
+
+    <div class="liquid-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <nav>
+        <div class="nav-item"><a href="index.html">Accueil</a></div>
+        <div class="nav-item dropdown">
+            <a href="dossier.html">Mon Dossier <i class="fas fa-caret-down" style="font-size:0.8rem; margin-left:5px;"></i></a>
+            <div class="dropdown-menu">
+                <a href="#documents"><i class="fas fa-file-alt"></i> CV</a>
+                <a href="#documents"><i class="fas fa-envelope-open-text"></i> Lettre de Motivation</a>
+            </div>
+        </div>
+        <div class="nav-item"><a href="projets.html">Projets</a></div>
+        <div class="nav-item"><a href="formations.html">Veilles</a></div>
+        <div class="nav-item"><a href="#contact">Contact</a></div>
+    </nav>
+
+    <section id="documents" class="container">
+        <div class="section-header">
+            <h2>Documents Officiels.</h2>
+            <p>Aperçu et téléchargement.</p>
+        </div>
+        <div class="doc-grid">
+            <div class="doc-card">
+                <div class="doc-preview">
+                    <img src="annexes/CV-M.TOUIL-Ayoub-9.jpg" alt="Aperçu CV Ayoub">
+                    <div class="doc-actions">
+                        <button class="btn-icon" onclick="openModal(event, 'CV')"><i class="fas fa-eye"></i></button>
+                        <a href="annexes/CV-TOUIL Ayoub-9.pdf" download class="btn-icon"><i class="fas fa-download"></i></a>
+                    </div>
+                </div>
+                <div class="doc-info">
+                    <h3>Curriculum Vitae</h3>
+                    <p style="color:var(--text-secondary); font-size:0.8rem;">PDF</p>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-preview">
+                    <img src="annexes/LM-M.TOUIL-Ayoub.jpg" alt="Aperçu Lettre de Motivation">
+                    <div class="doc-actions">
+                        <button class="btn-icon" onclick="openModal(event, 'LM')"><i class="fas fa-eye"></i></button>
+                        <a href="annexes/LM-M.TOUIL Ayoub-1.pdf" download class="btn-icon"><i class="fas fa-download"></i></a>
+                    </div>
+                </div>
+                <div class="doc-info">
+                    <h3>Lettre de Motivation</h3>
+                    <p style="color:var(--text-secondary); font-size:0.8rem;">PDF</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cv-section" class="container">
+        <div class="section-header">
+            <h2>Expériences.</h2>
+            <p>Mon parcours sur le terrain.</p>
+        </div>
+
+        <div class="bento-grid">
+
+            <div class="span-2 row-2 flip-card-container">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div>
+                            <div style="display:flex; justify-content:space-between; align-items:start;">
+                                <span class="card-date" style="color: var(--accent-purple);">Juillet 2025 - Août 2025</span>
+                                <i class="fas fa-cloud" style="font-size:1.5rem; color:var(--accent-purple);"></i>
+                            </div>
+                            <h3 style="font-size: 2rem; margin-top:10px;">OUTSCALE</h3>
+                            <h4>Stage — Infrastructure Cloud</h4>
+                            <ul class="skill-list" style="margin-top: 20px;">
+                                <li><i class="fas fa-server" style="color:var(--accent-purple);"></i>Administration Cloud & VM</li>
+                                <li><i class="fas fa-code" style="color:var(--accent-purple);"></i>Automatisation (Terraform / scripts)</li>
+                                <li><i class="fas fa-shield-alt" style="color:var(--accent-purple);"></i>Monitoring & Sécurité</li>
+                            </ul>
+                        </div>
+                        <div style="margin-top: 20px;">
+                             <p style="font-size:0.8rem; opacity:0.7; margin-bottom:10px;"><i class="fas fa-mouse-pointer"></i> Survolez pour voir le dossier</p>
+                             <span class="tech-tag">Cloud</span>
+                             <span class="tech-tag">Automatisation</span>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3 style="color:white; margin-bottom:5px;">Dossier de Stage</h3>
+                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.7);">Accédez aux documents</p>
+                        <div class="stage-options-grid">
+                            <div class="stage-btn" onclick="openInfoModal('outs_photos')">
+                                <i class="fas fa-images"></i><span>Photos</span>
+                            </div>
+                            <div class="stage-btn" onclick="openInfoModal('outs_rapport')">
+                                <i class="fas fa-file-pdf"></i><span>Rapport</span>
+                            </div>
+                            <div class="stage-btn" onclick="openInfoModal('outs_competences')">
+                                <i class="fas fa-check-double"></i><span>Compétences</span>
+                            </div>
+                            <div class="stage-btn" onclick="openInfoModal('outs_notes')">
+                                <i class="fas fa-sticky-note"></i><span>Notes</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="span-2 row-2 flip-card-container">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div>
+                            <div style="display:flex; justify-content:space-between; align-items:start;">
+                                <span class="card-date" style="color: var(--accent-yellow);">Juin 2025 - Juillet 2025</span>
+                                <i class="fas fa-store" style="font-size:1.5rem; color:var(--accent-yellow);"></i>
+                            </div>
+                            <h3 style="font-size: 2rem; margin-top:10px;">Fnac Darty (Siège)</h3>
+                            <h4>Technicien Support Informatique</h4>
+                            <ul class="skill-list" style="margin-top: 20px;">
+                                <li><i class="fas fa-ticket-alt" style="color:var(--accent-yellow);"></i>Gestion incidents&nbsp;<b>Ivanti Landesk</b></li>
+                                <li><i class="fas fa-video" style="color:var(--accent-yellow);"></i> Déploiement&nbsp;<b>MTR (Teams Rooms)</b></li>
+                                <li><i class="fas fa-recycle" style="color:var(--accent-yellow);"></i>Reconditionnement parc</li>
+                            </ul>
+                        </div>
+                        <div style="margin-top: 20px;">
+                             <p style="font-size:0.8rem; opacity:0.7; margin-bottom:10px;"><i class="fas fa-mouse-pointer"></i> Survolez pour voir le dossier</p>
+                             <span class="tech-tag">Support N2</span>
+                             <span class="tech-tag">Hardware</span>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3 style="color:white; margin-bottom:5px;">Dossier de Stage</h3>
+                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.7);">Accédez aux documents</p>
+                        <div class="stage-options-grid">
+                            <div class="stage-btn" onclick="openInfoModal('photos')">
+                                <i class="fas fa-images"></i><span>Photos</span>
+                            </div>
+                            <div class="stage-btn" onclick="openInfoModal('rapport')">
+                                <i class="fas fa-file-pdf"></i><span>Rapport</span>
+                            </div>
+                            <div class="stage-btn" onclick="openInfoModal('competences')">
+                                <i class="fas fa-check-double"></i><span>Compétences</span>
+                            </div>
+                            <div class="stage-btn" onclick="openInfoModal('planning')">
+                                <i class="fas fa-calendar-alt"></i><span>Planning</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card span-4">
+                <span class="card-date">Juin 2024 - Juillet 2024</span>
+                <h3>TD Synnex</h3>
+                <h4>Préparation Matériel</h4>
+                <ul class="skill-list">
+                    <li><i class="fas fa-check-circle" style="color: var(--accent-blue);"></i> Config & Maintenance postes</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--accent-blue);"></i> Contrôle Qualité Logiciel</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--accent-blue);"></i> Logistique</li>
+                </ul>
+            </div>
+
+            <div class="card span-2 assos-card">
+                <span class="card-date">Depuis 2023</span>
+                <h3>Association I.D.E.E.S</h3>
+                <h4>Bénévolat</h4>
+                <p>Accompagnement scolaire et pédagogique.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h2>Travaillons ensemble.</h2>
+        <p style="color:var(--text-secondary); margin-bottom: 30px;">À la recherche d'une alternance.</p>
+        <div style="font-size: 2rem; display:flex; justify-content:center; gap:30px;">
+            <a href="#" style="color: var(--text-primary); transition:0.3s;"><i class="fab fa-linkedin"></i></a>
+            <a href="#" style="color: var(--text-primary); transition:0.3s;"><i class="fab fa-github"></i></a>
+            <a href="mailto:tonemail@gmail.com" style="color: var(--text-primary); transition:0.3s;"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p style="margin-top: 40px; font-size: 0.8rem; color:var(--text-tertiary);">© 2025 Ayoub Leboss.</p>
+    </footer>
+
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <img id="modalImage" src="" alt="Document en grand">
+    </div>
+
+    <div id="infoModal" class="modal" onclick="closeInfoModal(event)">
+        <div class="info-modal-content" onclick="event.stopPropagation()">
+            <span class="close-modal" onclick="document.getElementById('infoModal').style.display='none'" style="position:absolute; top:15px; right:20px; font-size:30px; color:var(--text-primary); cursor:pointer;">&times;</span>
+            <h2 id="infoTitle" style="color:var(--accent-blue); margin-bottom:20px;">Titre</h2>
+            <div id="infoBody"></div>
+            <div style="margin-top:20px; text-align:right;">
+                <button class="btn-main" onclick="document.getElementById('infoModal').style.display='none'" style="padding:10px 20px; font-size:0.9rem;">Fermer</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
