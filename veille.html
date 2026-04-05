@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veille Technologique | Ayoub Touil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ============================================
+           VEILLE PAGE — STYLES SPÉCIFIQUES
+        ============================================ */
+
+        /* Subnav interne sticky */
+        .veille-subnav {
+            position: sticky;
+            top: 0;
+            z-index: 500;
+            background: var(--nav-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0;
+            padding: 0 20px;
+            box-shadow: 0 4px 20px var(--shadow-color);
+            margin-top: 0;
+        }
+
+        .subnav-link {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 16px 18px;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .subnav-link:hover,
+        .subnav-link.active {
+            color: var(--accent-cyan);
+            border-bottom-color: var(--accent-cyan);
+        }
+
+        /* HERO veille */
+        .veille-hero {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px 60px;
+        }
+
+        .veille-hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            letter-spacing: -3px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .veille-topic {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            max-width: 700px;
+        }
+
+        .veille-sub {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .veille-meta {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .veille-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            background: var(--tag-bg);
+            border: 1px solid var(--border-glass);
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        .veille-meta span i { color: var(--accent-cyan); }
+
+        /* SECTIONS */
+        .veille-section {
+            padding: 80px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+            scroll-margin-top: 60px;
+        }
+
+        .veille-section-header {
+            margin-bottom: 50px;
+        }
+
+        .veille-section-header .section-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-cyan);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .veille-section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .veille-section-header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Divider */
+        .veille-divider {
+            border: none;
+            border-top: 1px solid var(--border-glass);
+            margin: 0;
+        }
+
+        /* Problématique highlight */
+        .problematique-card {
+            background: linear-gradient(135deg, rgba(10, 132, 255, 0.08), rgba(100, 210, 255, 0.08));
+            border: 1px solid var(--accent-cyan);
+            border-radius: 20px;
+            padding: 30px 40px;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problematique-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--accent-cyan), var(--accent-blue));
+        }
+
+        .problematique-card .label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-cyan);
+            margin-bottom: 12px;
+        }
+
+        .problematique-card p {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--text-primary);
+            font-weight: 500;
+            line-height: 1.7;
+        }
+
+        /* Glossaire / définitions */
+        .definition-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .definition-card {
+            background: var(--card-glass);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .definition-card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-3px);
+        }
+
+        .definition-card .def-term {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .definition-card .def-term i {
+            font-size: 1.2rem;
+            width: 30px;
+        }
+
+        .definition-card p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Choix de thème + PPP */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        /* Sources table */
+        .sources-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .sources-table th {
+            background: rgba(100, 210, 255, 0.1);
+            color: var(--accent-cyan);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 14px 18px;
+            text-align: left;
+            border-bottom: 2px solid var(--accent-cyan);
+        }
+
+        .sources-table td {
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border-glass);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .sources-table tr:hover td {
+            background: var(--tag-bg);
+            color: var(--text-primary);
+        }
+
+        .sources-table .cat-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .cat-inst { background: rgba(10,132,255,0.15); color: var(--accent-blue); }
+        .cat-presse { background: rgba(100,210,255,0.15); color: var(--accent-cyan); }
+        .cat-marche { background: rgba(191,90,242,0.15); color: var(--accent-purple); }
+        .cat-editeur { background: rgba(48,209,88,0.15); color: var(--accent-green); }
+
+        /* Outils RSS */
+        .outils-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .outil-card {
+            background: var(--card-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .outil-card:hover { border-color: var(--accent-cyan); transform: translateY(-3px); }
+
+        .outil-card .outil-icon {
+            font-size: 2.5rem;
+            color: var(--accent-cyan);
+        }
+
+        .outil-card h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .outil-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .outil-card .flux-list {
+            list-style: none;
+            margin-top: 5px;
+        }
+
+        .outil-card .flux-list li {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            padding: 5px 0;
+            border-bottom: 1px solid var(--border-glass);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .outil-card .flux-list li:last-child { border-bottom: none; }
+        .outil-card .flux-list li i { color: var(--accent-cyan); width: 14px; }
+
+        /* Tech accordion */
+        .tech-accordion { display: flex; flex-direction: column; gap: 15px; }
+
+        .accordion-item {
+            background: var(--card-glass);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item.open { border-color: var(--accent-cyan); }
+
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 28px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .accordion-header h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .accordion-header h4 i { color: var(--accent-cyan); font-size: 1.1rem; }
+
+        .accordion-header .toggle-icon {
+            color: var(--text-tertiary);
+            transition: transform 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .accordion-item.open .toggle-icon { transform: rotate(180deg); color: var(--accent-cyan); }
+
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion-item.open .accordion-body { max-height: 2000px; }
+
+        .accordion-content {
+            padding: 0 28px 28px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .accordion-content p { margin-bottom: 12px; }
+        .accordion-content ul { list-style: none; margin: 10px 0; }
+        .accordion-content ul li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+            color: var(--text-secondary);
+        }
+        .accordion-content ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        /* Comparison table VPN vs ZTNA */
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .compare-table th {
+            padding: 16px 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-align: left;
+        }
+
+        .compare-table th:first-child {
+            background: rgba(255,255,255,0.05);
+            color: var(--text-secondary);
+            width: 30%;
+        }
+
+        .compare-table th:nth-child(2) {
+            background: rgba(255,69,58,0.1);
+            color: #FF453A;
+            text-align: center;
+        }
+
+        .compare-table th:nth-child(3) {
+            background: rgba(100,210,255,0.1);
+            color: var(--accent-cyan);
+            text-align: center;
+        }
+
+        .compare-table td {
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--border-glass);
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+
+        .compare-table td:first-child {
+            font-weight: 600;
+            color: var(--text-primary);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .compare-table td:nth-child(2) {
+            background: rgba(255,69,58,0.04);
+            text-align: center;
+        }
+
+        .compare-table td:nth-child(3) {
+            background: rgba(100,210,255,0.04);
+            text-align: center;
+        }
+
+        .compare-table tr:last-child td { border-bottom: none; }
+
+        .icon-bad { color: #FF453A; }
+        .icon-good { color: var(--accent-green); }
+        .icon-warn { color: var(--accent-yellow); }
+
+        /* MARKET section */
+        .stats-highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-highlight {
+            background: var(--card-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-highlight:hover { border-color: var(--accent-cyan); transform: translateY(-3px); }
+
+        .stat-highlight .stat-num {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--accent-cyan);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-highlight .stat-label {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .stat-highlight .stat-source {
+            font-size: 0.7rem;
+            color: var(--text-tertiary);
+            margin-top: 8px;
+            display: block;
+        }
+
+        /* Market bars */
+        .market-bars { margin-top: 30px; }
+
+        .market-bar-item { margin-bottom: 22px; }
+
+        .market-bar-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.88rem;
+        }
+
+        .market-bar-label .name { color: var(--text-primary); font-weight: 600; }
+        .market-bar-label .value { color: var(--accent-cyan); font-weight: 700; }
+
+        .market-bar-track {
+            height: 8px;
+            background: var(--tag-bg);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .market-bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+            animation: growBar 1.5s ease forwards;
+            width: 0;
+        }
+
+        @keyframes growBar { to { width: var(--target-width); } }
+
+        /* Acteurs grid */
+        .acteurs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .acteur-card {
+            background: var(--card-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .acteur-card:hover { border-color: var(--accent-cyan); transform: translateY(-3px); }
+        .acteur-card.leader { border-color: rgba(100, 210, 255, 0.4); box-shadow: 0 0 20px rgba(100, 210, 255, 0.08); }
+
+        .acteur-card .acteur-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .acteur-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .acteur-card .acteur-badge {
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-weight: 700;
+            background: rgba(100,210,255,0.15);
+            color: var(--accent-cyan);
+        }
+
+        .acteur-card p {
+            font-size: 0.87rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* RSS iframe section */
+        .flux-placeholder {
+            background: var(--card-glass);
+            border: 2px dashed var(--accent-cyan);
+            border-radius: 20px;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            text-align: center;
+            padding: 40px;
+            color: var(--text-secondary);
+        }
+
+        .flux-placeholder i { font-size: 3rem; color: var(--accent-cyan); opacity: 0.5; }
+        .flux-placeholder h4 { font-size: 1.2rem; color: var(--text-primary); }
+        .flux-placeholder p { font-size: 0.9rem; max-width: 400px; }
+
+        /* INOREADER IFRAME — Remplacer le div.flux-placeholder par l'iframe ci-dessous :
+           <iframe src="VOTRE_URL_INOREADER" width="100%" height="500" frameborder="0" style="border-radius:20px; border:1px solid var(--border-glass);"></iframe>
+        */
+
+        .flux-method-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .method-step {
+            background: var(--card-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .method-step:hover { border-color: var(--accent-cyan); }
+
+        .method-step .step-num {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(100, 210, 255, 0.1);
+            border: 2px solid var(--accent-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--accent-cyan);
+        }
+
+        .method-step h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .method-step p {
+            font-size: 0.87rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Revue de presse */
+        .actu-card {
+            background: var(--card-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 25px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .actu-card:hover { transform: translateY(-3px); border-color: var(--accent-cyan); }
+
+        .actu-header {
+            padding: 25px 30px 20px;
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        .actu-meta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+            font-size: 0.8rem;
+        }
+
+        .actu-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-tertiary);
+        }
+
+        .actu-meta span i { color: var(--accent-cyan); }
+        .actu-num { color: var(--accent-cyan); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; display: block; }
+        .actu-header h3 { font-size: 1.3rem; font-weight: 700; color: var(--text-primary); }
+
+        .actu-body { padding: 25px 30px; }
+        .actu-body p { color: var(--text-secondary); font-size: 0.92rem; line-height: 1.7; margin-bottom: 12px; }
+
+        .actu-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin: 18px 0;
+        }
+
+        .actu-stat {
+            background: var(--tag-bg);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .actu-stat .num { font-size: 1.5rem; font-weight: 800; color: var(--accent-cyan); display: block; }
+        .actu-stat .lab { font-size: 0.75rem; color: var(--text-secondary); }
+
+        .commentaire-perso {
+            background: rgba(100, 210, 255, 0.06);
+            border: 1px solid rgba(100, 210, 255, 0.2);
+            border-radius: 15px;
+            padding: 20px 25px;
+            margin-top: 18px;
+        }
+
+        .commentaire-perso .label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-cyan);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .commentaire-perso p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 0 !important;
+        }
+
+        .actu-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-cyan);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .actu-link:hover { color: var(--accent-blue); }
+
+        /* Conclusion */
+        .conclusion-text {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.9;
+            margin-bottom: 18px;
+        }
+
+        .conclusion-text strong { color: var(--text-primary); }
+
+        .conclusion-ouverture {
+            background: linear-gradient(135deg, rgba(10, 132, 255, 0.06), rgba(191, 90, 242, 0.06));
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .conclusion-ouverture h4 { color: var(--accent-purple); margin-bottom: 12px; font-weight: 700; }
+        .conclusion-ouverture p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .veille-hero h1 { font-size: 2.8rem; letter-spacing: -1px; }
+            .two-col, .outils-grid { grid-template-columns: 1fr; }
+            .veille-subnav { justify-content: flex-start; overflow-x: auto; }
+            .compare-table { display: block; overflow-x: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="theme-toggle-btn" id="theme-toggle"><i class="fas fa-moon"></i></button>
+
+    <div class="liquid-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <nav>
+        <div class="nav-item"><a href="index.html">Accueil</a></div>
+        <div class="nav-item dropdown">
+            <a href="dossier.html">Mon Dossier <i class="fas fa-caret-down" style="font-size:0.8rem; margin-left:5px;"></i></a>
+            <div class="dropdown-menu">
+                <a href="dossier.html#documents"><i class="fas fa-file-alt"></i> CV</a>
+                <a href="dossier.html#documents"><i class="fas fa-envelope-open-text"></i> Lettre de Motivation</a>
+            </div>
+        </div>
+        <div class="nav-item"><a href="projets.html">Projets</a></div>
+        <div class="nav-item"><a href="veille.html">Veille</a></div>
+        <div class="nav-item"><a href="formations.html">Formations</a></div>
+        <div class="nav-item"><a href="#contact">Contact</a></div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <header class="veille-hero">
+        <div class="tag-pill">Épreuve E6 • BTS SIO SISR • 2025-2026</div>
+        <h1>Veille Technologique</h1>
+        <p class="veille-topic">Du modèle VPN traditionnel au Zero Trust et au ZTNA</p>
+        <p class="veille-sub">Évolution des architectures de sécurisation des accès distants</p>
+        <div class="veille-meta">
+            <span><i class="fas fa-user"></i> Ayoub Touil</span>
+            <span><i class="fas fa-shield-alt"></i> Option SISR</span>
+            <span><i class="fas fa-calendar-alt"></i> 2025-2026</span>
+            <span><i class="fas fa-clock"></i> 10 min à l'oral</span>
+        </div>
+    </header>
+
+    <!-- ===== SUBNAV INTERNE ===== -->
+    <div class="veille-subnav" id="veille-subnav">
+        <a href="#intro" class="subnav-link active">1. Introduction</a>
+        <a href="#organisation" class="subnav-link">2. Organisation</a>
+        <a href="#technologies" class="subnav-link">3. Technologies</a>
+        <a href="#marche" class="subnav-link">4. Marché</a>
+        <a href="#flux" class="subnav-link">5. Flux RSS</a>
+        <a href="#presse" class="subnav-link">6. Revue de presse</a>
+        <a href="#conclusion" class="subnav-link">7. Conclusion</a>
+    </div>
+
+    <!-- ===== 1. INTRODUCTION ===== -->
+    <section id="intro" class="veille-section">
+        <div class="veille-section-header">
+            <span class="section-label">Section 1</span>
+            <h2>Introduction</h2>
+            <p>Présentation du thème, justification du choix et lien avec le projet professionnel.</p>
+        </div>
+
+        <!-- Problématique -->
+        <div class="problematique-card">
+            <div class="label"><i class="fas fa-question-circle"></i> Problématique</div>
+            <p>« En quoi le modèle Zero Trust et le ZTNA constituent-ils une évolution plus adaptée que les VPN traditionnels pour sécuriser les accès aux infrastructures sensibles ? »</p>
+        </div>
+
+        <!-- Présentation du thème -->
+        <div class="card" style="margin-top: 30px;">
+            <div class="card-icon-title">
+                <i class="fas fa-bullseye" style="font-size:1.8rem; color: var(--accent-cyan);"></i>
+                <h3>Présentation du thème</h3>
+            </div>
+            <p style="color: var(--text-secondary); line-height: 1.8;">
+                La sécurisation des accès distants aux systèmes d'information constitue un enjeu majeur pour les entreprises, les administrations et les infrastructures sensibles. Depuis plusieurs décennies, les réseaux privés virtuels (<strong style="color:var(--text-primary)">VPN</strong>) ont été la pierre angulaire de cette sécurisation. Toutefois, l'évolution des modes de travail, la généralisation du cloud computing, la multiplication des terminaux non maîtrisés et la sophistication croissante des cybermenaces remettent en cause l'efficacité de ce modèle.
+            </p>
+            <p style="color: var(--text-secondary); line-height: 1.8; margin-top: 12px;">
+                C'est dans ce contexte qu'émerge le <strong style="color: var(--accent-cyan)">Zero Trust</strong> — formalisé par le NIST (SP 800-207, août 2020) et recommandé par l'ANSSI (guide juin 2025) — reposant sur le principe fondamental : <em>ne jamais faire confiance implicitement, toujours vérifier</em>. Sa déclinaison technique concrète, le <strong style="color: var(--accent-cyan)">ZTNA (Zero Trust Network Access)</strong>, redéfinit la manière dont les accès aux applications sont contrôlés.
+            </p>
+        </div>
+
+        <!-- Définitions clés -->
+        <h3 style="margin: 40px 0 20px; color: var(--text-primary); font-size: 1.3rem;">Termes clés</h3>
+        <div class="definition-grid">
+            <div class="definition-card">
+                <div class="def-term"><i class="fas fa-network-wired"></i> VPN</div>
+                <p>Virtual Private Network — tunnel chiffré entre un terminal distant et le réseau d'entreprise. Permet aux utilisateurs nomades d'accéder aux ressources internes comme s'ils étaient sur site.</p>
+            </div>
+            <div class="definition-card">
+                <div class="def-term"><i class="fas fa-shield-alt"></i> Zero Trust</div>
+                <p>Paradigme de cybersécurité centré sur l'absence de confiance implicite. Impose une vérification systématique, continue et granulaire de toute demande d'accès, quelle que soit son origine (NIST SP 800-207).</p>
+            </div>
+            <div class="definition-card">
+                <div class="def-term"><i class="fas fa-lock"></i> ZTNA</div>
+                <p>Zero Trust Network Access — solution technique appliquant le Zero Trust à l'accès aux applications. Accès granulaire basé sur l'identité et le contexte, sans exposer les applications sur Internet.</p>
+            </div>
+            <div class="definition-card">
+                <div class="def-term"><i class="fas fa-user-check"></i> Moindre privilège</div>
+                <p>Principe fondamental du Zero Trust : chaque utilisateur, service ou terminal ne reçoit que les droits strictement nécessaires à l'accomplissement de sa tâche, limitant la surface d'attaque.</p>
+            </div>
+            <div class="definition-card">
+                <div class="def-term"><i class="fas fa-project-diagram"></i> Microsegmentation</div>
+                <p>Cloisonnement fin des flux réseau permettant d'isoler les applications et utilisateurs les uns des autres afin de limiter la propagation d'une attaque au sein du SI.</p>
+            </div>
+            <div class="definition-card">
+                <div class="def-term"><i class="fas fa-key"></i> MFA</div>
+                <p>Authentification Multi-Facteurs — mécanisme essentiel dans le Zero Trust pour vérifier l'identité des utilisateurs de manière robuste, en combinant plusieurs facteurs indépendants.</p>
+            </div>
+        </div>
+
+        <!-- Justification + PPP -->
+        <div class="two-col" style="margin-top: 40px;">
+            <div class="card">
+                <div class="card-icon-title">
+                    <i class="fas fa-lightbulb" style="color: var(--accent-yellow);"></i>
+                    <h3>Pourquoi ce thème ?</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem;">
+                    Mon intérêt pour ce sujet s'est renforcé lors de mon stage chez <strong style="color: var(--text-primary)">Outscale</strong>, fournisseur cloud souverain certifié SecNumCloud. J'ai été confronté à une situation concrète : l'arrivée à échéance de certificats VPN sur une plateforme sensible, nécessitant une intervention manuelle sur les postes utilisateurs.
+                </p>
+                <p style="color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem; margin-top: 10px;">
+                    Cette expérience a illustré les contraintes opérationnelles du VPN : renouvellement manuel, dépendance à un tunnel réseau global, interruptions de service. Elle m'a conduit à m'interroger sur les alternatives et complémentarités possibles entre VPN et ZTNA.
+                </p>
+            </div>
+            <div class="card">
+                <div class="card-icon-title">
+                    <i class="fas fa-road" style="color: var(--accent-purple);"></i>
+                    <h3>Lien avec mon PPP</h3>
+                </div>
+                <p style="color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem;">
+                    En tant qu'étudiant en BTS SIO option SISR, je suis directement concerné par les enjeux de sécurisation des accès distants, de gestion des identités et de protection des datacenters.
+                </p>
+                <p style="color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem; margin-top: 10px;">
+                    La maîtrise des concepts Zero Trust et ZTNA constitue désormais un prérequis pour tout profil SISR. Je prépare une entrée en <strong style="color: var(--text-primary)">Licence Professionnelle Administration Systèmes et Réseaux</strong>, où ces compétences (IAM, SASE, Zero Trust) seront directement attendues sur le marché.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="veille-divider">
+
+    <!-- ===== 2. ORGANISATION ===== -->
+    <section id="organisation" class="veille-section">
+        <div class="veille-section-header">
+            <span class="section-label">Section 2</span>
+            <h2>Comment j'organise ma veille</h2>
+            <p>Sources d'informations, outils RSS et exploitation des données collectées.</p>
+        </div>
+
+        <!-- Sources -->
+        <h3 style="color: var(--text-primary); margin-bottom: 15px; font-size: 1.2rem;"><i class="fas fa-database" style="color: var(--accent-cyan); margin-right: 10px;"></i>Mes sources d'information</h3>
+        <div style="background: var(--card-glass); border: 1px solid var(--border-glass); border-radius: 20px; overflow: hidden;">
+            <table class="sources-table">
+                <thead>
+                    <tr>
+                        <th>Source</th>
+                        <th>Type</th>
+                        <th>Catégorie</th>
+                        <th>Valeur ajoutée</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ANSSI</strong> — cyber.gouv.fr</td>
+                        <td>Institutionnel</td>
+                        <td><span class="cat-badge cat-inst">Institutionnel</span></td>
+                        <td>Guides officiels, recommandations françaises</td>
+                    </tr>
+                    <tr>
+                        <td><strong>NIST</strong> — nist.gov</td>
+                        <td>Institutionnel</td>
+                        <td><span class="cat-badge cat-inst">Institutionnel</span></td>
+                        <td>Norme SP 800-207 Zero Trust Architecture</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CISA</strong> — cisa.gov</td>
+                        <td>Institutionnel</td>
+                        <td><span class="cat-badge cat-inst">Institutionnel</span></td>
+                        <td>Recommandations cybersécurité fédérale US</td>
+                    </tr>
+                    <tr>
+                        <td><strong>GPO Magazine</strong></td>
+                        <td>Presse spécialisée</td>
+                        <td><span class="cat-badge cat-presse">Presse</span></td>
+                        <td>Actualités ZTNA, articles techniques FR</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SecurityWeek</strong></td>
+                        <td>Presse spécialisée</td>
+                        <td><span class="cat-badge cat-presse">Presse</span></td>
+                        <td>Cyber Insights 2026, analyse Zero Trust</td>
+                    </tr>
+                    <tr>
+                        <td><strong>LeMagIT</strong></td>
+                        <td>Presse spécialisée</td>
+                        <td><span class="cat-badge cat-presse">Presse</span></td>
+                        <td>Tendances marché IT francophone</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gartner</strong></td>
+                        <td>Cabinet d'analyse</td>
+                        <td><span class="cat-badge cat-marche">Marché</span></td>
+                        <td>Magic Quadrant SSE, prévisions ZTNA</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Grand View Research / MarketsandMarkets</strong></td>
+                        <td>Institut de recherche</td>
+                        <td><span class="cat-badge cat-marche">Marché</span></td>
+                        <td>Études de marché, CAGR, projections 2030</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Zscaler</strong></td>
+                        <td>Éditeur ZTNA</td>
+                        <td><span class="cat-badge cat-editeur">Éditeur</span></td>
+                        <td>Rapports techniques, ThreatLabz 2025</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Palo Alto / Fortinet / Cisco</strong></td>
+                        <td>Éditeurs sécurité</td>
+                        <td><span class="cat-badge cat-editeur">Éditeur</span></td>
+                        <td>Livres blancs, cas d'usage ZTNA</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Outils RSS -->
+        <h3 style="color: var(--text-primary); margin: 40px 0 15px; font-size: 1.2rem;"><i class="fas fa-rss" style="color: var(--accent-cyan); margin-right: 10px;"></i>Les outils utilisés</h3>
+        <div class="outils-grid">
+            <div class="outil-card">
+                <div class="outil-icon"><i class="fas fa-newspaper"></i></div>
+                <h4>Inoreader — Agrégateur RSS</h4>
+                <p>Outil principal de centralisation et d'automatisation de la collecte d'informations. Permet de suivre en temps réel les publications sans visiter manuellement chaque site. Flux organisés par catégories (institutionnel, marché, technique).</p>
+                <ul class="flux-list">
+                    <li><i class="fas fa-circle-dot"></i> Flux 1 — CERT-FR / ANSSI (institutionnel)</li>
+                    <li><i class="fas fa-circle-dot"></i> Flux 2 — SecurityWeek Zero Trust (spécialisé)</li>
+                    <li><i class="fas fa-circle-dot"></i> Flux 3 — Zscaler Blog ZTNA (spécialisé)</li>
+                </ul>
+            </div>
+            <div class="outil-card">
+                <div class="outil-icon"><i class="fab fa-google"></i></div>
+                <h4>Google Alerts</h4>
+                <p>Génère automatiquement des alertes email pour des mots-clés définis. Complète Inoreader en capturant les actualités hors des flux RSS abonnés.</p>
+                <ul class="flux-list">
+                    <li><i class="fas fa-bell"></i> "Zero Trust ZTNA" — quotidien</li>
+                    <li><i class="fas fa-bell"></i> "VPN vulnérabilité 2025" — hebdomadaire</li>
+                    <li><i class="fas fa-bell"></i> "ANSSI Zero Trust" — instantané</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Exploitation -->
+        <div class="card" style="margin-top: 25px;">
+            <div class="card-icon-title">
+                <i class="fas fa-cogs" style="color: var(--accent-green);"></i>
+                <h3>Exploitation des informations collectées</h3>
+            </div>
+            <p style="color: var(--text-secondary); line-height: 1.8; font-size: 0.95rem;">
+                La veille ne se résume pas à une collecte. Je croise systématiquement les sources avant de valider une information (une annonce commerciale est vérifiée par un article de presse indépendant ou une publication institutionnelle). Cette approche critique évite les biais promotionnels des éditeurs.
+            </p>
+            <p style="color: var(--text-secondary); line-height: 1.8; font-size: 0.95rem; margin-top: 10px;">
+                Concrètement, lors de mon stage chez Outscale, les connaissances issues de cette veille m'ont permis de contextualiser le problème de certificats VPN expirés et de comprendre pourquoi un modèle ZTNA aurait offert une gestion des accès plus granulaire et moins dépendante d'une infrastructure centralisée.
+            </p>
+        </div>
+    </section>
+
+    <hr class="veille-divider">
+
+    <!-- ===== 3. TECHNOLOGIES ===== -->
+    <section id="technologies" class="veille-section">
+        <div class="veille-section-header">
+            <span class="section-label">Section 3</span>
+            <h2>Détail de ma veille technologique</h2>
+            <p>Évolution chronologique des architectures de sécurisation des accès distants.</p>
+        </div>
+
+        <!-- Accordion -->
+        <div class="tech-accordion">
+
+            <div class="accordion-item open">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h4><i class="fas fa-history"></i> 3.1 — Les VPN traditionnels : genèse et fonctionnement</h4>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <p>Les VPN ont été développés dans les années 1990 pour répondre à un besoin de sécurisation des échanges sur Internet. Leur principe : création d'un <strong>tunnel chiffré</strong> entre un terminal distant et le réseau d'entreprise.</p>
+                        <p>Évolution des protocoles :</p>
+                        <ul>
+                            <li><strong>PPTP</strong> (Microsoft, mid-90s) — chiffrement jusqu'à 128 bits, première solution large échelle</li>
+                            <li><strong>L2TP/IPSec</strong> — chiffrement 256 bits, plus robuste</li>
+                            <li><strong>OpenVPN</strong> — référence actuelle, certificats numériques, 256 bits</li>
+                        </ul>
+                        <p>Deux modes opératoires : <strong>Transport</strong> (chiffre uniquement la charge utile) et <strong>Tunneling</strong> (encapsule et chiffre l'intégralité du paquet IP).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h4><i class="fas fa-check-circle"></i> 3.2 — Avantages historiques du VPN</h4>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <ul>
+                            <li><strong>Chiffrement des échanges</strong> — protection des données en transit contre l'interception</li>
+                            <li><strong>Accès réseau d'entreprise</strong> — ressources internes accessibles comme si l'utilisateur était sur site</li>
+                            <li><strong>Anonymisation IP</strong> — masquage de l'adresse réelle, contournement de restrictions géographiques</li>
+                            <li><strong>Compatibilité éprouvée</strong> — technologie mature, documentée, supportée par tous les systèmes</li>
+                        </ul>
+                        <p>Efficace dans un contexte majoritairement on-premise, avec un télétravail occasionnel et sans cloud généralisé.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h4><i class="fas fa-exclamation-triangle"></i> 3.3 — Limites actuelles des VPN</h4>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <ul>
+                            <li><strong>Confiance implicite</strong> — une fois connecté, l'utilisateur a accès à l'ensemble du réseau, facilitant les mouvements latéraux</li>
+                            <li><strong>Inadaptation au cloud</strong> — le backhaul du trafic vers le datacenter central génère latence et goulets d'étranglement</li>
+                            <li><strong>Surface d'attaque élargie</strong> — concentrateurs VPN exposés sur Internet, cibles privilégiées (65% des entreprises subissent des incidents VPN/an — Zscaler 2025)</li>
+                            <li><strong>Gestion binaire des accès</strong> — pas de granularité par application, difficulté à appliquer le moindre privilège</li>
+                            <li><strong>Scalabilité limitée</strong> — la pandémie a révélé les failles des infrastructures VPN face au télétravail massif</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h4><i class="fas fa-shield-alt"></i> 3.4-3.5 — Apparition et principes du Zero Trust</h4>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <p>Le concept Zero Trust a été formalisé en <strong>2010 par John Kindervag</strong> (Forrester Research). Il remet en cause le modèle "château fort" : dur à l'extérieur, mou à l'intérieur.</p>
+                        <p>Reconnu par :</p>
+                        <ul>
+                            <li><strong>NIST SP 800-207</strong> (août 2020) — définition de référence internationale</li>
+                            <li><strong>ANSSI</strong> — avis scientifique avril 2021 + guide complet juin 2025</li>
+                        </ul>
+                        <p>Les 5 principes fondamentaux :</p>
+                        <ul>
+                            <li><strong>Vérification explicite</strong> — chaque accès authentifié selon identité, état du terminal, localisation, contexte</li>
+                            <li><strong>Moindre privilège</strong> — droits strictement nécessaires, durée limitée</li>
+                            <li><strong>Vérification continue</strong> — confiance réévaluée en permanence, pas seulement à l'authentification</li>
+                            <li><strong>Microsegmentation</strong> — cloisonnement fin des flux, empêche les mouvements latéraux</li>
+                            <li><strong>Identité comme nouveau périmètre</strong> — l'IP ne garantit plus l'accès, seule l'identité vérifiée compte</li>
+                        </ul>
+                        <p style="font-style: italic; color: var(--text-tertiary); margin-top: 12px;">« Le Zero Trust est avant tout un concept d'architecture dédié au renforcement de la sécurité d'accès aux ressources et aux services, et non pas une technologie en soi. » — ANSSI, 2021</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h4><i class="fas fa-lock"></i> 3.6 — Le ZTNA, composante concrète du Zero Trust</h4>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </div>
+                <div class="accordion-body">
+                    <div class="accordion-content">
+                        <p>Le ZTNA est la déclinaison opérationnelle du Zero Trust pour l'accès aux applications. Selon <strong>Gartner</strong> : il crée une limite d'accès logique basée sur l'identité et le contexte, autour d'une application.</p>
+                        <ul>
+                            <li><strong>Accès par application, non par réseau</strong> — pas de visibilité sur le reste du réseau</li>
+                            <li><strong>Architecture "inside-out"</strong> — les applications ne sont pas exposées sur Internet, masquées derrière un broker</li>
+                            <li><strong>Vérification continue et contextuelle</strong> — état du terminal, comportement, localisation</li>
+                            <li><strong>Cloud-native</strong> — intégration naturelle dans les architectures multi-cloud, SaaS, hybrides</li>
+                            <li><strong>Granularité fine</strong> — politiques par utilisateur, groupe, application, ressource</li>
+                        </ul>
+                        <p>Le ZTNA n'est pas un simple remplacement du VPN, mais une <strong>évolution architecturale profonde</strong> qui redéfinit la manière dont les accès sont contrôlés, vérifiés et accordés.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Tableau comparatif VPN vs ZTNA -->
+        <h3 style="color: var(--text-primary); margin: 50px 0 15px; font-size: 1.3rem;"><i class="fas fa-table" style="color: var(--accent-cyan); margin-right: 10px;"></i>3.7 — Comparaison VPN vs ZTNA</h3>
+        <div style="background: var(--card-glass); border: 1px solid var(--border-glass); border-radius: 20px; overflow: hidden;">
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th>Critère</th>
+                        <th><i class="fas fa-times-circle"></i> VPN Traditionnel</th>
+                        <th><i class="fas fa-check-circle"></i> ZTNA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Modèle de confiance</td>
+                        <td><i class="fas fa-times-circle icon-bad"></i> Confiance implicite après auth (castle-and-moat)</td>
+                        <td><i class="fas fa-check-circle icon-good"></i> Never trust, always verify — vérification continue</td>
+                    </tr>
+                    <tr>
+                        <td>Niveau d'accès</td>
+                        <td><i class="fas fa-exclamation-triangle icon-warn"></i> Accès réseau global → risque de mouvements latéraux</td>
+                        <td><i class="fas fa-check-circle icon-good"></i> Accès granulaire par application uniquement</td>
+                    </tr>
+                    <tr>
+                        <td>Performance / Latence</td>
+                        <td><i class="fas fa-exclamation-triangle icon-warn"></i> Backhaul via datacenter central → latence</td>
+                        <td><i class="fas fa-check-circle icon-good"></i> Connexions directes aux apps cloud → faible latence</td>
+                    </tr>
+                    <tr>
+                        <td>Exposition Internet</td>
+                        <td><i class="fas fa-times-circle icon-bad"></i> Concentrateurs VPN exposés, adresses IP publiques</td>
+                        <td><i class="fas fa-check-circle icon-good"></i> Applications masquées, non exposées directement</td>
+                    </tr>
+                    <tr>
+                        <td>Vérification posture sécurité</td>
+                        <td><i class="fas fa-times-circle icon-bad"></i> Uniquement authentification utilisateur</td>
+                        <td><i class="fas fa-check-circle icon-good"></i> Identité + état terminal + comportement + contexte</td>
+                    </tr>
+                    <tr>
+                        <td>Scalabilité</td>
+                        <td><i class="fas fa-exclamation-triangle icon-warn"></i> Matériel dédié, limites de dimensionnement</td>
+                        <td><i class="fas fa-check-circle icon-good"></i> Cloud-native, élasticité automatique</td>
+                    </tr>
+                    <tr>
+                        <td>Adaptation cloud / hybride</td>
+                        <td><i class="fas fa-times-circle icon-bad"></i> Modèle centré datacenter — inadapté au SaaS</td>
+                        <td><i class="fas fa-check-circle icon-good"></i> Conçu pour multi-cloud, SaaS, hybride</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-tertiary); margin-top: 10px; text-align: right;">Source : Sections 3.7 de la synthèse — Gartner / Zscaler / Fortinet</p>
+    </section>
+
+    <hr class="veille-divider">
+
+    <!-- ===== 4. MARCHÉ ===== -->
+    <section id="marche" class="veille-section">
+        <div class="veille-section-header">
+            <span class="section-label">Section 4</span>
+            <h2>Aspects commerciaux</h2>
+            <p>Marché mondial du Zero Trust, acteurs clés et tendances 2025-2030.</p>
+        </div>
+
+        <!-- Stats clés -->
+        <div class="stats-highlight-grid">
+            <div class="stat-highlight">
+                <span class="stat-num">36,96 Mds $</span>
+                <span class="stat-label">Marché Zero Trust en 2024</span>
+                <span class="stat-source">Grand View Research, 2024</span>
+            </div>
+            <div class="stat-highlight">
+                <span class="stat-num">92,42 Mds $</span>
+                <span class="stat-label">Projection marché Zero Trust d'ici 2030</span>
+                <span class="stat-source">CAGR : 16,6% (2025-2030)</span>
+            </div>
+            <div class="stat-highlight">
+                <span class="stat-num">25,5%</span>
+                <span class="stat-label">CAGR marché ZTNA — 1,34 Mds → 4,18 Mds $</span>
+                <span class="stat-source">MarketsandMarkets, 2025</span>
+            </div>
+            <div class="stat-highlight">
+                <span class="stat-num">70%</span>
+                <span class="stat-label">Des nouveaux déploiements d'accès distant seront ZTNA d'ici 2025</span>
+                <span class="stat-source">Gartner / Zscaler</span>
+            </div>
+            <div class="stat-highlight">
+                <span class="stat-num">96%</span>
+                <span class="stat-label">Des entreprises ont adopté ou prévoient d'adopter Zero Trust</span>
+                <span class="stat-source">Zscaler ThreatLabz, 2025</span>
+            </div>
+            <div class="stat-highlight">
+                <span class="stat-num">65%</span>
+                <span class="stat-label">Des entreprises subissent des incidents liés aux VPN chaque année</span>
+                <span class="stat-source">Zscaler ThreatLabz, 2025</span>
+            </div>
+        </div>
+
+        <!-- Parts de marché visuelles -->
+        <h3 style="color: var(--text-primary); margin: 40px 0 20px; font-size: 1.2rem;"><i class="fas fa-chart-bar" style="color: var(--accent-cyan); margin-right: 10px;"></i>Parts de marché estimées — Leaders ZTNA (2025)</h3>
+        <div class="card market-bars">
+            <div class="market-bar-item">
+                <div class="market-bar-label">
+                    <span class="name">Zscaler (ZPA)</span>
+                    <span class="value">~35% — Leader Magic Quadrant SSE 2025</span>
+                </div>
+                <div class="market-bar-track"><div class="market-bar-fill" style="--target-width: 85%;"></div></div>
+            </div>
+            <div class="market-bar-item">
+                <div class="market-bar-label">
+                    <span class="name">Palo Alto Networks (Prisma Access)</span>
+                    <span class="value">~25% — Leader Magic Quadrant SSE 2025</span>
+                </div>
+                <div class="market-bar-track"><div class="market-bar-fill" style="--target-width: 65%;"></div></div>
+            </div>
+            <div class="market-bar-item">
+                <div class="market-bar-label">
+                    <span class="name">Netskope</span>
+                    <span class="value">~15% — IPO 2025 valorisée 7,3 Mds $</span>
+                </div>
+                <div class="market-bar-track"><div class="market-bar-fill" style="--target-width: 45%;"></div></div>
+            </div>
+            <div class="market-bar-item">
+                <div class="market-bar-label">
+                    <span class="name">Cisco (Secure Connect + Duo)</span>
+                    <span class="value">~10% — Large base installée</span>
+                </div>
+                <div class="market-bar-track"><div class="market-bar-fill" style="--target-width: 35%;"></div></div>
+            </div>
+            <div class="market-bar-item">
+                <div class="market-bar-label">
+                    <span class="name">Fortinet (FortiSASE / Universal ZTNA)</span>
+                    <span class="value">~8% — Score client 4,9/5 (Gartner Peer Insights)</span>
+                </div>
+                <div class="market-bar-track"><div class="market-bar-fill" style="--target-width: 28%;"></div></div>
+            </div>
+            <div class="market-bar-item">
+                <div class="market-bar-label">
+                    <span class="name">Cloudflare Zero Trust</span>
+                    <span class="value">~5% — Alternative agile, tarifs compétitifs</span>
+                </div>
+                <div class="market-bar-track"><div class="market-bar-fill" style="--target-width: 18%;"></div></div>
+            </div>
+        </div>
+
+        <!-- Acteurs en détail -->
+        <h3 style="color: var(--text-primary); margin: 40px 0 15px; font-size: 1.2rem;"><i class="fas fa-building" style="color: var(--accent-cyan); margin-right: 10px;"></i>Les grands acteurs</h3>
+        <div class="acteurs-grid">
+            <div class="acteur-card leader">
+                <div class="acteur-header">
+                    <h4><i class="fas fa-crown" style="color: var(--accent-yellow); margin-right: 8px;"></i>Zscaler</h4>
+                    <span class="acteur-badge">Leader #1</span>
+                </div>
+                <p>~40% des entreprises Fortune 500 clientes. Zscaler Private Access (ZPA) : architecture inside-out, 500 Mds de transactions/jour via 150+ datacenters. Partenariats SAP & Cognizant annoncés en 2025.</p>
+            </div>
+            <div class="acteur-card">
+                <div class="acteur-header">
+                    <h4>Palo Alto Networks</h4>
+                    <span class="acteur-badge">Leader SSE</span>
+                </div>
+                <p>Prisma Access + ZTNA 2.0 — plateforme SASE complète avec pare-feu NG, threat intelligence IA, accès granulaire. Forte présence mondiale, intégration étroite avec ses autres produits.</p>
+            </div>
+            <div class="acteur-card">
+                <div class="acteur-header">
+                    <h4>Netskope</h4>
+                    <span class="acteur-badge">Leader SSE</span>
+                </div>
+                <p>Spécialiste CASB + ZTNA. IPO 2025 : valorisation 7,3 Mds $. Réseau NewEdge avec peering direct dans 75+ régions — faible latence garantie pour l'accès aux applications privées.</p>
+            </div>
+            <div class="acteur-card">
+                <div class="acteur-header">
+                    <h4>Fortinet</h4>
+                    <span class="acteur-badge">Customers' Choice</span>
+                </div>
+                <p>Universal ZTNA — mêmes politiques pour utilisateurs on-site et distants. Seul fournisseur "Gartner Peer Insights Customers' Choice" ZTNA 2025 avec score 4,9/5 (235 avis clients).</p>
+            </div>
+            <div class="acteur-card">
+                <div class="acteur-header">
+                    <h4>Microsoft</h4>
+                    <span class="acteur-badge">Adoption massive</span>
+                </div>
+                <p>Azure Active Directory + Conditional Access — politiques Zero Trust basées sur identité, appareil, localisation et niveau de risque. Bénéficie d'une adoption massive via Microsoft 365.</p>
+            </div>
+            <div class="acteur-card">
+                <div class="acteur-header">
+                    <h4>Cloudflare Zero Trust</h4>
+                    <span class="acteur-badge">Alternative agile</span>
+                </div>
+                <p>S'appuie sur son réseau global distribué. Accès à faible latence, tarification compétitive. Alternative intéressante pour les organisations souhaitant un déploiement rapide et économique.</p>
+            </div>
+        </div>
+
+        <!-- Tendances -->
+        <div class="card" style="margin-top: 30px;">
+            <div class="card-icon-title">
+                <i class="fas fa-chart-line" style="color: var(--accent-cyan);"></i>
+                <h3>Tendances structurantes 2025-2030</h3>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 15px;">
+                <div style="background: var(--tag-bg); border-radius: 15px; padding: 18px; border: 1px solid var(--border-glass);">
+                    <strong style="color: var(--accent-blue); display: block; margin-bottom: 8px;"><i class="fas fa-compress-arrows-alt"></i> Convergence ZTNA + SASE</strong>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">65% des achats SD-WAN 2025-2027 combinés avec une offre SASE. Plateformes unifiées pour simplifier la gestion.</p>
+                </div>
+                <div style="background: var(--tag-bg); border-radius: 15px; padding: 18px; border: 1px solid var(--border-glass);">
+                    <strong style="color: var(--accent-purple); display: block; margin-bottom: 8px;"><i class="fas fa-robot"></i> IA & Automatisation</strong>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">60% des outils Zero Trust utiliseront l'IA pour la détection en temps réel et les politiques automatisées d'ici 2028.</p>
+                </div>
+                <div style="background: var(--tag-bg); border-radius: 15px; padding: 18px; border: 1px solid var(--border-glass);">
+                    <strong style="color: var(--accent-green); display: block; margin-bottom: 8px;"><i class="fas fa-globe"></i> Soutien institutionnel</strong>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">CISA (milliards $ fédéraux US), ANSSI (guides 2025), NCSC UK — recommandation universelle pour les nouveaux déploiements.</p>
+                </div>
+                <div style="background: var(--tag-bg); border-radius: 15px; padding: 18px; border: 1px solid var(--border-glass);">
+                    <strong style="color: var(--accent-yellow); display: block; margin-bottom: 8px;"><i class="fas fa-globe-asia"></i> Croissance Asie-Pacifique</strong>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Amérique du Nord >40% des parts actuelles. Asie-Pacifique affiche le taux de croissance le plus élevé (digitalisation rapide).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="veille-divider">
+
+    <!-- ===== 5. FLUX RSS ===== -->
+    <section id="flux" class="veille-section">
+        <div class="veille-section-header">
+            <span class="section-label">Section 5</span>
+            <h2>Flux RSS en direct</h2>
+            <p>Agrégation en temps réel via Inoreader — démonstration à l'oral.</p>
+        </div>
+
+        <!-- ==========================================
+             INOREADER IFRAME — À REMPLACER
+             Remplace le div.flux-placeholder ci-dessous
+             par ton iframe Inoreader quand tu l'auras :
+             <iframe src="URL_INOREADER" width="100%" height="520"
+               frameborder="0"
+               style="border-radius:20px; border:1px solid var(--border-glass);">
+             </iframe>
+        =========================================== -->
+        <div class="flux-placeholder">
+            <i class="fas fa-rss"></i>
+            <h4>Flux Inoreader — En attente d'intégration</h4>
+            <p>Envoie-moi l'iframe Inoreader pour l'intégrer ici. En attendant, retrouve le flux en direct sur :</p>
+            <a href="https://www.inoreader.com" target="_blank" class="btn-main" style="margin-top: 10px; padding: 12px 28px; font-size: 0.9rem;">
+                <i class="fas fa-external-link-alt" style="margin-right: 8px;"></i> Ouvrir Inoreader
+            </a>
+        </div>
+
+        <!-- Méthodologie -->
+        <h3 style="color: var(--text-primary); margin: 40px 0 20px; font-size: 1.2rem;"><i class="fas fa-sitemap" style="color: var(--accent-cyan); margin-right: 10px;"></i>Méthodologie de veille</h3>
+        <div class="flux-method-steps">
+            <div class="method-step">
+                <div class="step-num">1</div>
+                <h4>Collecte</h4>
+                <p>Agrégation automatique via flux RSS depuis 3 sources spécialisées (CERT-FR, SecurityWeek, Zscaler Blog) + alertes Google Alerts.</p>
+            </div>
+            <div class="method-step">
+                <div class="step-num">2</div>
+                <h4>Filtrage</h4>
+                <p>Sélection des articles pertinents sur Zero Trust, ZTNA, IAM et sécurité réseau. Croisement avec sources institutionnelles pour vérifier la fiabilité.</p>
+            </div>
+            <div class="method-step">
+                <div class="step-num">3</div>
+                <h4>Analyse</h4>
+                <p>Lecture critique et synthèse des tendances. Contextualisation par rapport aux pratiques réelles vécues en stage (Outscale, Fnac Darty).</p>
+            </div>
+            <div class="method-step">
+                <div class="step-num">4</div>
+                <h4>Diffusion</h4>
+                <p>Publication sur ce portfolio avec mise à jour continue. Partage des insights lors des cours et projets en laboratoire réseau.</p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="veille-divider">
+
+    <!-- ===== 6. REVUE DE PRESSE ===== -->
+    <section id="presse" class="veille-section">
+        <div class="veille-section-header">
+            <span class="section-label">Section 6</span>
+            <h2>Revue de presse</h2>
+            <p>Deux actualités marquantes issues de ma veille, commentées et analysées.</p>
+        </div>
+
+        <!-- Actualité 1 -->
+        <div class="actu-card">
+            <div class="actu-header">
+                <div class="actu-meta">
+                    <span><i class="fas fa-calendar-alt"></i> 2025</span>
+                    <span><i class="fas fa-building"></i> Zscaler ThreatLabz</span>
+                    <span><i class="fas fa-tag"></i> Rapport technique</span>
+                </div>
+                <span class="actu-num">Actualité n°1</span>
+                <h3>Rapport Zscaler ThreatLabz 2025 — Les risques liés aux VPN</h3>
+            </div>
+            <div class="actu-body">
+                <p>Zscaler, leader mondial du marché ZTNA, a publié en 2025 un rapport détaillé sur les risques liés aux VPN, basé sur une enquête menée auprès de <strong>632 professionnels IT et cybersécurité</strong> à travers le monde. Il met en lumière quatre tendances majeures :</p>
+
+                <div class="actu-stats">
+                    <div class="actu-stat">
+                        <span class="num">65%</span>
+                        <span class="lab">des entreprises subissent des incidents de sécurité liés aux VPN chaque année</span>
+                    </div>
+                    <div class="actu-stat">
+                        <span class="num">65%</span>
+                        <span class="lab">prévoient de remplacer leurs services VPN dans les 12 prochains mois</span>
+                    </div>
+                    <div class="actu-stat">
+                        <span class="num">96%</span>
+                        <span class="lab">ont adopté, déploient ou prévoient d'adopter une stratégie Zero Trust</span>
+                    </div>
+                    <div class="actu-stat">
+                        <span class="num">92%</span>
+                        <span class="lab">craignent d'être victimes d'un ransomware via des vulnérabilités VPN</span>
+                    </div>
+                </div>
+
+                <p>Le rapport alerte également sur les <strong>faux Zero Trust</strong> : certains fournisseurs VPN rebaptisent simplement leurs solutions "Zero Trust" sans changer fondamentalement l'architecture. Un VPN hébergé dans le cloud reste exposé avec des adresses IP publiques.</p>
+
+                <a href="https://www.zscaler.com/fr/learn/2025-vpn-risk-report" target="_blank" class="actu-link">
+                    <i class="fas fa-external-link-alt"></i> Consulter la source
+                </a>
+
+                <div class="commentaire-perso">
+                    <div class="label"><i class="fas fa-comment-alt"></i> Commentaire personnel</div>
+                    <p>Cette actualité est particulièrement significative pour ma veille car elle confirme de manière factuelle et chiffrée les limites du modèle VPN identifiées dans ma synthèse. Elle montre que la transition vers le ZTNA n'est pas une tendance émergente, mais une transformation en cours. Pour un profil SISR, cela signifie que la maîtrise du ZTNA deviendra rapidement une compétence attendue sur le marché, au même titre que la gestion des VPN l'a été pendant deux décennies. Le rapport met aussi en garde contre l'adoption marketing du Zero Trust sans compréhension architecturale réelle — ce qui renforce l'importance d'une formation solide sur les fondamentaux.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Actualité 2 -->
+        <div class="actu-card">
+            <div class="actu-header">
+                <div class="actu-meta">
+                    <span><i class="fas fa-calendar-alt"></i> 20 juin 2025</span>
+                    <span><i class="fas fa-building"></i> ANSSI</span>
+                    <span><i class="fas fa-tag"></i> Guide officiel</span>
+                </div>
+                <span class="actu-num">Actualité n°2</span>
+                <h3>Publication du guide ANSSI — « Modèle Zero Trust : Les fondamentaux » (ANSSI-PA-111)</h3>
+            </div>
+            <div class="actu-body">
+                <p>L'ANSSI a publié en juin 2025 un guide complet intitulé <strong>« Modèle Zero Trust — Les fondamentaux »</strong> (référence ANSSI-PA-111), destiné à accompagner les organisations françaises dans l'adoption progressive du Zero Trust. Ce document s'appuie sur l'avis scientifique d'avril 2021 et propose une dizaine de recommandations concrètes.</p>
+
+                <p>Points clés du guide :</p>
+                <ul style="list-style: none; margin: 12px 0;">
+                    <li style="padding: 6px 0; padding-left: 20px; position: relative; color: var(--text-secondary); font-size: 0.9rem;"><span style="position:absolute; left:0; color: var(--accent-cyan);">→</span> Réaliser une <strong style="color: var(--text-primary);">analyse de risque préalable</strong> et cartographier le SI avant tout déploiement</li>
+                    <li style="padding: 6px 0; padding-left: 20px; position: relative; color: var(--text-secondary); font-size: 0.9rem;"><span style="position:absolute; left:0; color: var(--accent-cyan);">→</span> Adopter une <strong style="color: var(--text-primary);">démarche incrémentale</strong> — commencer par les apps Web/cloud, puis étendre</li>
+                    <li style="padding: 6px 0; padding-left: 20px; position: relative; color: var(--text-secondary); font-size: 0.9rem;"><span style="position:absolute; left:0; color: var(--accent-cyan);">→</span> Le Zero Trust <strong style="color: var(--text-primary);">complète</strong> le modèle périmétrique, il ne le remplace pas</li>
+                    <li style="padding: 6px 0; padding-left: 20px; position: relative; color: var(--text-secondary); font-size: 0.9rem;"><span style="position:absolute; left:0; color: var(--accent-cyan);">→</span> Exclure les postes d'administration du modèle Zero Trust — doctrine d'administration sécurisée maintenue</li>
+                </ul>
+
+                <a href="https://cyber.gouv.fr/publications/modele-zero-trust" target="_blank" class="actu-link">
+                    <i class="fas fa-external-link-alt"></i> Consulter la publication ANSSI
+                </a>
+
+                <div class="commentaire-perso">
+                    <div class="label"><i class="fas fa-comment-alt"></i> Commentaire personnel</div>
+                    <p>Cette publication de l'ANSSI est essentielle pour ma veille car elle fournit un cadre de référence institutionnel français. Elle légitime l'approche Zero Trust tout en la tempérant par des recommandations pragmatiques — évitant l'écueil de l'effet de mode marketing des éditeurs. Pour un étudiant en BTS SIO SISR, ce guide constitue une ressource pédagogique précieuse : il donne des repères concrets pour aborder le Zero Trust dans un contexte français, avec les spécificités réglementaires (NIS2, RGPD) et culturelles. Il confirme surtout que le Zero Trust n'est pas une révolution brutale, mais une évolution maîtrisée et progressive — ce qui correspond aux réalités des équipes IT que je rejoindrai.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="veille-divider">
+
+    <!-- ===== 7. CONCLUSION ===== -->
+    <section id="conclusion" class="veille-section">
+        <div class="veille-section-header">
+            <span class="section-label">Section 7</span>
+            <h2>Conclusion</h2>
+            <p>Ce que cette veille m'a apporté, personnellement et professionnellement.</p>
+        </div>
+
+        <p class="conclusion-text">
+            Cette synthèse de veille technologique m'a permis de comprendre en profondeur l'évolution des architectures de sécurisation des accès distants — du VPN traditionnel au Zero Trust et au ZTNA. Le travail mené a apporté plusieurs enseignements majeurs.
+        </p>
+
+        <p class="conclusion-text">
+            J'ai d'abord compris que le <strong>VPN</strong>, bien qu'ayant été la solution de référence pendant plus de deux décennies, présente aujourd'hui des <strong>limites structurelles</strong> face aux évolutions des usages, des architectures et des menaces. La confiance implicite accordée après authentification, l'accès réseau global, l'inadaptation au cloud et la surface d'attaque élargie en font une cible privilégiée pour les attaquants et un frein à la transformation digitale.
+        </p>
+
+        <p class="conclusion-text">
+            Le <strong>Zero Trust</strong> n'est pas un produit, mais une <strong>philosophie de sécurité</strong> : "ne jamais faire confiance, toujours vérifier". Elle place l'identité au cœur de la sécurité, impose une vérification continue et contextuelle, applique le moindre privilège et favorise la microsegmentation. Le <strong>ZTNA</strong> en est la mise en œuvre concrète : accès granulaire, applications masquées, adaptation native au cloud.
+        </p>
+
+        <p class="conclusion-text">
+            Sur le plan commercial, le marché du Zero Trust est en pleine expansion (<strong>16 à 25% de CAGR</strong>), porté par des acteurs majeurs (Zscaler, Palo Alto, Netskope, Fortinet) et encouragé par les recommandations institutionnelles de l'ANSSI, du NIST et de la CISA. Le Zero Trust est désormais un <strong>standard de facto</strong> — non plus une tendance émergente.
+        </p>
+
+        <p class="conclusion-text">
+            Personnellement, l'expérience vécue chez <strong>Outscale</strong> avec des certificats VPN arrivant à échéance illustre concrètement les contraintes du modèle VPN. Cette situation m'a confirmé la pertinence du ZTNA pour des environnements cloud souverains exigeants.
+        </p>
+
+        <div class="conclusion-ouverture">
+            <h4><i class="fas fa-binoculars" style="margin-right: 10px;"></i>Ouverture</h4>
+            <p>Le Zero Trust ne se limite pas à l'accès aux applications. Il s'étend progressivement à la protection des données (DLP), la sécurité des workloads cloud, des API, des environnements OT/IoT, et même à la sécurisation des systèmes basés sur l'IA et les LLM (rapport conjoint BSI/ANSSI, août 2025). Pour mon parcours en <strong>Licence Professionnelle Administration Systèmes et Réseaux</strong>, les compétences en gestion des identités (IAM), déploiement ZTNA et intégration SASE constitueront des atouts différenciants. Je suis convaincu que le modèle Zero Trust guidera mes choix de formation, mes stages futurs et ma pratique professionnelle.</p>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="contact">
+        <h2>Travaillons ensemble.</h2>
+        <p style="color:var(--text-secondary); margin-bottom: 30px;">À la recherche d'une alternance.</p>
+        <div style="font-size: 2rem; display:flex; justify-content:center; gap:30px;">
+            <a href="#" style="color: var(--text-primary); transition:0.3s;"><i class="fab fa-linkedin"></i></a>
+            <a href="#" style="color: var(--text-primary); transition:0.3s;"><i class="fab fa-github"></i></a>
+            <a href="mailto:tonemail@gmail.com" style="color: var(--text-primary); transition:0.3s;"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p style="margin-top: 40px; font-size: 0.8rem; color:var(--text-tertiary);">© 2025 Ayoub Leboss.</p>
+    </footer>
+
+    <script src="script.js" defer></script>
+    <script>
+        // ====== ACCORDION ======
+        function toggleAccordion(header) {
+            const item = header.parentElement;
+            const isOpen = item.classList.contains('open');
+            // Fermer tous
+            document.querySelectorAll('.accordion-item.open').forEach(i => i.classList.remove('open'));
+            // Ouvrir si était fermé
+            if (!isOpen) item.classList.add('open');
+        }
+
+        // ====== SUBNAV ACTIVE HIGHLIGHT ON SCROLL ======
+        const sections = document.querySelectorAll('.veille-section');
+        const navLinks = document.querySelectorAll('.subnav-link');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { rootMargin: '-20% 0px -60% 0px' });
+
+        sections.forEach(section => observer.observe(section));
+
+        // ====== MARKET BARS ANIMATION ON SCROLL ======
+        const barObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.market-bar-fill').forEach(bar => {
+                        bar.style.width = bar.style.getPropertyValue('--target-width') || bar.style.cssText.match(/--target-width:\s*([\d.]+%)/)?.[1] || '0%';
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.market-bars').forEach(el => barObserver.observe(el));
+    </script>
+</body>
+</html>

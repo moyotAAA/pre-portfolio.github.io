@@ -13,7 +13,11 @@
       "Bash(sed -i 's|src=\"\"CV-M\\\\.TOUIL-Ayoub-9\\\\.jpg\"\"|src=\"\"annexes/CV-M.TOUIL-Ayoub-9.jpg\"\"|g' \"C:/Users/ayoub/Documents/pre-portfolio/index.html\")",
       "Bash(sed -i 's|src=\"\"LM-M\\\\.TOUIL-Ayoub\\\\.jpg\"\"|src=\"\"annexes/LM-M.TOUIL-Ayoub.jpg\"\"|g' \"C:/Users/ayoub/Documents/pre-portfolio/index.html\")",
       "Bash(sed -i 's|\"\"CV-M\\\\.TOUIL-Ayoub-9\\\\.jpg\"\"|\"\"annexes/CV-M.TOUIL-Ayoub-9.jpg\"\"|g' \"C:/Users/ayoub/Documents/pre-portfolio/script.js\")",
-      "Bash(sed -i 's|\"\"LM-M\\\\.TOUIL-Ayoub\\\\.jpg\"\"|\"\"annexes/LM-M.TOUIL-Ayoub.jpg\"\"|g' \"C:/Users/ayoub/Documents/pre-portfolio/script.js\")"
+      "Bash(sed -i 's|\"\"LM-M\\\\.TOUIL-Ayoub\\\\.jpg\"\"|\"\"annexes/LM-M.TOUIL-Ayoub.jpg\"\"|g' \"C:/Users/ayoub/Documents/pre-portfolio/script.js\")",
+      "Read(//c/Users/ayoub/AppData/Roaming/Claude/local-agent-mode-sessions/skills-plugin/71ed0e9a-ff4b-4636-850c-1fbe6c9d861a/5eb70936-8eea-4f17-a8a2-3fedbeb4d015/skills/docx/**)",
+      "Bash(pandoc \"C:/Users/ayoub/Downloads/Veille_Zero_Trust_ZTNA.docx\" -t plain)",
+      "WebFetch(domain:archanight.github.io)",
+      "WebFetch(domain:ilyasseddiki.fr)"
     ]
   }
 }
