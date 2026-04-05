@@ -12,7 +12,7 @@
            VEILLE PAGE — STYLES SPÉCIFIQUES
         ============================================ */
 
-        /* Subnav interne sticky */
+        /* Subnav interne sticky — version premium */
         .veille-subnav {
             position: sticky;
             top: 0;
@@ -23,29 +23,60 @@
             border-bottom: 1px solid var(--border-glass);
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 0;
-            padding: 0 20px;
+            gap: 6px;
+            padding: 10px 20px;
             box-shadow: 0 4px 20px var(--shadow-color);
-            margin-top: 0;
+            flex-wrap: wrap;
         }
 
         .subnav-link {
             text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             color: var(--text-secondary);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
-            padding: 16px 18px;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s ease;
-            letter-spacing: 0.5px;
+            padding: 7px 16px;
+            border-radius: 20px;
+            border: 1px solid transparent;
+            transition: all 0.25s ease;
+            letter-spacing: 0.3px;
             white-space: nowrap;
         }
 
-        .subnav-link:hover,
+        .subnav-link:hover {
+            color: var(--text-primary);
+            background: rgba(255,255,255,0.05);
+            border-color: var(--border-glass);
+        }
+
         .subnav-link.active {
             color: var(--accent-cyan);
-            border-bottom-color: var(--accent-cyan);
+            background: rgba(100,210,255,0.09);
+            border-color: rgba(100,210,255,0.3);
+            box-shadow: 0 0 12px rgba(100,210,255,0.08);
+        }
+
+        .subnav-link .sn-num {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: rgba(100,210,255,0.12);
+            border: 1px solid rgba(100,210,255,0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 800;
+            color: var(--accent-cyan);
+            flex-shrink: 0;
+        }
+
+        .subnav-link:not(.active) .sn-num {
+            background: rgba(255,255,255,0.05);
+            border-color: var(--border-glass);
+            color: var(--text-tertiary);
         }
 
         /* HERO veille */
@@ -818,6 +849,57 @@
             .veille-subnav { justify-content: flex-start; overflow-x: auto; }
             .compare-table { display: block; overflow-x: auto; }
         }
+
+        /* ===== DOCK DE NAVIGATION FLOTTANT ===== */
+        .nav-dock {
+            position: fixed;
+            bottom: 28px;
+            right: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 800;
+            background: rgba(15, 15, 25, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            padding: 9px 7px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.03);
+        }
+        .dock-btn {
+            width: 34px;
+            height: 34px;
+            border: 1px solid var(--border-glass);
+            border-radius: 10px;
+            background: transparent;
+            cursor: pointer;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+        .dock-btn:hover:not(:disabled) {
+            background: rgba(100,210,255,0.1);
+            border-color: rgba(100,210,255,0.35);
+            color: var(--accent-cyan);
+            transform: scale(1.05);
+        }
+        .dock-btn:disabled {
+            opacity: 0.22;
+            cursor: not-allowed;
+        }
+        .dock-sep {
+            height: 1px;
+            background: var(--border-glass);
+            margin: 2px 0;
+        }
+        @media (max-width: 600px) {
+            .nav-dock { bottom: 16px; right: 12px; }
+        }
     </style>
 </head>
 <body>
@@ -863,61 +945,68 @@
 
     <!-- ===== SUBNAV INTERNE ===== -->
     <div class="veille-subnav" id="veille-subnav">
-        <a href="#intro" class="subnav-link active">1. Contexte</a>
-        <a href="#technologies" class="subnav-link">2. Technologies</a>
-        <a href="#presse" class="subnav-link">3. Actualités</a>
-        <a href="#flux" class="subnav-link">4. Flux RSS</a>
-        <a href="#conclusion" class="subnav-link">5. Conclusion</a>
+        <a href="#intro" class="subnav-link active"><span class="sn-num">1</span> Contexte</a>
+        <a href="#technologies" class="subnav-link"><span class="sn-num">2</span> Technologies</a>
+        <a href="#presse" class="subnav-link"><span class="sn-num">3</span> Actualités</a>
+        <a href="#flux" class="subnav-link"><span class="sn-num">4</span> Flux RSS</a>
+        <a href="#conclusion" class="subnav-link"><span class="sn-num">5</span> Conclusion</a>
     </div>
 
     <!-- ===== 1. INTRODUCTION ===== -->
-    <section id="intro" class="veille-section">
+    <section id="intro" data-dock-section class="veille-section">
         <div class="veille-section-header">
             <span class="section-label">§ 1</span>
             <h2>Contexte</h2>
         </div>
 
-        <!-- Définitions clés -->
-        <h3 style="margin: 40px 0 20px; color: var(--text-primary); font-size: 1.3rem;">Termes clés</h3>
-        <div class="definition-grid">
-            <div class="definition-card">
-                <div class="def-term"><i class="fas fa-network-wired"></i> VPN</div>
-                <p>Virtual Private Network — tunnel chiffré entre un terminal distant et le réseau d'entreprise. Permet aux utilisateurs nomades d'accéder aux ressources internes comme s'ils étaient sur site.</p>
+        <!-- Intro rapide + chiffres clés -->
+        <div class="card" style="margin-bottom: 30px;">
+            <div class="card-icon-title">
+                <i class="fas fa-info-circle" style="font-size:1.6rem; color: var(--accent-cyan);"></i>
+                <h3>Introduction</h3>
             </div>
-            <div class="definition-card">
-                <div class="def-term"><i class="fas fa-shield-alt"></i> Zero Trust</div>
-                <p>Paradigme de cybersécurité centré sur l'absence de confiance implicite. Impose une vérification systématique, continue et granulaire de toute demande d'accès, quelle que soit son origine (NIST SP 800-207).</p>
-            </div>
-            <div class="definition-card">
-                <div class="def-term"><i class="fas fa-lock"></i> ZTNA</div>
-                <p>Zero Trust Network Access — solution technique appliquant le Zero Trust à l'accès aux applications. Accès granulaire basé sur l'identité et le contexte, sans exposer les applications sur Internet.</p>
-            </div>
-            <div class="definition-card">
-                <div class="def-term"><i class="fas fa-user-check"></i> Moindre privilège</div>
-                <p>Principe fondamental du Zero Trust : chaque utilisateur, service ou terminal ne reçoit que les droits strictement nécessaires à l'accomplissement de sa tâche, limitant la surface d'attaque.</p>
-            </div>
-            <div class="definition-card">
-                <div class="def-term"><i class="fas fa-project-diagram"></i> Microsegmentation</div>
-                <p>Cloisonnement fin des flux réseau permettant d'isoler les applications et utilisateurs les uns des autres afin de limiter la propagation d'une attaque au sein du SI.</p>
-            </div>
-            <div class="definition-card">
-                <div class="def-term"><i class="fas fa-key"></i> MFA</div>
-                <p>Authentification Multi-Facteurs — mécanisme essentiel dans le Zero Trust pour vérifier l'identité des utilisateurs de manière robuste, en combinant plusieurs facteurs indépendants.</p>
+            <p style="color: var(--text-secondary); line-height: 1.8; font-size: 0.95rem;">
+                Depuis leur apparition dans les années 1990, les <strong style="color:var(--text-primary)">VPN</strong> ont été la solution de référence pour sécuriser les accès distants. Mais dans un contexte où le cloud, le télétravail massif et les menaces sophistiquées redéfinissent les périmètres de sécurité, ce modèle montre ses limites.
+            </p>
+            <p style="color: var(--text-secondary); line-height: 1.8; font-size: 0.95rem; margin-top: 10px;">
+                Le <strong style="color:var(--accent-cyan)">ZTNA (Zero Trust Network Access)</strong> — formalisé par le <strong style="color:var(--text-primary)">NIST SP 800-207</strong> (2020) et recommandé par l'<strong style="color:var(--text-primary)">ANSSI</strong> (guide ANSSI-PA-111, juin 2025) — propose une approche radicalement différente : accès granulaire par application, vérification continue de l'identité, applications masquées sur Internet.
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-top: 20px;">
+                <div style="background: var(--tag-bg); border: 1px solid var(--border-glass); border-radius: 12px; padding: 14px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent-cyan);">65%</div>
+                    <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">des entreprises subissent des incidents VPN/an</div>
+                    <div style="font-size: 0.65rem; color: var(--text-tertiary); margin-top: 3px;">Zscaler ThreatLabz, 2025</div>
+                </div>
+                <div style="background: var(--tag-bg); border: 1px solid var(--border-glass); border-radius: 12px; padding: 14px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent-blue);">96%</div>
+                    <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">des entreprises adoptent ou prévoient Zero Trust</div>
+                    <div style="font-size: 0.65rem; color: var(--text-tertiary); margin-top: 3px;">Zscaler ThreatLabz, 2025</div>
+                </div>
+                <div style="background: var(--tag-bg); border: 1px solid var(--border-glass); border-radius: 12px; padding: 14px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent-purple);">70%</div>
+                    <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">des nouveaux accès distants seront ZTNA d'ici fin 2025</div>
+                    <div style="font-size: 0.65rem; color: var(--text-tertiary); margin-top: 3px;">Gartner, 2025</div>
+                </div>
+                <div style="background: var(--tag-bg); border: 1px solid var(--border-glass); border-radius: 12px; padding: 14px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent-green);">92 Mds $</div>
+                    <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">marché Zero Trust projeté en 2030</div>
+                    <div style="font-size: 0.65rem; color: var(--text-tertiary); margin-top: 3px;">Grand View Research, 2024</div>
+                </div>
             </div>
         </div>
 
-        <!-- Justification + PPP -->
-        <div class="two-col" style="margin-top: 40px;">
+        <!-- Pourquoi ce thème + Lien avec mon parcours — remontés ici -->
+        <div class="two-col" style="margin-bottom: 35px;">
             <div class="card">
                 <div class="card-icon-title">
                     <i class="fas fa-lightbulb" style="color: var(--accent-yellow);"></i>
                     <h3>Pourquoi ce thème ?</h3>
                 </div>
                 <p style="color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem;">
-                    Mon intérêt pour ce sujet s'est renforcé lors de mon stage chez <strong style="color: var(--text-primary)">Outscale</strong>, fournisseur cloud souverain certifié SecNumCloud. J'ai été confronté à une situation concrète : l'arrivée à échéance de certificats VPN sur une plateforme sensible, nécessitant une intervention manuelle sur les postes utilisateurs.
+                    Mon intérêt s'est cristallisé lors de mon stage chez <strong style="color: var(--text-primary)">Outscale</strong>, fournisseur cloud souverain certifié SecNumCloud. J'ai été confronté à une situation concrète : l'arrivée à échéance de certificats VPN sur une plateforme sensible, nécessitant une intervention manuelle sur les postes utilisateurs.
                 </p>
                 <p style="color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem; margin-top: 10px;">
-                    Cette expérience illustre les contraintes opérationnelles du VPN : renouvellement manuel, dépendance à un tunnel global, interruptions de service — et m'a conduit à m'interroger sur les alternatives ZTNA.
+                    Cette expérience illustre les contraintes opérationnelles du VPN — et m'a conduit à m'interroger sur les alternatives ZTNA pour des environnements cloud exigeants.
                 </p>
             </div>
             <div class="card">
@@ -926,8 +1015,37 @@
                     <h3>Lien avec mon parcours</h3>
                 </div>
                 <p style="color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem;">
-                    En tant qu'étudiant en BTS SIO option SISR, je suis directement concerné par les enjeux de sécurisation des accès distants, de gestion des identités et de protection des datacenters. La maîtrise du Zero Trust et du ZTNA constitue désormais un prérequis pour tout profil SISR. Je rejoins <strong style="color: var(--text-primary)">l'EFREI Paris — Majeure Réseaux & Sécurité</strong> à la rentrée 2026, où ces compétences (IAM, SASE, architecture Zero Trust) seront au cœur de la formation.
+                    En BTS SIO option SISR, je suis directement concerné par la sécurisation des accès distants et la gestion des identités. La maîtrise du Zero Trust constitue désormais un prérequis pour tout profil SISR. Je rejoins <strong style="color: var(--text-primary)">l'EFREI Paris — Majeure Réseaux & Sécurité</strong> à la rentrée 2026, où ces compétences (IAM, SASE, Zero Trust) seront au cœur de la formation.
                 </p>
+            </div>
+        </div>
+
+        <!-- Définitions clés -->
+        <h3 style="margin: 0 0 20px; color: var(--text-primary); font-size: 1.2rem;"><i class="fas fa-book-open" style="color: var(--accent-cyan); margin-right: 10px;"></i>Termes clés</h3>
+        <div class="definition-grid">
+            <div class="definition-card">
+                <div class="def-term"><i class="fas fa-network-wired"></i> VPN</div>
+                <p>Virtual Private Network — tunnel chiffré entre un terminal distant et le réseau d'entreprise. Modèle historique d'accès distant, mais basé sur la confiance implicite.</p>
+            </div>
+            <div class="definition-card">
+                <div class="def-term"><i class="fas fa-shield-alt"></i> Zero Trust</div>
+                <p>Paradigme : "ne jamais faire confiance, toujours vérifier". Impose une vérification systématique, continue et granulaire de toute demande d'accès (NIST SP 800-207).</p>
+            </div>
+            <div class="definition-card">
+                <div class="def-term"><i class="fas fa-lock"></i> ZTNA</div>
+                <p>Zero Trust Network Access — déclinaison technique du Zero Trust pour l'accès aux applications. Accès granulaire par application, sans exposer le réseau.</p>
+            </div>
+            <div class="definition-card">
+                <div class="def-term"><i class="fas fa-user-check"></i> Moindre privilège</div>
+                <p>Chaque entité (utilisateur, service, terminal) ne reçoit que les droits strictement nécessaires à sa tâche, limitant la surface d'attaque.</p>
+            </div>
+            <div class="definition-card">
+                <div class="def-term"><i class="fas fa-project-diagram"></i> Microsegmentation</div>
+                <p>Cloisonnement fin des flux réseau pour isoler les applications et bloquer la propagation latérale d'une attaque au sein du SI.</p>
+            </div>
+            <div class="definition-card">
+                <div class="def-term"><i class="fas fa-key"></i> MFA</div>
+                <p>Authentification Multi-Facteurs — mécanisme essentiel du Zero Trust pour vérifier l'identité de manière robuste, combinant plusieurs facteurs indépendants.</p>
             </div>
         </div>
     </section>
@@ -936,7 +1054,7 @@
     <hr class="veille-divider">
 
     <!-- ===== 3. TECHNOLOGIES ===== -->
-    <section id="technologies" class="veille-section">
+    <section id="technologies" data-dock-section class="veille-section">
         <div class="veille-section-header">
             <span class="section-label">§ 2</span>
             <h2>Évolution technologique</h2>
@@ -1108,7 +1226,7 @@
     <hr class="veille-divider">
 
     <!-- ===== 5. FLUX RSS ===== -->
-    <section id="flux" class="veille-section">
+    <section id="flux" data-dock-section class="veille-section">
         <div class="veille-section-header">
             <span class="section-label">§ 4</span>
             <h2>Flux RSS en direct</h2>
@@ -1141,7 +1259,7 @@
     <hr class="veille-divider">
 
     <!-- ===== 6. REVUE DE PRESSE ===== -->
-    <section id="presse" class="veille-section">
+    <section id="presse" data-dock-section class="veille-section">
         <div class="veille-section-header">
             <span class="section-label">§ 3</span>
             <h2>Actualités marquantes</h2>
@@ -1231,7 +1349,7 @@
     <hr class="veille-divider">
 
     <!-- ===== 7. CONCLUSION ===== -->
-    <section id="conclusion" class="veille-section">
+    <section id="conclusion" data-dock-section class="veille-section">
         <div class="veille-section-header">
             <span class="section-label">§ 5</span>
             <h2>Conclusion</h2>
@@ -1262,6 +1380,15 @@
         </div>
         <p style="margin-top: 40px; font-size: 0.8rem; color:var(--text-tertiary);">© 2025 Ayoub Leboss.</p>
     </footer>
+
+    <!-- ===== DOCK DE NAVIGATION FLOTTANT ===== -->
+    <div class="nav-dock" id="nav-dock">
+        <button class="dock-btn" id="dock-top" title="Haut de page"><i class="fas fa-angle-double-up"></i></button>
+        <button class="dock-btn" id="dock-up" title="Section précédente"><i class="fas fa-angle-up"></i></button>
+        <div class="dock-sep"></div>
+        <button class="dock-btn" id="dock-down" title="Section suivante"><i class="fas fa-angle-down"></i></button>
+        <button class="dock-btn" id="dock-bottom" title="Bas de page"><i class="fas fa-angle-double-down"></i></button>
+    </div>
 
     <script src="script.js" defer></script>
     <script>
@@ -1329,6 +1456,44 @@
                 setTimeout(updateIframeTheme, 50);
             });
         }
+
+        // ===== DOCK DE NAVIGATION =====
+        (function() {
+            const dockSections = Array.from(document.querySelectorAll('[data-dock-section]'));
+            let curIdx = 0;
+
+            function getCurrent() {
+                const mid = window.scrollY + window.innerHeight * 0.35;
+                let idx = 0;
+                dockSections.forEach((s, i) => { if (s.offsetTop <= mid) idx = i; });
+                return idx;
+            }
+
+            function updateDock() {
+                curIdx = getCurrent();
+                const atTop = window.scrollY < 50;
+                const atBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 40;
+                document.getElementById('dock-top').disabled    = atTop;
+                document.getElementById('dock-bottom').disabled = atBottom;
+                document.getElementById('dock-up').disabled     = (curIdx === 0 && atTop);
+                document.getElementById('dock-down').disabled   = (curIdx >= dockSections.length - 1);
+            }
+
+            document.getElementById('dock-top').addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+            document.getElementById('dock-bottom').addEventListener('click', () => window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'}));
+            document.getElementById('dock-up').addEventListener('click', () => {
+                const target = curIdx > 0 ? dockSections[curIdx - 1] : null;
+                if (target) target.scrollIntoView({behavior:'smooth', block:'start'});
+                else window.scrollTo({top:0,behavior:'smooth'});
+            });
+            document.getElementById('dock-down').addEventListener('click', () => {
+                const target = dockSections[curIdx + 1];
+                if (target) target.scrollIntoView({behavior:'smooth', block:'start'});
+            });
+
+            window.addEventListener('scroll', updateDock, {passive:true});
+            updateDock();
+        })();
     </script>
 </body>
 </html>

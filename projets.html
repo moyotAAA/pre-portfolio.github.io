@@ -22,6 +22,7 @@
             flex-wrap: wrap;
             gap: 8px;
             margin-bottom: 25px;
+            justify-content: center;
         }
 
         .filter-btn {
@@ -286,6 +287,35 @@
             to   { opacity: 1; transform: translateY(0); }
         }
 
+        /* Bouton fiche E5 */
+        #e5-fiche-bar {
+            text-align: center;
+            padding: 8px 0 16px;
+            animation: fadeInCard 0.3s ease;
+        }
+        .e5-fiche-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 26px;
+            background: rgba(255,214,0,0.1);
+            border: 1.5px solid rgba(255,214,0,0.45);
+            border-radius: 12px;
+            color: var(--accent-yellow);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            letter-spacing: 0.2px;
+        }
+        .e5-fiche-btn:hover {
+            background: rgba(255,214,0,0.18);
+            box-shadow: 0 0 22px rgba(255,214,0,0.18);
+            transform: translateY(-2px);
+        }
+        .e5-fiche-btn i:first-child { font-size: 0.85rem; }
+        .e5-fiche-btn i:last-child { font-size: 0.75rem; opacity: 0.7; }
+
         @media (max-width: 768px) {
             .projects-grid { grid-template-columns: 1fr; }
             .filter-btn { font-size: 0.75rem; padding: 7px 10px; }
@@ -338,6 +368,15 @@
             <button class="filter-btn" data-filter="cyber"><i class="fas fa-shield-alt"></i> Cybersécurité <span class="f-count" id="count-cyber">—</span></button>
             <button class="filter-btn" data-filter="virt"><i class="fas fa-layer-group"></i> Virtualisation & Conteneurs <span class="f-count" id="count-virt">—</span></button>
             <button class="filter-btn" data-filter="supervision"><i class="fas fa-chart-line"></i> Supervision & Résilience <span class="f-count" id="count-supervision">—</span></button>
+        </div>
+
+        <!-- ===== BOUTON FICHE E5 (visible uniquement sur filtre E5) ===== -->
+        <div id="e5-fiche-bar" style="display:none;">
+            <a href="#" target="_blank" class="e5-fiche-btn" id="e5-fiche-link">
+                <i class="fas fa-star"></i>
+                Ma fiche synthèse E5
+                <i class="fas fa-external-link-alt"></i>
+            </a>
         </div>
 
         <!-- ===== INFO BAR ===== -->
@@ -689,6 +728,71 @@
                     <span class="card-tag">Self-hosted</span>
                 </div>
                 <button class="btn-details" onclick="openTechModal('m-nextcloud')">Voir les détails</button>
+            </div>
+
+            <div class="project-card" data-cats="lab services infra">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-hdd card-main-icon" style="color:var(--accent-blue);"></i>
+                <h3>Serveur NAS</h3>
+                <p class="card-desc">Déploiement d'un serveur de stockage en réseau (NAS) avec partages sécurisés, accès distant et gestion des droits.</p>
+                <div class="card-tags">
+                    <span class="card-tag">NAS</span>
+                    <span class="card-tag">Stockage</span>
+                    <span class="card-tag">SMB/CIFS</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-nas')">Voir les détails</button>
+            </div>
+
+            <div class="project-card" data-cats="lab services infra">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-folder-open card-main-icon" style="color:var(--accent-cyan);"></i>
+                <h3>Serveur NFS</h3>
+                <p class="card-desc">Installation et configuration d'un serveur NFS pour le partage de fichiers entre systèmes Linux en environnement réseau.</p>
+                <div class="card-tags">
+                    <span class="card-tag">NFS</span>
+                    <span class="card-tag">Linux</span>
+                    <span class="card-tag">Partage</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-nfs')">Voir les détails</button>
+            </div>
+
+            <div class="project-card" data-cats="lab services infra">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-sitemap card-main-icon" style="color:var(--accent-green);"></i>
+                <h3>DHCP / DNS Bind9</h3>
+                <p class="card-desc">Mise en place d'un serveur DHCP et d'un serveur DNS Bind9 avec zones directes et inverses pour un réseau d'entreprise.</p>
+                <div class="card-tags">
+                    <span class="card-tag">DHCP</span>
+                    <span class="card-tag">DNS</span>
+                    <span class="card-tag">Bind9</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-dhcp-dns')">Voir les détails</button>
+            </div>
+
+            <div class="project-card" data-cats="lab virt">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-cubes card-main-icon" style="color:var(--accent-purple);"></i>
+                <h3>Virtualisation Raspberry Pi</h3>
+                <p class="card-desc">Environnement de virtualisation sur Raspberry Pi — déploiement de VMs légères pour les travaux pratiques réseau et systèmes.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Virtualisation</span>
+                    <span class="card-tag">Raspberry Pi</span>
+                    <span class="card-tag">VM</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-virt-rpi')">Voir les détails</button>
+            </div>
+
+            <div class="project-card" data-cats="lab virt services">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-cloud-upload-alt card-main-icon" style="color:var(--accent-blue);"></i>
+                <h3>Cloud personnel</h3>
+                <p class="card-desc">Déploiement d'une infrastructure cloud personnelle auto-hébergée avec services (stockage, CI/CD, monitoring) conteneurisés.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Cloud</span>
+                    <span class="card-tag">Auto-hébergé</span>
+                    <span class="card-tag">Docker</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-cloud-perso')">Voir les détails</button>
             </div>
 
         </div><!-- end grid -->
@@ -1392,6 +1496,123 @@ interface GigabitEthernet0/1
         </div>
     </div>
 
+    <div id="m-nas" class="modal" onclick="closeTechModal(event,'m-nas')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <div>
+                    <div class="modal-header-sub">Lab & Cours — BTS SIO SISR</div>
+                    <h2>Serveur NAS</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-nas').style.display='none'" style="position:static;font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div class="modal-meta-strip">
+                    <span class="meta-b cadre"><i class="fas fa-flask"></i> Travaux Pratiques</span>
+                    <span class="meta-b type"><i class="fas fa-hdd"></i> Stockage · Services</span>
+                </div>
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Mise en place d'un serveur de stockage en réseau (NAS) pour centraliser les données d'un environnement d'entreprise et permettre un accès sécurisé depuis plusieurs clients.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-tasks"></i> Travaux réalisés</h4>
+                <ul><li>Installation et configuration du système NAS (TrueNAS / OpenMediaVault)</li><li>Création de volumes de stockage et de partages réseaux (SMB/CIFS, NFS)</li><li>Configuration des droits d'accès par utilisateur et groupe</li><li>Accès distant sécurisé via SFTP</li><li>Tests de montage sur clients Windows et Linux</li></ul></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
+                <div class="techno-chips"><span class="tc">TrueNAS / OpenMediaVault</span><span class="tc">SMB/CIFS</span><span class="tc">NFS</span><span class="tc">SFTP</span></div></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="m-nfs" class="modal" onclick="closeTechModal(event,'m-nfs')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <div>
+                    <div class="modal-header-sub">Lab & Cours — BTS SIO SISR</div>
+                    <h2>Serveur NFS</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-nfs').style.display='none'" style="position:static;font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Installation et configuration d'un serveur NFS pour partager des répertoires entre machines Linux dans un environnement réseau local simulé.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-code"></i> Configuration NFS (/etc/exports)</h4>
+                <pre>/srv/partage  192.168.1.0/24(rw,sync,no_subtree_check)
+# Montage client :
+mount -t nfs 192.168.1.10:/srv/partage /mnt/nfs</pre></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
+                <div class="techno-chips"><span class="tc">NFS v4</span><span class="tc">Linux</span><span class="tc">exports</span></div></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="m-dhcp-dns" class="modal" onclick="closeTechModal(event,'m-dhcp-dns')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <div>
+                    <div class="modal-header-sub">Lab & Cours — BTS SIO SISR</div>
+                    <h2>DHCP / DNS Bind9</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-dhcp-dns').style.display='none'" style="position:static;font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Déploiement d'un serveur DHCP (attribution dynamique d'adresses IP) et d'un serveur DNS Bind9 avec zones directes et inverses sur un réseau d'entreprise simulé.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-code"></i> Extrait zone DNS</h4>
+                <pre>$ORIGIN domaine.local.
+$TTL 86400
+@  IN SOA  ns1.domaine.local. admin.domaine.local. (
+          2025010101 3600 900 604800 86400 )
+@  IN NS   ns1.domaine.local.
+ns1 IN A   192.168.1.10
+srv IN A   192.168.1.20</pre></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
+                <div class="techno-chips"><span class="tc">ISC DHCP</span><span class="tc">Bind9</span><span class="tc">Linux</span><span class="tc">DNS</span></div></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="m-virt-rpi" class="modal" onclick="closeTechModal(event,'m-virt-rpi')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <div>
+                    <div class="modal-header-sub">Lab & Cours — BTS SIO SISR</div>
+                    <h2>Virtualisation sur Raspberry Pi</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-virt-rpi').style.display='none'" style="position:static;font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Mise en place d'un environnement de virtualisation léger sur Raspberry Pi pour héberger des VMs de travaux pratiques réseau et systèmes sans matériel dédié.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-tasks"></i> Travaux réalisés</h4>
+                <ul><li>Installation d'un hyperviseur léger (KVM/QEMU ou Proxmox ARM)</li><li>Déploiement de VMs Linux légères (Alpine, Debian minimal)</li><li>Configuration réseau (bridge, NAT)</li><li>Tests de performance et limites de la solution</li></ul></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
+                <div class="techno-chips"><span class="tc">Raspberry Pi</span><span class="tc">KVM/QEMU</span><span class="tc">Linux</span><span class="tc">Virtualisation</span></div></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="m-cloud-perso" class="modal" onclick="closeTechModal(event,'m-cloud-perso')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <div>
+                    <div class="modal-header-sub">Lab & Cours — BTS SIO SISR</div>
+                    <h2>Cloud personnel auto-hébergé</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-cloud-perso').style.display='none'" style="position:static;font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Construction d'une infrastructure cloud personnelle auto-hébergée combinant stockage, monitoring et accès distant sécurisé — déployée via conteneurs Docker.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-tasks"></i> Travaux réalisés</h4>
+                <ul><li>Stack Docker Compose : Nextcloud, Portainer, Nginx reverse proxy, Grafana</li><li>Certificats SSL via Let's Encrypt</li><li>Tunnel sécurisé pour l'accès distant</li><li>Monitoring de l'infrastructure via Grafana + Prometheus</li></ul></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
+                <div class="techno-chips"><span class="tc">Docker</span><span class="tc">Nginx</span><span class="tc">Nextcloud</span><span class="tc">Grafana</span><span class="tc">Let's Encrypt</span></div></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js" defer></script>
     <script>
         // ====== FILTRE PROJETS ======
@@ -1423,6 +1644,9 @@ interface GigabitEthernet0/1
                 }
             });
             visibleCount.textContent = shown;
+            // Afficher/masquer le bouton fiche E5
+            const e5Bar = document.getElementById('e5-fiche-bar');
+            if (e5Bar) e5Bar.style.display = filter === 'e5' ? 'block' : 'none';
         }
 
         document.querySelectorAll('.filter-btn').forEach(btn => {

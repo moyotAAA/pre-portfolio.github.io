@@ -330,6 +330,57 @@
             .future-card-top { flex-direction: column; }
             .admission-badge { align-self: flex-start; }
         }
+
+        /* ===== DOCK DE NAVIGATION FLOTTANT ===== */
+        .nav-dock {
+            position: fixed;
+            bottom: 28px;
+            right: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 800;
+            background: rgba(15, 15, 25, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            padding: 9px 7px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.03);
+        }
+        .dock-btn {
+            width: 34px;
+            height: 34px;
+            border: 1px solid var(--border-glass);
+            border-radius: 10px;
+            background: transparent;
+            cursor: pointer;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+        .dock-btn:hover:not(:disabled) {
+            background: rgba(100,210,255,0.1);
+            border-color: rgba(100,210,255,0.35);
+            color: var(--accent-cyan);
+            transform: scale(1.05);
+        }
+        .dock-btn:disabled {
+            opacity: 0.22;
+            cursor: not-allowed;
+        }
+        .dock-sep {
+            height: 1px;
+            background: var(--border-glass);
+            margin: 2px 0;
+        }
+        @media (max-width: 600px) {
+            .nav-dock { bottom: 16px; right: 12px; }
+        }
     </style>
 </head>
 <body>
@@ -379,8 +430,60 @@
 
         <div class="timeline">
 
+            <!-- Baccalauréat Général -->
+            <div class="timeline-item" data-dock-section>
+                <div class="timeline-content">
+                    <div class="timeline-card">
+                        <span class="timeline-date">2023</span>
+                        <h3>Baccalauréat Général</h3>
+                        <p class="institution">Lycée Blaise Cendrars</p>
+
+                        <p class="card-intro">
+                            Filière générale avec spécialités scientifiques. Bases solides en sciences exactes, posant les fondements de la compréhension des systèmes, des protocoles et de l'architecture matérielle.
+                        </p>
+
+                        <div class="apport-label"><i class="fas fa-bolt"></i> Spécialités</div>
+                        <div class="specialties">
+                            <span class="specialty-tag">Mathématiques</span>
+                            <span class="specialty-tag">Physique-Chimie</span>
+                            <span class="specialty-tag">Sciences Économiques et Sociales</span>
+                        </div>
+
+                        <div style="margin-top: 15px; padding: 12px 16px; background: rgba(100, 210, 255, 0.07); border-radius: 10px; border-left: 3px solid var(--accent-cyan);">
+                            <span style="font-weight: 700; color: var(--accent-cyan);">
+                                <i class="fas fa-award" style="margin-right: 8px;"></i> Mention Bien
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Licence Mathématiques -->
+            <div class="timeline-item" data-dock-section>
+                <div class="timeline-content">
+                    <div class="timeline-card">
+                        <span class="timeline-date">2023 – 2024</span>
+                        <h3>Licence Mathématiques</h3>
+                        <p class="institution">Université Sorbonne Paris Nord</p>
+
+                        <p class="card-intro">
+                            Année de formation universitaire rigoureuse, centred sur l'analyse, l'algèbre et la logique formelle. La résolution de problèmes complexes et la rigueur du raisonnement mathématique constituent des atouts directs pour la conception de systèmes, la sécurité et l'algorithmique.
+                        </p>
+
+                        <div class="apport-label"><i class="fas fa-bolt"></i> Acquis transférables en informatique</div>
+                        <div class="specialties">
+                            <span class="specialty-tag">Logique formelle</span>
+                            <span class="specialty-tag">Algèbre linéaire</span>
+                            <span class="specialty-tag">Analyse</span>
+                            <span class="specialty-tag">Rigueur analytique</span>
+                            <span class="specialty-tag">Modélisation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- BTS SIO SISR — FEATURED -->
-            <div class="timeline-item featured">
+            <div class="timeline-item featured" data-dock-section>
                 <div class="timeline-content">
                     <div class="timeline-card featured">
                         <span class="featured-badge">Formation actuelle</span>
@@ -409,63 +512,23 @@
                             <span class="skill-badge">Scripting</span>
                         </div>
 
-                        <div style="margin-top: 16px; font-size: 0.85rem; color: var(--text-secondary); border-top: 1px solid var(--border-glass); padding-top: 14px;">
-                            <strong style="color: var(--text-primary);">Veille Technologique E6 :</strong>
-                            Du VPN traditionnel au Zero Trust et au ZTNA — sécurisation des accès aux infrastructures sensibles
+                        <div style="margin-top: 16px; border-top: 1px solid var(--border-glass); padding-top: 14px;">
+                            <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-cyan); margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+                                <i class="fas fa-search"></i> Veille Technologique E6
+                            </div>
+                            <div style="background: rgba(100,210,255,0.06); border: 1px solid rgba(100,210,255,0.18); border-radius: 10px; padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+                                <span style="font-size: 0.88rem; color: var(--text-primary); font-weight: 600; flex: 1; min-width: 200px;">Du VPN traditionnel au Zero Trust et au ZTNA</span>
+                                <a href="veille.html" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: rgba(100,210,255,0.1); border: 1px solid rgba(100,210,255,0.3); border-radius: 8px; color: var(--accent-cyan); font-size: 0.78rem; font-weight: 700; text-decoration: none; white-space: nowrap; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(100,210,255,0.18)'" onmouseout="this.style.background='rgba(100,210,255,0.1)'">
+                                    <i class="fas fa-external-link-alt"></i> Voir ma veille
+                                </a>
+                            </div>
                         </div>
 
-                        <button class="btn-learn-more" onclick="toggleFormationDetails()">En savoir + sur cette formation</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Licence Mathématiques -->
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-card">
-                        <span class="timeline-date">2023 – 2024</span>
-                        <h3>Licence Mathématiques</h3>
-                        <p class="institution">Université Sorbonne Paris Nord</p>
-
-                        <p class="card-intro">
-                            Année de formation universitaire rigoureuse, centred sur l'analyse, l'algèbre et la logique formelle. La résolution de problèmes complexes et la rigueur du raisonnement mathématique constituent des atouts directs pour la conception de systèmes, la sécurité et l'algorithmique.
-                        </p>
-
-                        <div class="apport-label"><i class="fas fa-bolt"></i> Acquis transférables en informatique</div>
-                        <div class="specialties">
-                            <span class="specialty-tag">Logique formelle</span>
-                            <span class="specialty-tag">Algèbre linéaire</span>
-                            <span class="specialty-tag">Analyse</span>
-                            <span class="specialty-tag">Rigueur analytique</span>
-                            <span class="specialty-tag">Modélisation</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Baccalauréat Général -->
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <div class="timeline-card">
-                        <span class="timeline-date">2023</span>
-                        <h3>Baccalauréat Général</h3>
-                        <p class="institution">Lycée Blaise Cendrars</p>
-
-                        <p class="card-intro">
-                            Filière générale avec spécialités scientifiques. Bases solides en sciences exactes, posant les fondements de la compréhension des systèmes, des protocoles et de l'architecture matérielle.
-                        </p>
-
-                        <div class="apport-label"><i class="fas fa-bolt"></i> Spécialités</div>
-                        <div class="specialties">
-                            <span class="specialty-tag">Mathématiques</span>
-                            <span class="specialty-tag">Physique-Chimie</span>
-                            <span class="specialty-tag">Sciences Économiques et Sociales</span>
-                        </div>
-
-                        <div style="margin-top: 15px; padding: 12px 16px; background: rgba(100, 210, 255, 0.07); border-radius: 10px; border-left: 3px solid var(--accent-cyan);">
-                            <span style="font-weight: 700; color: var(--accent-cyan);">
-                                <i class="fas fa-award" style="margin-right: 8px;"></i> Mention Bien
-                            </span>
+                        <div style="margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap;">
+                            <a href="projets.html" style="display: inline-flex; align-items: center; gap: 7px; padding: 9px 18px; background: rgba(10,132,255,0.09); border: 1px solid rgba(10,132,255,0.25); border-radius: 10px; color: var(--accent-blue); font-size: 0.83rem; font-weight: 700; text-decoration: none; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(10,132,255,0.16)'" onmouseout="this.style.background='rgba(10,132,255,0.09)'">
+                                <i class="fas fa-code-branch"></i> Voir mes projets BTS
+                            </a>
+                            <button class="btn-learn-more" onclick="toggleFormationDetails()" style="margin: 0;">En savoir + sur cette formation</button>
                         </div>
                     </div>
                 </div>
@@ -486,7 +549,7 @@
         </div>
 
         <!-- EFREI Paris -->
-        <div class="future-card">
+        <div class="future-card" data-dock-section>
             <div class="future-card-top">
                 <div style="display:flex; align-items:flex-start; gap:16px;">
                     <div class="future-school-logo">
@@ -534,7 +597,7 @@
             <div class="phase-line"></div>
         </div>
 
-        <div class="objectif-card">
+        <div class="objectif-card" data-dock-section>
             <div class="objectif-card-header">
                 <div class="oc-icon"><i class="fas fa-route"></i></div>
                 <h3>Trajectoire envisagée</h3>
@@ -726,6 +789,55 @@
         </div>
     </div>
 
+    <!-- ===== DOCK DE NAVIGATION FLOTTANT ===== -->
+    <div class="nav-dock" id="nav-dock">
+        <button class="dock-btn" id="dock-top" title="Haut de page"><i class="fas fa-angle-double-up"></i></button>
+        <button class="dock-btn" id="dock-up" title="Étape précédente"><i class="fas fa-angle-up"></i></button>
+        <div class="dock-sep"></div>
+        <button class="dock-btn" id="dock-down" title="Étape suivante"><i class="fas fa-angle-down"></i></button>
+        <button class="dock-btn" id="dock-bottom" title="Bas de page"><i class="fas fa-angle-double-down"></i></button>
+    </div>
+
     <script src="script.js" defer></script>
+    <script>
+        // ===== DOCK DE NAVIGATION — FORMATIONS =====
+        (function() {
+            const dockSections = Array.from(document.querySelectorAll('[data-dock-section]'));
+
+            function getCurrent() {
+                const mid = window.scrollY + window.innerHeight * 0.35;
+                let idx = 0;
+                dockSections.forEach((s, i) => { if (s.getBoundingClientRect().top + window.scrollY <= mid + 80) idx = i; });
+                return idx;
+            }
+
+            function updateDock() {
+                const curIdx = getCurrent();
+                const atTop = window.scrollY < 50;
+                const atBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 40;
+                document.getElementById('dock-top').disabled    = atTop;
+                document.getElementById('dock-bottom').disabled = atBottom;
+                document.getElementById('dock-up').disabled     = (curIdx === 0 && atTop);
+                document.getElementById('dock-down').disabled   = (curIdx >= dockSections.length - 1);
+                // Store curIdx on element for click handlers
+                document.getElementById('nav-dock').dataset.cur = curIdx;
+            }
+
+            document.getElementById('dock-top').addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+            document.getElementById('dock-bottom').addEventListener('click', () => window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'}));
+            document.getElementById('dock-up').addEventListener('click', () => {
+                const curIdx = parseInt(document.getElementById('nav-dock').dataset.cur || 0);
+                if (curIdx > 0) dockSections[curIdx - 1].scrollIntoView({behavior:'smooth', block:'start'});
+                else window.scrollTo({top:0,behavior:'smooth'});
+            });
+            document.getElementById('dock-down').addEventListener('click', () => {
+                const curIdx = parseInt(document.getElementById('nav-dock').dataset.cur || 0);
+                if (dockSections[curIdx + 1]) dockSections[curIdx + 1].scrollIntoView({behavior:'smooth', block:'start'});
+            });
+
+            window.addEventListener('scroll', updateDock, {passive:true});
+            updateDock();
+        })();
+    </script>
 </body>
 </html>
