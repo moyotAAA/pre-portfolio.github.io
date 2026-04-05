@@ -3,10 +3,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projets | Ayoub LeBoss</title>
+    <title>Projets & Réalisations | Ayoub Touil</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* ============================================
+           PROJETS PAGE — STYLES SPÉCIFIQUES
+        ============================================ */
+
+        /* Filtre capsules */
+        .projects-filters {
+            background: var(--card-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 18px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 25px;
+        }
+
+        .filter-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 13px;
+            background: var(--tag-bg);
+            border: 1px solid var(--border-glass);
+            border-radius: 10px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            transition: all 0.22s ease;
+            white-space: nowrap;
+            font-family: inherit;
+        }
+
+        .filter-btn:hover { border-color: var(--accent-cyan); color: var(--text-primary); }
+
+        .filter-btn.active {
+            background: rgba(100,210,255,0.1);
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            box-shadow: 0 0 12px rgba(100,210,255,0.12);
+        }
+
+        .filter-btn[data-filter="e5"].active {
+            background: rgba(255,214,0,0.1); border-color: var(--accent-yellow); color: var(--accent-yellow);
+        }
+        .filter-btn[data-filter="stage1"].active {
+            background: rgba(52,199,89,0.1); border-color: var(--accent-green); color: var(--accent-green);
+        }
+        .filter-btn[data-filter="stage2"].active {
+            background: rgba(191,90,242,0.1); border-color: var(--accent-purple); color: var(--accent-purple);
+        }
+        .filter-btn[data-filter="cyber"].active {
+            background: rgba(255,59,48,0.1); border-color: var(--accent-red); color: var(--accent-red);
+        }
+
+        .f-count {
+            background: rgba(255,255,255,0.06);
+            color: var(--text-tertiary);
+            border-radius: 6px;
+            padding: 1px 6px;
+            font-size: 0.7rem;
+            font-weight: 800;
+        }
+        .filter-btn.active .f-count {
+            background: rgba(255,255,255,0.15);
+            color: inherit;
+        }
+
+        /* Info bar */
+        .projects-info-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .projects-counter {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        .projects-counter strong {
+            color: var(--accent-cyan);
+            font-size: 1.05rem;
+            font-weight: 800;
+        }
+        .e5-legend {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.78rem;
+            color: var(--text-tertiary);
+        }
+        .e5-legend .dot {
+            width: 10px; height: 10px;
+            background: rgba(255,214,0,0.4);
+            border: 1px solid var(--accent-yellow);
+            border-radius: 3px;
+        }
+
+        /* Grille projets */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 20px;
+        }
+
+        /* Carte projet */
+        .project-card {
+            background: var(--card-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 18px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: all 0.28s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .project-card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-4px);
+            box-shadow: 0 18px 40px var(--shadow-color);
+        }
+        .project-card.e5-card { border-color: rgba(255,214,0,0.18); }
+        .project-card.e5-card:hover { border-color: var(--accent-yellow); box-shadow: 0 18px 40px rgba(255,214,0,0.08); }
+        .project-card[style*="display: none"] { display: none !important; }
+
+        /* Badge E5 */
+        .e5-ribbon {
+            position: absolute;
+            top: 13px; right: 13px;
+            background: rgba(255,214,0,0.13);
+            border: 1px solid rgba(255,214,0,0.4);
+            color: var(--accent-yellow);
+            font-size: 0.67rem;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 7px;
+            letter-spacing: 0.5px;
+            display: flex; align-items: center; gap: 4px;
+        }
+
+        /* Badge contexte */
+        .ctx-badge {
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 3px 9px;
+            border-radius: 6px;
+            width: fit-content;
+        }
+        .ctx-stage1 { background: rgba(52,199,89,0.09); color: var(--accent-green); border: 1px solid rgba(52,199,89,0.2); }
+        .ctx-stage2 { background: rgba(191,90,242,0.09); color: var(--accent-purple); border: 1px solid rgba(191,90,242,0.2); }
+        .ctx-lab { background: rgba(100,210,255,0.09); color: var(--accent-cyan); border: 1px solid rgba(100,210,255,0.2); }
+
+        .card-main-icon { font-size: 1.9rem; margin: 2px 0; }
+
+        .project-card h3 {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0;
+            line-height: 1.3;
+        }
+        .project-card p.card-desc {
+            font-size: 0.83rem;
+            color: var(--text-secondary);
+            line-height: 1.55;
+            flex: 1;
+            margin: 0;
+        }
+        .card-tags {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            margin-top: 2px;
+        }
+        .card-tag {
+            font-size: 0.68rem;
+            padding: 3px 8px;
+            background: var(--tag-bg);
+            border: 1px solid var(--border-glass);
+            border-radius: 6px;
+            color: var(--text-tertiary);
+        }
+
+        /* === MODALES ENRICHIES === */
+        .modal-tech-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 25px 30px 20px;
+            border-bottom: 1px solid var(--border-glass);
+            gap: 15px;
+        }
+        .modal-tech-header h2 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin: 0;
+        }
+        .modal-header-sub {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .modal-meta-strip {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin: 0 0 20px;
+            padding: 13px 16px;
+            background: var(--tag-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-glass);
+        }
+        .meta-b {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 11px;
+            border-radius: 7px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+        .meta-b.e5 { background: rgba(255,214,0,0.1); border: 1px solid rgba(255,214,0,0.3); color: var(--accent-yellow); }
+        .meta-b.cadre { background: rgba(100,210,255,0.07); border: 1px solid rgba(100,210,255,0.18); color: var(--accent-cyan); }
+        .meta-b.type { background: rgba(10,132,255,0.07); border: 1px solid rgba(10,132,255,0.18); color: var(--accent-blue); }
+        .meta-b.ctx { background: rgba(191,90,242,0.07); border: 1px solid rgba(191,90,242,0.18); color: var(--accent-purple); }
+
+        .modal-block { margin-bottom: 18px; }
+        .modal-block h4 {
+            font-size: 0.74rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-cyan);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+        .modal-block p, .modal-block li {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        .modal-block ul { padding-left: 18px; margin: 0; }
+        .modal-block ul li { margin-bottom: 4px; }
+
+        .techno-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 6px; }
+        .tc {
+            padding: 4px 11px;
+            background: rgba(100,210,255,0.07);
+            border: 1px solid rgba(100,210,255,0.17);
+            border-radius: 7px;
+            font-size: 0.78rem;
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        .modal-tech-body { padding: 22px 30px 28px; }
+
+        /* Animation filtre */
+        .project-card { animation: fadeInCard 0.25s ease; }
+        @keyframes fadeInCard {
+            from { opacity: 0; transform: translateY(6px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .projects-grid { grid-template-columns: 1fr; }
+            .filter-btn { font-size: 0.75rem; padding: 7px 10px; }
+            .modal-tech-body { padding: 18px 18px 22px; }
+            .modal-tech-header { padding: 18px 18px 15px; }
+        }
+    </style>
 </head>
 <body>
 
@@ -36,65 +322,376 @@
     <section id="projets-section" class="container">
         <div class="section-header">
             <h2>Projets & Réalisations</h2>
-            <p>Solutions techniques mises en œuvre en contexte BTS, entreprise et autonomie</p>
+            <p>Travaux de formation, expériences en stage et projets personnels — BTS SIO SISR</p>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px;">
-
-            <div class="card">
-                <div>
-                    <i class="fas fa-network-wired" style="font-size: 2rem; color: var(--accent-blue); margin-bottom: 15px;"></i>
-                    <h3>Infrastructure VPN</h3>
-                    <p style="font-size:0.95rem; margin-top:5px;margin-bottom:5px;">Mise en place d'un VPN nomade avec PfSense et d'une liaison VPN site-à-site Stormshield.</p>
-                </div>
-                <button class="btn-details" onclick="openTechModal('tech1')">Voir Détails & Schéma</button>
-            </div>
-
-            <div class="card">
-                <div>
-                    <i class="fas fa-phone-alt" style="font-size: 2rem; color: var(--accent-purple); margin-bottom: 15px;"></i>
-                    <h3>Téléphonie sur IP</h3>
-                    <p style="font-size:0.95rem; margin-top:10px;">Déploiement serveur IPBX Asterisk et configuration flotte de téléphones IP.</p>
-                </div>
-                <button class="btn-details" onclick="openTechModal('tech2')">Voir Détails & Config</button>
-            </div>
-
-            <div class="card">
-                <div>
-                    <i class="fas fa-chart-line" style="font-size: 2rem; color: var(--accent-green); margin-bottom: 15px;"></i>
-                    <h3>Supervision Réseau</h3>
-                    <p style="font-size:0.95rem; margin-top:10px;">Installation d'Observium pour le monitoring proactif et gestion des alertes SNMP.</p>
-                </div>
-                <button class="btn-details" onclick="openTechModal('tech3')">Voir Détails & SNMP</button>
-            </div>
-
-            <div class="card">
-                <div>
-                    <i class="fas fa-server" style="font-size: 2rem; color: var(--accent-yellow); margin-bottom: 15px;"></i>
-                    <h3>Haute Disponibilité</h3>
-                    <p style="font-size:0.95rem; margin-top:10px;">Redondance serveur et failover (IP Virtuelle) pour continuité de service.</p>
-                </div>
-                <button class="btn-details" onclick="openTechModal('tech4')">Voir Détails & Script</button>
-            </div>
-
-            <div class="card">
-                <div>
-                    <i class="fas fa-users-cog" style="font-size: 2rem; color: var(--accent-cyan); margin-bottom: 15px;"></i>
-                    <h3>Automatisation AD</h3>
-                    <p style="font-size:0.95rem; margin-top:10px;margin-bottom:10px;">Gestion centralisée utilisateurs et GPO via scripts PowerShell.</p>
-                </div>
-                <button class="btn-details" onclick="openTechModal('tech5')">Voir Détails & Powershell</button>
-            </div>
-
-            <div class="card">
-                <div>
-                    <i class="fas fa-project-diagram" style="font-size: 2rem; color: var(--accent-red); margin-bottom: 15px;"></i>
-                    <h3>Segmentation VLAN</h3>
-                    <p style="font-size:0.95rem; margin-top:10px;">Configuration switchs Cisco, création VLANs et routage inter-VLAN.</p>
-                </div>
-                <button class="btn-details" onclick="openTechModal('tech6')">Voir Détails & IOS</button>
-            </div>
+        <!-- ===== FILTRES ===== -->
+        <div class="projects-filters">
+            <button class="filter-btn active" data-filter="all"><i class="fas fa-th"></i> Vue globale <span class="f-count" id="count-all">—</span></button>
+            <button class="filter-btn" data-filter="e5"><i class="fas fa-star"></i> Sélection E5 <span class="f-count" id="count-e5">—</span></button>
+            <button class="filter-btn" data-filter="lab"><i class="fas fa-flask"></i> Lab & Cours <span class="f-count" id="count-lab">—</span></button>
+            <button class="filter-btn" data-filter="stage1"><i class="fas fa-briefcase"></i> Stage 1re année <span class="f-count" id="count-stage1">—</span></button>
+            <button class="filter-btn" data-filter="stage2"><i class="fas fa-briefcase"></i> Stage 2e année <span class="f-count" id="count-stage2">—</span></button>
+            <button class="filter-btn" data-filter="infra"><i class="fas fa-network-wired"></i> Infra & Réseaux <span class="f-count" id="count-infra">—</span></button>
+            <button class="filter-btn" data-filter="admin"><i class="fas fa-user-cog"></i> Admin Système <span class="f-count" id="count-admin">—</span></button>
+            <button class="filter-btn" data-filter="services"><i class="fas fa-cogs"></i> Services & Déploiement <span class="f-count" id="count-services">—</span></button>
+            <button class="filter-btn" data-filter="cyber"><i class="fas fa-shield-alt"></i> Cybersécurité <span class="f-count" id="count-cyber">—</span></button>
+            <button class="filter-btn" data-filter="virt"><i class="fas fa-layer-group"></i> Virtualisation & Conteneurs <span class="f-count" id="count-virt">—</span></button>
+            <button class="filter-btn" data-filter="supervision"><i class="fas fa-chart-line"></i> Supervision & Résilience <span class="f-count" id="count-supervision">—</span></button>
         </div>
+
+        <!-- ===== INFO BAR ===== -->
+        <div class="projects-info-bar">
+            <p class="projects-counter"><strong id="visible-count">—</strong> projet(s) affiché(s)</p>
+            <div class="e5-legend"><div class="dot"></div> Badge E5 = inclus dans la fiche épreuve E5</div>
+        </div>
+
+        <!-- ===== GRILLE DE CARTES ===== -->
+        <div class="projects-grid" id="projects-grid">
+
+            <!-- ============ STAGE 1 — FNAC DARTY ============ -->
+            <div class="project-card e5-card" data-cats="stage1 admin services e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
+                <span class="ctx-badge ctx-stage1">Stage 1re année</span>
+                <i class="fas fa-qrcode card-main-icon" style="color:var(--accent-green);"></i>
+                <h3>Kiosque sans ticket</h3>
+                <p class="card-desc">Automatisation du support kiosque via QR code générant un email pré-rempli, sans saisie manuelle.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Services</span>
+                    <span class="card-tag">Admin</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-kiosque')">Voir les détails</button>
+            </div>
+
+            <div class="project-card e5-card" data-cats="stage1 admin e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
+                <span class="ctx-badge ctx-stage1">Stage 1re année</span>
+                <i class="fas fa-desktop card-main-icon" style="color:var(--accent-blue);"></i>
+                <h3>Masterisation de postes</h3>
+                <p class="card-desc">Préparation, déploiement et attribution de postes utilisateurs via image master standardisée.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Admin Système</span>
+                    <span class="card-tag">Déploiement</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-masterisation')">Voir les détails</button>
+            </div>
+
+            <div class="project-card e5-card" data-cats="stage1 admin services e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
+                <span class="ctx-badge ctx-stage1">Stage 1re année</span>
+                <i class="fas fa-user-plus card-main-icon" style="color:var(--accent-cyan);"></i>
+                <h3>Onboarding néo-arrivants</h3>
+                <p class="card-desc">Procédure complète d'intégration des nouveaux collaborateurs : comptes, accès, matériel, formation.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Services</span>
+                    <span class="card-tag">Admin</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-onboarding')">Voir les détails</button>
+            </div>
+
+            <div class="project-card e5-card" data-cats="stage1 admin services e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
+                <span class="ctx-badge ctx-stage1">Stage 1re année</span>
+                <i class="fas fa-user-times card-main-icon" style="color:var(--accent-yellow);"></i>
+                <h3>Outboarding & traçabilité</h3>
+                <p class="card-desc">Procédure de départ des collaborateurs avec traçabilité du matériel restitué et clôture des accès.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Admin</span>
+                    <span class="card-tag">Traçabilité</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-outboarding')">Voir les détails</button>
+            </div>
+
+            <div class="project-card e5-card" data-cats="stage1 admin cyber e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
+                <span class="ctx-badge ctx-stage1">Stage 1re année</span>
+                <i class="fas fa-wrench card-main-icon" style="color:var(--accent-red);"></i>
+                <h3>Fiabilisation lot de postes</h3>
+                <p class="card-desc">Correction automatisée d'un lot défaillant avec Python, PowerShell et Ivanti pour standardiser le parc.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Python</span>
+                    <span class="card-tag">PowerShell</span>
+                    <span class="card-tag">Ivanti</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-fiabilisation')">Voir les détails</button>
+            </div>
+
+            <div class="project-card" data-cats="stage1 admin">
+                <span class="ctx-badge ctx-stage1">Stage 1re année</span>
+                <i class="fas fa-headset card-main-icon" style="color:var(--accent-purple);"></i>
+                <h3>Support N2</h3>
+                <p class="card-desc">Prise en charge des incidents et demandes escaladés du niveau 1, diagnostic et résolution en autonomie.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Support</span>
+                    <span class="card-tag">Diagnostic</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-support-n2')">Voir les détails</button>
+            </div>
+
+            <!-- ============ STAGE 2 — OUTSCALE / DATACENTER ============ -->
+            <div class="project-card e5-card" data-cats="stage2 infra e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
+                <span class="ctx-badge ctx-stage2">Stage 2e année</span>
+                <i class="fas fa-server card-main-icon" style="color:var(--accent-purple);"></i>
+                <h3>Architecture réseau datacenter</h3>
+                <p class="card-desc">Déploiement et configuration d'une architecture réseau complète en environnement datacenter.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Datacenter</span>
+                    <span class="card-tag">Réseau</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-archi-dc')">Voir les détails</button>
+            </div>
+
+            <div class="project-card e5-card" data-cats="stage2 infra e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
+                <span class="ctx-badge ctx-stage2">Stage 2e année</span>
+                <i class="fas fa-random card-main-icon" style="color:var(--accent-blue);"></i>
+                <h3>Architecture redondante vPC</h3>
+                <p class="card-desc">Mise en place d'une architecture haute disponibilité avec vPC et port-channel sur équipements Cisco Nexus.</p>
+                <div class="card-tags">
+                    <span class="card-tag">vPC</span>
+                    <span class="card-tag">Port-Channel</span>
+                    <span class="card-tag">Nexus</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-vpc')">Voir les détails</button>
+            </div>
+
+            <div class="project-card e5-card" data-cats="stage2 infra services e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
+                <span class="ctx-badge ctx-stage2">Stage 2e année</span>
+                <i class="fas fa-exchange-alt card-main-icon" style="color:var(--accent-green);"></i>
+                <h3>Migration Digi → Opengear</h3>
+                <p class="card-desc">Migration des consoles d'administration out-of-band de Digi vers Opengear avec reconfiguration complète.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Migration</span>
+                    <span class="card-tag">Console OOB</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-opengear')">Voir les détails</button>
+            </div>
+
+            <div class="project-card e5-card" data-cats="stage2 infra services e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
+                <span class="ctx-badge ctx-stage2">Stage 2e année</span>
+                <i class="fas fa-database card-main-icon" style="color:var(--accent-cyan);"></i>
+                <h3>Migration équipements NetBox</h3>
+                <p class="card-desc">Migration et documentation d'équipements réseau avec NetBox comme CMDB et ticketing associé.</p>
+                <div class="card-tags">
+                    <span class="card-tag">NetBox</span>
+                    <span class="card-tag">CMDB</span>
+                    <span class="card-tag">Ticketing</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-netbox')">Voir les détails</button>
+            </div>
+
+            <div class="project-card e5-card" data-cats="stage2 infra services e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
+                <span class="ctx-badge ctx-stage2">Stage 2e année</span>
+                <i class="fas fa-microchip card-main-icon" style="color:var(--accent-yellow);"></i>
+                <h3>Déploiement UCS datacenter</h3>
+                <p class="card-desc">Mise en production de serveurs Cisco UCS : domaine, fabric, profils de service et intégration réseau.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Cisco UCS</span>
+                    <span class="card-tag">Datacenter</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-ucs')">Voir les détails</button>
+            </div>
+
+            <div class="project-card" data-cats="stage2 supervision services">
+                <span class="ctx-badge ctx-stage2">Stage 2e année</span>
+                <i class="fas fa-clock card-main-icon" style="color:var(--accent-cyan);"></i>
+                <h3>NTP, SNMP, Syslog</h3>
+                <p class="card-desc">Gestion et synchronisation des services réseau transversaux : temps, supervision et journalisation centralisée.</p>
+                <div class="card-tags">
+                    <span class="card-tag">NTP</span>
+                    <span class="card-tag">SNMP</span>
+                    <span class="card-tag">Syslog</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-ntp-snmp')">Voir les détails</button>
+            </div>
+
+            <div class="project-card" data-cats="stage2 infra">
+                <span class="ctx-badge ctx-stage2">Stage 2e année</span>
+                <i class="fas fa-project-diagram card-main-icon" style="color:var(--accent-blue);"></i>
+                <h3>Simulation réseau CML / GNS3</h3>
+                <p class="card-desc">Conception et simulation d'architectures réseau complexes avant déploiement avec Cisco Modeling Labs.</p>
+                <div class="card-tags">
+                    <span class="card-tag">CML</span>
+                    <span class="card-tag">GNS3</span>
+                    <span class="card-tag">Simulation</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-cml')">Voir les détails</button>
+            </div>
+
+            <div class="project-card" data-cats="stage2 services">
+                <span class="ctx-badge ctx-stage2">Stage 2e année</span>
+                <i class="fas fa-file-alt card-main-icon" style="color:var(--accent-green);"></i>
+                <h3>Rédaction de SOP</h3>
+                <p class="card-desc">Conception et formalisation de procédures opérationnelles standard pour les équipes réseau datacenter.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Documentation</span>
+                    <span class="card-tag">Procédures</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-sop')">Voir les détails</button>
+            </div>
+
+            <!-- ============ LAB & COURS ============ -->
+            <div class="project-card" data-cats="lab infra cyber">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-network-wired card-main-icon" style="color:var(--accent-blue);"></i>
+                <h3>Infrastructure VPN</h3>
+                <p class="card-desc">VPN nomade OpenVPN sur PfSense + liaison site-à-site IPSec Stormshield pour 20 collaborateurs.</p>
+                <div class="card-tags">
+                    <span class="card-tag">PfSense</span>
+                    <span class="card-tag">IPSec</span>
+                    <span class="card-tag">OpenVPN</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-vpn')">Voir les détails</button>
+            </div>
+
+            <div class="project-card" data-cats="lab services">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-phone-alt card-main-icon" style="color:var(--accent-purple);"></i>
+                <h3>Téléphonie sur IP</h3>
+                <p class="card-desc">Déploiement IPBX Asterisk, IVR, configuration flotte Yealink — migration depuis la téléphonie analogique.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Asterisk</span>
+                    <span class="card-tag">SIP/RTP</span>
+                    <span class="card-tag">VoIP</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-voip')">Voir les détails</button>
+            </div>
+
+            <div class="project-card" data-cats="lab supervision">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-chart-line card-main-icon" style="color:var(--accent-green);"></i>
+                <h3>Supervision Observium</h3>
+                <p class="card-desc">Monitoring proactif de 15 switchs et 10 serveurs avec alertes SNMP et tableaux de bord automatiques.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Observium</span>
+                    <span class="card-tag">SNMP</span>
+                    <span class="card-tag">Alertes</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-observium')">Voir les détails</button>
+            </div>
+
+            <div class="project-card" data-cats="lab infra supervision">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-server card-main-icon" style="color:var(--accent-yellow);"></i>
+                <h3>Haute Disponibilité</h3>
+                <p class="card-desc">Redondance serveur et failover IP virtuelle (Keepalived) pour continuité de service d'un intranet critique.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Keepalived</span>
+                    <span class="card-tag">VIP</span>
+                    <span class="card-tag">VRRP</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-ha')">Voir les détails</button>
+            </div>
+
+            <div class="project-card" data-cats="lab admin">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-users-cog card-main-icon" style="color:var(--accent-cyan);"></i>
+                <h3>Automatisation Active Directory</h3>
+                <p class="card-desc">Création en masse de comptes utilisateurs depuis CSV et gestion GPO via scripts PowerShell.</p>
+                <div class="card-tags">
+                    <span class="card-tag">AD</span>
+                    <span class="card-tag">PowerShell</span>
+                    <span class="card-tag">GPO</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-ad')">Voir les détails</button>
+            </div>
+
+            <div class="project-card" data-cats="lab infra">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-project-diagram card-main-icon" style="color:var(--accent-red);"></i>
+                <h3>Segmentation VLAN</h3>
+                <p class="card-desc">Configuration Cisco IOS : VLANs Data/Voix/Invités, routage inter-VLAN, ports trunk et access.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Cisco IOS</span>
+                    <span class="card-tag">VLAN</span>
+                    <span class="card-tag">Routage</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-vlan')">Voir les détails</button>
+            </div>
+
+            <div class="project-card" data-cats="lab admin services">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-ticket-alt card-main-icon" style="color:var(--accent-blue);"></i>
+                <h3>GLPI — Service Desk</h3>
+                <p class="card-desc">Déploiement et configuration de GLPI pour la gestion de parc, le ticketing et l'inventaire automatique.</p>
+                <div class="card-tags">
+                    <span class="card-tag">GLPI</span>
+                    <span class="card-tag">ITSM</span>
+                    <span class="card-tag">Inventaire</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-glpi')">Voir les détails</button>
+            </div>
+
+            <div class="project-card" data-cats="lab virt services">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fab fa-docker card-main-icon" style="color:var(--accent-cyan);"></i>
+                <h3>Docker & Conteneurisation</h3>
+                <p class="card-desc">Déploiement de services en conteneurs Docker, rédaction de Dockerfile et docker-compose multi-services.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Docker</span>
+                    <span class="card-tag">Compose</span>
+                    <span class="card-tag">Conteneurs</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-docker')">Voir les détails</button>
+            </div>
+
+            <div class="project-card" data-cats="lab cyber services">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-shield-alt card-main-icon" style="color:var(--accent-red);"></i>
+                <h3>Pi-hole — Filtrage DNS</h3>
+                <p class="card-desc">Déploiement d'un serveur DNS filtrant sur Raspberry Pi pour bloquer publicités et domaines malveillants.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Pi-hole</span>
+                    <span class="card-tag">DNS</span>
+                    <span class="card-tag">Cybersécurité</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-pihole')">Voir les détails</button>
+            </div>
+
+            <div class="project-card" data-cats="lab services cyber">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-exchange-alt card-main-icon" style="color:var(--accent-green);"></i>
+                <h3>Reverse Proxy Nginx</h3>
+                <p class="card-desc">Configuration d'un reverse proxy Nginx avec certificats SSL/TLS et routage vers plusieurs services internes.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Nginx</span>
+                    <span class="card-tag">SSL/TLS</span>
+                    <span class="card-tag">Proxy</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-proxy')">Voir les détails</button>
+            </div>
+
+            <div class="project-card" data-cats="lab supervision services">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-hdd card-main-icon" style="color:var(--accent-yellow);"></i>
+                <h3>Sauvegarde Bacula</h3>
+                <p class="card-desc">Mise en place d'une solution de sauvegarde centralisée avec Bacula — politique de rétention et restauration testée.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Bacula</span>
+                    <span class="card-tag">Backup</span>
+                    <span class="card-tag">Plan de reprise</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-bacula')">Voir les détails</button>
+            </div>
+
+            <div class="project-card" data-cats="lab services">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-cloud card-main-icon" style="color:var(--accent-purple);"></i>
+                <h3>Nextcloud — Stockage collaboratif</h3>
+                <p class="card-desc">Déploiement d'une instance Nextcloud auto-hébergée avec gestion des utilisateurs et intégration LDAP.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Nextcloud</span>
+                    <span class="card-tag">LDAP</span>
+                    <span class="card-tag">Self-hosted</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-nextcloud')">Voir les détails</button>
+            </div>
+
+        </div><!-- end grid -->
     </section>
 
     <footer id="contact">
@@ -105,217 +702,740 @@
             <a href="#" style="color: var(--text-primary); transition:0.3s;"><i class="fab fa-github"></i></a>
             <a href="mailto:tonemail@gmail.com" style="color: var(--text-primary); transition:0.3s;"><i class="fas fa-envelope"></i></a>
         </div>
-        <p style="margin-top: 40px; font-size: 0.8rem; color:var(--text-tertiary);">© 2025 Ayoub Leboss.</p>
+        <p style="margin-top: 40px; font-size: 0.8rem; color:var(--text-tertiary);">© 2025 Ayoub Touil.</p>
     </footer>
 
-    <div id="tech1" class="modal" onclick="closeTechModal(event, 'tech1')">
+    <!-- =====================================================
+         MODALES — STAGE 1
+    ===================================================== -->
+    <div id="m-kiosque" class="modal" onclick="closeTechModal(event,'m-kiosque')">
         <div class="modal-tech-content" onclick="event.stopPropagation()">
             <div class="modal-tech-header">
-                <h2>Infrastructure VPN</h2>
-                <span class="close-modal" onclick="document.getElementById('tech1').style.display='none'" style="position:static; font-size:30px;">&times;</span>
+                <div>
+                    <div class="modal-header-sub"><i class="fas fa-star" style="color:var(--accent-yellow);"></i> Projet E5 &nbsp;·&nbsp; <i class="fas fa-briefcase" style="color:var(--accent-green);"></i> Stage 1re année — Fnac Darty</div>
+                    <h2>Kiosque sans ticket</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-kiosque').style.display='none'" style="position:static;font-size:30px;">&times;</span>
             </div>
             <div class="modal-tech-body">
-                <div style="margin-bottom:20px;">
-                    <h4 style="color:var(--accent-blue);">Contexte</h4>
-                    <p>Dans le cadre du télétravail pour 20 collaborateurs, sécurisation des accès distants via OpenVPN sur PfSense et interconnexion de deux sites distants (Siège/Agence) via tunnel IPSec Stormshield.</p>
+                <div class="modal-meta-strip">
+                    <span class="meta-b e5"><i class="fas fa-star"></i> Projet E5</span>
+                    <span class="meta-b cadre"><i class="fas fa-briefcase"></i> Stage 1re année</span>
+                    <span class="meta-b type"><i class="fas fa-desktop"></i> Administration Système</span>
                 </div>
-                <div style="margin-bottom:20px;">
-                    <h4 style="color:var(--accent-blue);">Schéma Réseau</h4>
-                    <div class="network-schema">[Capture d'écran : Topologie VPN PfSense <-> Stormshield]</div>
-                </div>
-                <div>
-                    <h4 style="color:var(--accent-blue);">Extrait Configuration (Firewall Rules)</h4>
-                    <pre># Shell / PfSense Config snippet
-pass in on $WAN proto udp from any to $WAN_IP port 1194
-    keep state label "Allow OpenVPN"
-pass in on $OVPN_IF from 10.0.8.0/24 to 192.168.1.0/24
-    keep state label "Allow VPN to LAN"</pre>
-                </div>
-                <div style="margin-top: 30px; text-align: center;">
-                    <a href="#" target="_blank" class="btn-main" style="display: inline-flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-file-pdf"></i> Voir la Documentation PDF </a>
-                </div>
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Au sein du service informatique de Fnac Darty, les demandes de support arrivant depuis les kiosques clients généraient des tickets manuels chronophages. Il fallait réduire le temps de traitement et supprimer la friction pour les collaborateurs.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-bullseye"></i> Objectif</h4>
+                <p>Permettre à un utilisateur de générer automatiquement un email de support pré-rempli (objet, corps, destinataire) via le simple scan d'un QR code affiché au kiosque.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-tasks"></i> Travaux réalisés</h4>
+                <ul><li>Analyse du besoin avec l'équipe support</li><li>Génération du QR code encodant un lien <code>mailto:</code> avec paramètres pré-remplis</li><li>Tests sur plusieurs types de terminaux (Android, iOS, Windows)</li><li>Impression, plastification et déploiement sur les kiosques</li><li>Rédaction de la documentation et formation rapide des équipes</li></ul></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies & outils</h4>
+                <div class="techno-chips"><span class="tc">QR Code</span><span class="tc">Mailto URL scheme</span><span class="tc">Documentation Word</span></div></div>
+                <div class="modal-block"><h4><i class="fas fa-certificate"></i> Compétences mobilisées</h4>
+                <ul><li>Analyse et compréhension du besoin utilisateur</li><li>Automatisation d'un processus métier sans développement lourd</li><li>Déploiement et validation en condition réelle</li></ul></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
     </div>
 
-    <div id="tech2" class="modal" onclick="closeTechModal(event, 'tech2')">
+    <div id="m-masterisation" class="modal" onclick="closeTechModal(event,'m-masterisation')">
         <div class="modal-tech-content" onclick="event.stopPropagation()">
             <div class="modal-tech-header">
-                <h2>Solution VoIP Asterisk</h2>
-                <span class="close-modal" onclick="document.getElementById('tech2').style.display='none'" style="position:static; font-size:30px;">&times;</span>
+                <div>
+                    <div class="modal-header-sub"><i class="fas fa-star" style="color:var(--accent-yellow);"></i> Projet E5 &nbsp;·&nbsp; Stage 1re année — Fnac Darty</div>
+                    <h2>Masterisation de postes</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-masterisation').style.display='none'" style="position:static;font-size:30px;">&times;</span>
             </div>
             <div class="modal-tech-body">
-                <div style="margin-bottom:20px;">
-                    <h4 style="color:var(--accent-blue);">Contexte</h4>
-                    <p>Migration de la téléphonie analogique vers IP. Configuration d'un IVR (Serveur Vocal Interactif) et de 50 postes Yealink.</p>
+                <div class="modal-meta-strip">
+                    <span class="meta-b e5"><i class="fas fa-star"></i> Projet E5</span>
+                    <span class="meta-b cadre"><i class="fas fa-briefcase"></i> Stage 1re année</span>
+                    <span class="meta-b type"><i class="fas fa-desktop"></i> Admin Système · Déploiement</span>
                 </div>
-                <div style="margin-bottom:20px;">
-                    <h4 style="color:var(--accent-blue);">Schéma Réseau</h4>
-                    <div class="network-schema">[Capture d'écran : Flux SIP/RTP et Serveur Asterisk]</div>
-                </div>
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Renouvellement d'une partie du parc informatique de Fnac Darty nécessitant la préparation, la configuration standardisée et l'attribution de nouveaux postes à des utilisateurs identifiés.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-bullseye"></i> Objectif</h4>
+                <p>Déployer des images master uniformisées sur les postes, configurer les paramètres réseau et utilisateur, puis attribuer chaque poste au collaborateur correspondant.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-tasks"></i> Travaux réalisés</h4>
+                <ul><li>Préparation de l'image master (Windows, logiciels, GPO)</li><li>Déploiement via outil de masterisation (MDT / WDS / Ivanti)</li><li>Jonction au domaine Active Directory</li><li>Personnalisation des profils et attribution des licences</li><li>Livraison et validation avec les utilisateurs</li></ul></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies & outils</h4>
+                <div class="techno-chips"><span class="tc">Windows</span><span class="tc">MDT / WDS</span><span class="tc">Ivanti</span><span class="tc">Active Directory</span><span class="tc">GPO</span></div></div>
+                <div class="modal-block"><h4><i class="fas fa-certificate"></i> Compétences mobilisées</h4>
+                <ul><li>Déploiement systématique et reproductible de postes</li><li>Intégration dans un environnement AD existant</li><li>Gestion de parc et traçabilité</li></ul></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="m-onboarding" class="modal" onclick="closeTechModal(event,'m-onboarding')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
                 <div>
-                    <h4 style="color:var(--accent-blue);">Extrait Configuration (sip.conf)</h4>
-                    <pre>[general]
+                    <div class="modal-header-sub"><i class="fas fa-star" style="color:var(--accent-yellow);"></i> Projet E5 &nbsp;·&nbsp; Stage 1re année — Fnac Darty</div>
+                    <h2>Onboarding néo-arrivants</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-onboarding').style.display='none'" style="position:static;font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div class="modal-meta-strip">
+                    <span class="meta-b e5"><i class="fas fa-star"></i> Projet E5</span>
+                    <span class="meta-b cadre"><i class="fas fa-briefcase"></i> Stage 1re année</span>
+                    <span class="meta-b type"><i class="fas fa-user-plus"></i> Admin Système · Services</span>
+                </div>
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Chaque arrivée de nouveau collaborateur chez Fnac Darty nécessite une série d'actions IT coordonnées (compte, accès, matériel, email) souvent dispersées entre plusieurs équipes. La procédure manquait de standardisation.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-bullseye"></i> Objectif</h4>
+                <p>Formaliser et exécuter une procédure d'intégration complète, rapide et traçable pour chaque nouveau collaborateur, en minimisant les oublis et les délais.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-tasks"></i> Travaux réalisés</h4>
+                <ul><li>Création des comptes utilisateurs AD et messagerie</li><li>Attribution et configuration du poste de travail</li><li>Mise en place des accès applicatifs et VPN</li><li>Remise du matériel avec inventaire signé</li><li>Formalisation d'une checklist onboarding standardisée</li></ul></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies & outils</h4>
+                <div class="techno-chips"><span class="tc">Active Directory</span><span class="tc">Exchange</span><span class="tc">VPN</span><span class="tc">GLPI</span></div></div>
+                <div class="modal-block"><h4><i class="fas fa-certificate"></i> Compétences mobilisées</h4>
+                <ul><li>Coordination multi-équipes</li><li>Administration systèmes et identités</li><li>Rédaction de procédures reproductibles</li></ul></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="m-outboarding" class="modal" onclick="closeTechModal(event,'m-outboarding')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <div>
+                    <div class="modal-header-sub"><i class="fas fa-star" style="color:var(--accent-yellow);"></i> Projet E5 &nbsp;·&nbsp; Stage 1re année — Fnac Darty</div>
+                    <h2>Outboarding & traçabilité matériel</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-outboarding').style.display='none'" style="position:static;font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div class="modal-meta-strip">
+                    <span class="meta-b e5"><i class="fas fa-star"></i> Projet E5</span>
+                    <span class="meta-b cadre"><i class="fas fa-briefcase"></i> Stage 1re année</span>
+                    <span class="meta-b type"><i class="fas fa-user-times"></i> Admin Système · Traçabilité</span>
+                </div>
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Le départ d'un collaborateur implique la clôture des accès IT et la restitution du matériel. Sans procédure stricte, des risques existent : accès orphelins, matériel non restitué, données non effacées.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-tasks"></i> Travaux réalisés</h4>
+                <ul><li>Désactivation et suppression des comptes AD et messagerie</li><li>Révocation des accès VPN et applicatifs</li><li>Récupération et inventaire du matériel restitué</li><li>Remise à zéro et réintégration du poste en stock</li><li>Archivage de la traçabilité dans GLPI</li></ul></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies & outils</h4>
+                <div class="techno-chips"><span class="tc">Active Directory</span><span class="tc">GLPI</span><span class="tc">Exchange</span><span class="tc">VPN</span></div></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="m-fiabilisation" class="modal" onclick="closeTechModal(event,'m-fiabilisation')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <div>
+                    <div class="modal-header-sub"><i class="fas fa-star" style="color:var(--accent-yellow);"></i> Projet E5 &nbsp;·&nbsp; Stage 1re année — Fnac Darty</div>
+                    <h2>Fiabilisation d'un lot de postes</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-fiabilisation').style.display='none'" style="position:static;font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div class="modal-meta-strip">
+                    <span class="meta-b e5"><i class="fas fa-star"></i> Projet E5</span>
+                    <span class="meta-b cadre"><i class="fas fa-briefcase"></i> Stage 1re année</span>
+                    <span class="meta-b type"><i class="fas fa-wrench"></i> Admin Système · Scripting</span>
+                </div>
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Un lot de postes présentait des anomalies (logiciels manquants, configurations incorrectes, agents non fonctionnels) impactant la productivité des utilisateurs. Correction manuelle de chaque poste était trop longue.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-bullseye"></i> Objectif</h4>
+                <p>Automatiser la détection et la correction des anomalies sur l'ensemble du lot via scripting, pour remettre tous les postes à un état de conformité défini.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-tasks"></i> Travaux réalisés</h4>
+                <ul><li>Analyse des non-conformités sur un échantillon de postes</li><li>Rédaction d'un script PowerShell de vérification et correction</li><li>Compléments en Python pour l'audit et le reporting</li><li>Déploiement via Ivanti sur le lot complet</li><li>Rapport de conformité post-correction</li></ul></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies & outils</h4>
+                <div class="techno-chips"><span class="tc">PowerShell</span><span class="tc">Python</span><span class="tc">Ivanti</span><span class="tc">Windows</span></div></div>
+                <div class="modal-block"><h4><i class="fas fa-code"></i> Extrait script PowerShell</h4>
+                <pre># Vérification et correction agent Ivanti
+$services = @("LANDesk Inv Agent","LDMS Scheduler")
+foreach ($svc in $services) {
+    if ((Get-Service $svc -EA 0).Status -ne 'Running') {
+        Start-Service $svc -EA 0
+        Write-Output "[FIX] $svc redémarré"
+    }
+}</pre></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="m-support-n2" class="modal" onclick="closeTechModal(event,'m-support-n2')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <div>
+                    <div class="modal-header-sub">Stage 1re année — Fnac Darty</div>
+                    <h2>Support N2</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-support-n2').style.display='none'" style="position:static;font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Prise en charge des incidents et demandes escaladés depuis le support N1, nécessitant une expertise technique plus approfondie : diagnostics complexes, interventions serveur, problèmes réseau ou identités.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-tasks"></i> Travaux réalisés</h4>
+                <ul><li>Analyse et résolution d'incidents techniques (réseau, OS, applicatifs)</li><li>Intervention sur Active Directory, messagerie, VPN</li><li>Documentation des résolutions pour capitalisation</li><li>Escalade N3 si nécessaire avec dossier complet</li></ul></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Outils utilisés</h4>
+                <div class="techno-chips"><span class="tc">GLPI</span><span class="tc">Active Directory</span><span class="tc">Exchange</span><span class="tc">Remote Desktop</span></div></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================
+         MODALES — STAGE 2
+    ===================================================== -->
+    <div id="m-archi-dc" class="modal" onclick="closeTechModal(event,'m-archi-dc')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <div>
+                    <div class="modal-header-sub"><i class="fas fa-star" style="color:var(--accent-yellow);"></i> Projet E5 &nbsp;·&nbsp; Stage 2e année — Datacenter</div>
+                    <h2>Architecture réseau datacenter</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-archi-dc').style.display='none'" style="position:static;font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div class="modal-meta-strip">
+                    <span class="meta-b e5"><i class="fas fa-star"></i> Projet E5</span>
+                    <span class="meta-b cadre"><i class="fas fa-briefcase"></i> Stage 2e année</span>
+                    <span class="meta-b type"><i class="fas fa-server"></i> Infra & Réseaux · Datacenter</span>
+                </div>
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Dans un environnement datacenter en production, déploiement et configuration d'une architecture réseau complète comprenant les couches d'accès, de distribution et de cœur — sur équipements Cisco Nexus.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-tasks"></i> Travaux réalisés</h4>
+                <ul><li>Conception de l'architecture selon les spécifications de l'ingénieur réseau</li><li>Configuration des VLANs, trunks et routage inter-VLAN</li><li>Mise en place des protocoles de routage (OSPF, BGP internes)</li><li>Tests de connectivité et validation en environnement de pré-production</li><li>Documentation technique complète de l'infrastructure déployée</li></ul></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies & outils</h4>
+                <div class="techno-chips"><span class="tc">Cisco Nexus</span><span class="tc">NX-OS</span><span class="tc">OSPF</span><span class="tc">BGP</span><span class="tc">VLAN</span><span class="tc">STP</span></div></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="m-vpc" class="modal" onclick="closeTechModal(event,'m-vpc')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <div>
+                    <div class="modal-header-sub"><i class="fas fa-star" style="color:var(--accent-yellow);"></i> Projet E5 &nbsp;·&nbsp; Stage 2e année — Datacenter</div>
+                    <h2>Architecture redondante vPC + port-channel</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-vpc').style.display='none'" style="position:static;font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div class="modal-meta-strip">
+                    <span class="meta-b e5"><i class="fas fa-star"></i> Projet E5</span>
+                    <span class="meta-b cadre"><i class="fas fa-briefcase"></i> Stage 2e année</span>
+                    <span class="meta-b type"><i class="fas fa-random"></i> Infra & Haute Disponibilité</span>
+                </div>
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Pour garantir la continuité de service d'un rack datacenter, mise en place d'une architecture redondante avec vPC (Virtual Port-Channel) sur une paire de switchs Cisco Nexus pour éliminer les single points of failure réseau.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-tasks"></i> Travaux réalisés</h4>
+                <ul><li>Configuration du vPC domain et du peer-link entre les deux Nexus</li><li>Création des port-channels côté serveurs et équipements</li><li>Validation du basculement automatique (suppression d'un uplink)</li><li>Mesure des temps de convergence</li><li>Documentation de la procédure de reprise manuelle</li></ul></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
+                <div class="techno-chips"><span class="tc">Cisco Nexus</span><span class="tc">vPC</span><span class="tc">Port-Channel</span><span class="tc">LACP</span><span class="tc">NX-OS</span></div></div>
+                <div class="modal-block"><h4><i class="fas fa-code"></i> Extrait configuration</h4>
+                <pre>vpc domain 10
+  peer-switch
+  peer-keepalive destination 10.0.0.2 source 10.0.0.1
+
+interface port-channel 10
+  switchport mode trunk
+  vpc peer-link</pre></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="m-opengear" class="modal" onclick="closeTechModal(event,'m-opengear')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <div>
+                    <div class="modal-header-sub"><i class="fas fa-star" style="color:var(--accent-yellow);"></i> Projet E5 &nbsp;·&nbsp; Stage 2e année — Datacenter</div>
+                    <h2>Migration Digi → Opengear</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-opengear').style.display='none'" style="position:static;font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div class="modal-meta-strip">
+                    <span class="meta-b e5"><i class="fas fa-star"></i> Projet E5</span>
+                    <span class="meta-b cadre"><i class="fas fa-briefcase"></i> Stage 2e année</span>
+                    <span class="meta-b type"><i class="fas fa-exchange-alt"></i> Migration · Infra OOB</span>
+                </div>
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Les consoles d'administration out-of-band (OOB) Digi en fin de vie nécessitaient un remplacement par des équipements Opengear pour assurer l'accès de secours aux équipements réseau en cas de perte de connectivité principale.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-tasks"></i> Travaux réalisés</h4>
+                <ul><li>Inventaire des consoles Digi existantes et cartographie des ports</li><li>Installation et configuration initiale des Opengear</li><li>Migration des connexions série équipement par équipement</li><li>Tests de connectivité OOB sur chaque équipement</li><li>Mise à jour de la documentation réseau</li></ul></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
+                <div class="techno-chips"><span class="tc">Opengear</span><span class="tc">Console OOB</span><span class="tc">RS-232</span><span class="tc">SSH</span></div></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="m-netbox" class="modal" onclick="closeTechModal(event,'m-netbox')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <div>
+                    <div class="modal-header-sub"><i class="fas fa-star" style="color:var(--accent-yellow);"></i> Projet E5 &nbsp;·&nbsp; Stage 2e année — Datacenter</div>
+                    <h2>Migration équipements réseau — NetBox</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-netbox').style.display='none'" style="position:static;font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div class="modal-meta-strip">
+                    <span class="meta-b e5"><i class="fas fa-star"></i> Projet E5</span>
+                    <span class="meta-b cadre"><i class="fas fa-briefcase"></i> Stage 2e année</span>
+                    <span class="meta-b type"><i class="fas fa-database"></i> Infra · CMDB · Ticketing</span>
+                </div>
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Migration d'équipements réseau avec gestion de la documentation via NetBox (IPAM/CMDB) et suivi des opérations par système de ticketing. Objectif : maintenir la traçabilité pendant toute la migration.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-tasks"></i> Travaux réalisés</h4>
+                <ul><li>Inventaire des équipements dans NetBox avant migration</li><li>Création des tickets pour chaque intervention planifiée</li><li>Migration et reconfiguration des équipements</li><li>Mise à jour de NetBox (IPs, câblage, rack) post-migration</li><li>Clôture des tickets avec compte-rendu d'intervention</li></ul></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
+                <div class="techno-chips"><span class="tc">NetBox</span><span class="tc">IPAM</span><span class="tc">CMDB</span><span class="tc">Ticketing</span><span class="tc">Python</span></div></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="m-ucs" class="modal" onclick="closeTechModal(event,'m-ucs')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <div>
+                    <div class="modal-header-sub"><i class="fas fa-star" style="color:var(--accent-yellow);"></i> Projet E5 &nbsp;·&nbsp; Stage 2e année — Datacenter</div>
+                    <h2>Déploiement domaine UCS datacenter</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-ucs').style.display='none'" style="position:static;font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div class="modal-meta-strip">
+                    <span class="meta-b e5"><i class="fas fa-star"></i> Projet E5</span>
+                    <span class="meta-b cadre"><i class="fas fa-briefcase"></i> Stage 2e année</span>
+                    <span class="meta-b type"><i class="fas fa-microchip"></i> Serveurs · Datacenter</span>
+                </div>
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Mise en production de nouveaux serveurs Cisco UCS dans le datacenter : configuration du domaine UCS Manager, des fabric interconnects, et des profils de service pour les lames serveur.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-tasks"></i> Travaux réalisés</h4>
+                <ul><li>Configuration initiale du domaine UCS Manager</li><li>Configuration des fabric interconnects et des VLANs associés</li><li>Création des profils de service serveur</li><li>Association des profils aux lames et mise sous tension</li><li>Intégration réseau et tests de connectivité</li></ul></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
+                <div class="techno-chips"><span class="tc">Cisco UCS</span><span class="tc">UCS Manager</span><span class="tc">Fabric Interconnect</span><span class="tc">vNIC</span></div></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="m-ntp-snmp" class="modal" onclick="closeTechModal(event,'m-ntp-snmp')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <div>
+                    <div class="modal-header-sub">Stage 2e année — Datacenter</div>
+                    <h2>Services réseau : NTP, SNMP, Syslog</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-ntp-snmp').style.display='none'" style="position:static;font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Gestion des services réseau transversaux indispensables au bon fonctionnement d'un datacenter : synchronisation temporelle (NTP), supervision SNMP et centralisation des journaux (Syslog).</p></div>
+                <div class="modal-block"><h4><i class="fas fa-tasks"></i> Travaux réalisés</h4>
+                <ul><li>Configuration et synchronisation des serveurs NTP sur tous les équipements</li><li>Mise en place des communautés SNMP v2c/v3 pour la supervision</li><li>Configuration du serveur Syslog centralisé</li><li>Vérification de la cohérence des logs et des horodatages</li></ul></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
+                <div class="techno-chips"><span class="tc">NTP</span><span class="tc">SNMP v3</span><span class="tc">Syslog</span><span class="tc">NX-OS</span><span class="tc">IOS-XE</span></div></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="m-cml" class="modal" onclick="closeTechModal(event,'m-cml')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <div>
+                    <div class="modal-header-sub">Stage 2e année — Datacenter</div>
+                    <h2>Simulation réseau — CML / GNS3</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-cml').style.display='none'" style="position:static;font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Avant tout déploiement en production, conception et test des architectures réseau dans un environnement simulé via Cisco Modeling Labs et GNS3 pour valider les configurations et anticiper les problèmes.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-tasks"></i> Travaux réalisés</h4>
+                <ul><li>Modélisation fidèle des topologies à déployer</li><li>Test des configurations (OSPF, vPC, STP, VLAN)</li><li>Validation des plans de routage et des politiques</li><li>Export des configs vers les équipements réels</li></ul></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
+                <div class="techno-chips"><span class="tc">CML</span><span class="tc">GNS3</span><span class="tc">Cisco IOS</span><span class="tc">NX-OS</span></div></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="m-sop" class="modal" onclick="closeTechModal(event,'m-sop')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <div>
+                    <div class="modal-header-sub">Stage 2e année — Datacenter</div>
+                    <h2>Rédaction de SOP</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-sop').style.display='none'" style="position:static;font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Pour capitaliser les procédures d'intervention sur les équipements réseau du datacenter et permettre leur exécution par d'autres techniciens, rédaction de Standard Operating Procedures (SOP) détaillées.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-tasks"></i> Travaux réalisés</h4>
+                <ul><li>Identification des procédures récurrentes à documenter</li><li>Rédaction pas-à-pas avec captures d'écran et commandes</li><li>Validation avec l'équipe réseau senior</li><li>Intégration dans la base documentaire de l'équipe</li></ul></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================
+         MODALES — LAB & COURS
+    ===================================================== -->
+    <div id="m-vpn" class="modal" onclick="closeTechModal(event,'m-vpn')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <div>
+                    <div class="modal-header-sub">Lab & Cours — BTS SIO SISR</div>
+                    <h2>Infrastructure VPN</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-vpn').style.display='none'" style="position:static;font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div class="modal-meta-strip">
+                    <span class="meta-b cadre"><i class="fas fa-flask"></i> Travaux Pratiques</span>
+                    <span class="meta-b type"><i class="fas fa-shield-alt"></i> Réseau · Cybersécurité</span>
+                </div>
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Sécurisation des accès distants pour 20 collaborateurs en télétravail via OpenVPN sur PfSense, et interconnexion de deux sites (Siège/Agence) via tunnel IPSec Stormshield.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-server"></i> Schéma réseau</h4>
+                <div class="network-schema">[Topologie VPN PfSense ↔ Stormshield]</div></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
+                <div class="techno-chips"><span class="tc">PfSense</span><span class="tc">OpenVPN</span><span class="tc">IPSec</span><span class="tc">Stormshield</span></div></div>
+                <div class="modal-block"><h4><i class="fas fa-code"></i> Extrait configuration</h4>
+                <pre>pass in on $WAN proto udp from any to $WAN_IP port 1194
+    keep state label "Allow OpenVPN"
+pass in on $OVPN_IF from 10.0.8.0/24 to 192.168.1.0/24
+    keep state label "Allow VPN to LAN"</pre></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="m-voip" class="modal" onclick="closeTechModal(event,'m-voip')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <div>
+                    <div class="modal-header-sub">Lab & Cours — BTS SIO SISR</div>
+                    <h2>Téléphonie sur IP — Asterisk</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-voip').style.display='none'" style="position:static;font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Migration de la téléphonie analogique vers IP. Configuration d'un IVR et de 50 postes Yealink sur IPBX Asterisk.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-code"></i> Extrait sip.conf</h4>
+                <pre>[general]
 context=public
 allowguest=no
 udpbindaddr=0.0.0.0
 
 [101]
 type=friend
-callerid="Secretariat <101>"
 secret=Pass123!
 host=dynamic
-context=internal-phones</pre>
-                </div>
-                <div style="margin-top: 30px; text-align: center;">
-                    <a href="#" target="_blank" class="btn-main" style="display: inline-flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-file-pdf"></i> Voir la Documentation PDF
-                    </a>
-                </div>
+context=internal-phones</pre></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
+                <div class="techno-chips"><span class="tc">Asterisk</span><span class="tc">SIP</span><span class="tc">RTP</span><span class="tc">Yealink</span></div></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
     </div>
 
-    <div id="tech3" class="modal" onclick="closeTechModal(event, 'tech3')">
+    <div id="m-observium" class="modal" onclick="closeTechModal(event,'m-observium')">
         <div class="modal-tech-content" onclick="event.stopPropagation()">
             <div class="modal-tech-header">
-                <h2>Supervision Observium</h2>
-                <span class="close-modal" onclick="document.getElementById('tech3').style.display='none'" style="position:static; font-size:30px;">&times;</span>
+                <div>
+                    <div class="modal-header-sub">Lab & Cours — BTS SIO SISR</div>
+                    <h2>Supervision réseau — Observium</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-observium').style.display='none'" style="position:static;font-size:30px;">&times;</span>
             </div>
             <div class="modal-tech-body">
-                <div style="margin-bottom:20px;">
-                    <h4 style="color:var(--accent-blue);">Contexte</h4>
-                    <p>Mise en place d'une surveillance proactive pour un parc de 15 switchs et 10 serveurs. Alertes par mail en cas de surcharge CPU.</p>
-                </div>
-                <div style="margin-bottom:20px;">
-                    <h4 style="color:var(--accent-blue);">Schéma Réseau</h4>
-                    <div class="network-schema">[Capture d'écran : Dashboard Observium]</div>
-                </div>
-                <div>
-                    <h4 style="color:var(--accent-blue);">Configuration SNMP (Linux Client)</h4>
-                    <pre># Bash / Installation SNMP
-apt-get install snmpd
-# Configuration /etc/snmp/snmpd.conf
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Surveillance proactive de 15 switchs et 10 serveurs avec alertes email en cas de surcharge CPU ou perte d'interface.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-code"></i> Configuration SNMP (client Linux)</h4>
+                <pre>apt install snmpd
+# /etc/snmp/snmpd.conf
 rocommunity public 192.168.1.50
 sysLocation "Salle Serveur A"
-service snmpd restart</pre>
-                </div>
-                <div style="margin-top: 30px; text-align: center;">
-                    <a href="#" target="_blank" class="btn-main" style="display: inline-flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-file-pdf"></i> Voir la Documentation PDF
-                    </a>
-                </div>
+service snmpd restart</pre></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
+                <div class="techno-chips"><span class="tc">Observium</span><span class="tc">SNMP</span><span class="tc">Linux</span></div></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
     </div>
 
-    <div id="tech4" class="modal" onclick="closeTechModal(event, 'tech4')">
+    <div id="m-ha" class="modal" onclick="closeTechModal(event,'m-ha')">
         <div class="modal-tech-content" onclick="event.stopPropagation()">
             <div class="modal-tech-header">
-                <h2>Redondance & Failover</h2>
-                <span class="close-modal" onclick="document.getElementById('tech4').style.display='none'" style="position:static; font-size:30px;">&times;</span>
+                <div>
+                    <div class="modal-header-sub">Lab & Cours — BTS SIO SISR</div>
+                    <h2>Haute Disponibilité — Keepalived</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-ha').style.display='none'" style="position:static;font-size:30px;">&times;</span>
             </div>
             <div class="modal-tech-body">
-                <div style="margin-bottom:20px;">
-                    <h4 style="color:var(--accent-blue);">Contexte</h4>
-                    <p>Assurer la continuité de service du serveur Web intranet critique. Utilisation d'une IP virtuelle (VIP) basculant automatiquement.</p>
-                </div>
-                <div style="margin-bottom:20px;">
-                    <h4 style="color:var(--accent-blue);">Schéma Réseau</h4>
-                    <div class="network-schema">[Capture d'écran : Architecture Master/Backup]</div>
-                </div>
-                <div>
-                    <h4 style="color:var(--accent-blue);">Script (Keepalived)</h4>
-                    <pre>vrrp_instance VI_1 {
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Continuité de service d'un intranet critique via IP virtuelle basculant automatiquement entre un serveur MASTER et BACKUP (Keepalived / VRRP).</p></div>
+                <div class="modal-block"><h4><i class="fas fa-code"></i> Configuration Keepalived</h4>
+                <pre>vrrp_instance VI_1 {
     state MASTER
     interface eth0
     virtual_router_id 51
     priority 100
-    virtual_ipaddress {
-        192.168.1.200
-    }
-}</pre>
-                </div>
-                <div style="margin-top: 30px; text-align: center;">
-                    <a href="#" target="_blank" class="btn-main" style="display: inline-flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-file-pdf"></i> Voir la Documentation PDF
-                    </a>
-                </div>
+    virtual_ipaddress { 192.168.1.200 }
+}</pre></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
+                <div class="techno-chips"><span class="tc">Keepalived</span><span class="tc">VRRP</span><span class="tc">Linux</span></div></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
     </div>
 
-    <div id="tech5" class="modal" onclick="closeTechModal(event, 'tech5')">
+    <div id="m-ad" class="modal" onclick="closeTechModal(event,'m-ad')">
         <div class="modal-tech-content" onclick="event.stopPropagation()">
             <div class="modal-tech-header">
-                <h2>Scripting Active Directory</h2>
-                <span class="close-modal" onclick="document.getElementById('tech5').style.display='none'" style="position:static; font-size:30px;">&times;</span>
+                <div>
+                    <div class="modal-header-sub">Lab & Cours — BTS SIO SISR</div>
+                    <h2>Automatisation Active Directory</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-ad').style.display='none'" style="position:static;font-size:30px;">&times;</span>
             </div>
             <div class="modal-tech-body">
-                <div style="margin-bottom:20px;">
-                    <h4 style="color:var(--accent-blue);">Contexte</h4>
-                    <p>Automatisation de la création de comptes utilisateurs à partir d'un fichier CSV lors de la rentrée de 150 nouveaux collaborateurs.</p>
-                </div>
-                <div style="margin-bottom:20px;">
-                    <h4 style="color:var(--accent-blue);">Schéma Réseau</h4>
-                    <div class="network-schema">[Capture d'écran : Structure OU Active Directory]</div>
-                </div>
-                <div>
-                    <h4 style="color:var(--accent-blue);">Script PowerShell</h4>
-                    <pre>$Users = Import-Csv "C:\Temp\nouveaux_users.csv"
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Création en masse de 150 comptes utilisateurs à partir d'un fichier CSV, avec attribution des groupes et GPO.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-code"></i> Script PowerShell</h4>
+                <pre>$Users = Import-Csv "C:\Temp\nouveaux_users.csv"
 ForEach ($User in $Users) {
     New-ADUser -Name $User.Nom `
       -SamAccountName $User.Login `
       -Path "OU=Compta,DC=domaine,DC=local" `
       -Enabled $true
-}</pre>
-                </div>
-                <div style="margin-top: 30px; text-align: center;">
-                    <a href="#" target="_blank" class="btn-main" style="display: inline-flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-file-pdf"></i> Voir la Documentation PDF
-                    </a>
-                </div>
+}</pre></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
+                <div class="techno-chips"><span class="tc">PowerShell</span><span class="tc">Active Directory</span><span class="tc">GPO</span></div></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
     </div>
 
-    <div id="tech6" class="modal" onclick="closeTechModal(event, 'tech6')">
+    <div id="m-vlan" class="modal" onclick="closeTechModal(event,'m-vlan')">
         <div class="modal-tech-content" onclick="event.stopPropagation()">
             <div class="modal-tech-header">
-                <h2>Segmentation VLAN</h2>
-                <span class="close-modal" onclick="document.getElementById('tech6').style.display='none'" style="position:static; font-size:30px;">&times;</span>
+                <div>
+                    <div class="modal-header-sub">Lab & Cours — BTS SIO SISR</div>
+                    <h2>Segmentation VLAN — Cisco IOS</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-vlan').style.display='none'" style="position:static;font-size:30px;">&times;</span>
             </div>
             <div class="modal-tech-body">
-                <div style="margin-bottom:20px;">
-                    <h4 style="color:var(--accent-blue);">Contexte</h4>
-                    <p>Séparation logique des flux (Data, Voix, Invités) pour améliorer la sécurité et les performances du réseau local.</p>
-                </div>
-                <div style="margin-bottom:20px;">
-                    <h4 style="color:var(--accent-blue);">Schéma Réseau</h4>
-                    <div class="network-schema">[Capture d'écran : Topologie VLAN 10/20]</div>
-                </div>
-                <div>
-                    <h4 style="color:var(--accent-blue);">Configuration Switch (Cisco IOS)</h4>
-                    <pre>vlan 10
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Séparation logique des flux (Data, Voix, Invités) sur switchs Cisco pour améliorer sécurité et performances.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-code"></i> Configuration Cisco IOS</h4>
+                <pre>vlan 10
  name DATA
 vlan 20
  name VOIP
-!
 interface GigabitEthernet0/1
  switchport mode access
  switchport access vlan 10
- switchport voice vlan 20</pre>
+ switchport voice vlan 20</pre></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
+                <div class="techno-chips"><span class="tc">Cisco IOS</span><span class="tc">VLAN</span><span class="tc">Trunk</span><span class="tc">Inter-VLAN</span></div></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="m-glpi" class="modal" onclick="closeTechModal(event,'m-glpi')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <div>
+                    <div class="modal-header-sub">Lab & Cours — BTS SIO SISR</div>
+                    <h2>GLPI — Service Desk & Parc IT</h2>
                 </div>
-                <div style="margin-top: 30px; text-align: center;">
-                    <a href="#" target="_blank" class="btn-main" style="display: inline-flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-file-pdf"></i> Voir la Documentation PDF
-                    </a>
+                <span class="close-modal" onclick="document.getElementById('m-glpi').style.display='none'" style="position:static;font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Mise en place d'une solution ITSM pour gérer les tickets de support, l'inventaire du parc et la gestion des actifs informatiques.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-tasks"></i> Travaux réalisés</h4>
+                <ul><li>Déploiement GLPI sur serveur Linux (LAMP)</li><li>Configuration des catégories de tickets et SLA</li><li>Intégration FusionInventory pour l'inventaire automatique</li><li>Gestion des utilisateurs et des profils</li></ul></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
+                <div class="techno-chips"><span class="tc">GLPI</span><span class="tc">FusionInventory</span><span class="tc">MySQL</span><span class="tc">Apache</span></div></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="m-docker" class="modal" onclick="closeTechModal(event,'m-docker')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <div>
+                    <div class="modal-header-sub">Lab & Cours — BTS SIO SISR</div>
+                    <h2>Docker & Conteneurisation</h2>
                 </div>
+                <span class="close-modal" onclick="document.getElementById('m-docker').style.display='none'" style="position:static;font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Déploiement de plusieurs services (web, BDD, monitoring) en conteneurs Docker avec orchestration via Compose.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-code"></i> Extrait docker-compose.yml</h4>
+                <pre>services:
+  web:
+    image: nginx:alpine
+    ports: ["80:80"]
+  db:
+    image: mariadb:10.11
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+  adminer:
+    image: adminer
+    ports: ["8080:8080"]</pre></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
+                <div class="techno-chips"><span class="tc">Docker</span><span class="tc">Compose</span><span class="tc">Nginx</span><span class="tc">MariaDB</span></div></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="m-pihole" class="modal" onclick="closeTechModal(event,'m-pihole')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <div>
+                    <div class="modal-header-sub">Lab & Cours — BTS SIO SISR</div>
+                    <h2>Pi-hole — Filtrage DNS</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-pihole').style.display='none'" style="position:static;font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Déploiement d'un serveur DNS filtrant sur Raspberry Pi pour bloquer publicités, trackers et domaines malveillants sur l'ensemble du réseau local.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-tasks"></i> Travaux réalisés</h4>
+                <ul><li>Installation Pi-hole sur Raspberry Pi OS</li><li>Configuration comme DNS primaire du réseau (DHCP)</li><li>Ajout de listes de blocage personnalisées</li><li>Consultation et analyse des logs DNS</li></ul></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
+                <div class="techno-chips"><span class="tc">Pi-hole</span><span class="tc">DNS</span><span class="tc">Raspberry Pi</span><span class="tc">Linux</span></div></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="m-proxy" class="modal" onclick="closeTechModal(event,'m-proxy')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <div>
+                    <div class="modal-header-sub">Lab & Cours — BTS SIO SISR</div>
+                    <h2>Reverse Proxy Nginx + SSL</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-proxy').style.display='none'" style="position:static;font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div class="modal-block"><h4><i class="fas fa-code"></i> Configuration Nginx</h4>
+                <pre>server {
+    listen 443 ssl;
+    server_name app.local;
+    ssl_certificate /etc/ssl/certs/app.crt;
+    location / {
+        proxy_pass http://backend:8080;
+        proxy_set_header Host $host;
+    }
+}</pre></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
+                <div class="techno-chips"><span class="tc">Nginx</span><span class="tc">SSL/TLS</span><span class="tc">Let's Encrypt</span><span class="tc">Linux</span></div></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="m-bacula" class="modal" onclick="closeTechModal(event,'m-bacula')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <div>
+                    <div class="modal-header-sub">Lab & Cours — BTS SIO SISR</div>
+                    <h2>Sauvegarde Bacula</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-bacula').style.display='none'" style="position:static;font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div class="modal-block"><h4><i class="fas fa-tasks"></i> Travaux réalisés</h4>
+                <ul><li>Déploiement Bacula Director, Storage Daemon et File Daemon</li><li>Définition des pools et politique de rétention (quotidien/hebdo/mensuel)</li><li>Planification des jobs de sauvegarde</li><li>Tests de restauration complets et partiels</li></ul></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
+                <div class="techno-chips"><span class="tc">Bacula</span><span class="tc">Linux</span><span class="tc">PostgreSQL</span></div></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="m-nextcloud" class="modal" onclick="closeTechModal(event,'m-nextcloud')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <div>
+                    <div class="modal-header-sub">Lab & Cours — BTS SIO SISR</div>
+                    <h2>Nextcloud — Stockage collaboratif</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-nextcloud').style.display='none'" style="position:static;font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div class="modal-block"><h4><i class="fas fa-tasks"></i> Travaux réalisés</h4>
+                <ul><li>Installation Nextcloud sur stack LAMP</li><li>Configuration du stockage et des quotas</li><li>Intégration LDAP pour l'authentification</li><li>Accès HTTPS via reverse proxy</li></ul></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
+                <div class="techno-chips"><span class="tc">Nextcloud</span><span class="tc">PHP</span><span class="tc">MariaDB</span><span class="tc">LDAP</span><span class="tc">Nginx</span></div></div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
     </div>
 
     <script src="script.js" defer></script>
+    <script>
+        // ====== FILTRE PROJETS ======
+        const CATS = ['all','e5','lab','stage1','stage2','infra','admin','services','cyber','virt','supervision'];
+        const cards = Array.from(document.querySelectorAll('.project-card'));
+        const visibleCount = document.getElementById('visible-count');
+
+        function updateCounts() {
+            CATS.forEach(cat => {
+                const el = document.getElementById('count-' + cat);
+                if (!el) return;
+                const n = cat === 'all'
+                    ? cards.length
+                    : cards.filter(c => c.dataset.cats && c.dataset.cats.split(' ').includes(cat)).length;
+                el.textContent = n;
+            });
+        }
+
+        function applyFilter(filter) {
+            let shown = 0;
+            cards.forEach(card => {
+                const cats = (card.dataset.cats || '').split(' ');
+                const show = filter === 'all' || cats.includes(filter);
+                if (show) {
+                    card.style.display = '';
+                    shown++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            visibleCount.textContent = shown;
+        }
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                applyFilter(btn.dataset.filter);
+            });
+        });
+
+        // Initialisation
+        updateCounts();
+        applyFilter('all');
+    </script>
 </body>
 </html>
