@@ -1398,7 +1398,7 @@
             <p>Agrégation en temps réel via Inoreader — démonstration à l'oral.</p>
         </div>
 
-        <iframe width="100%" height="800" src="https://www.inoreader.com/stream/user/1003525686/tag/Flux%20Z%C3%A9ro%20trust/view/html?l=https%3A%2F%2Fzpesystems.com%2Fwp-content%2Fuploads%2F2020%2F09%2FZeroTrust-1.png&cs=m" frameborder="0" tabindex="-1" style="border-radius:20px; border:1px solid var(--border-glass); display:block;"></iframe>
+        <iframe id="inoreader-frame" width="100%" height="800" src="https://www.inoreader.com/stream/user/1003525686/tag/Flux%20Z%C3%A9ro%20trust/view/html?l=https%3A%2F%2Fzpesystems.com%2Fwp-content%2Fuploads%2F2020%2F09%2FZeroTrust-1.png&cs=m&bc=0x0d0d0d" frameborder="0" tabindex="-1" style="border-radius:20px; border:1px solid var(--border-glass); display:block; width:100%; max-width:100%;"></iframe>
 
         <!-- Méthodologie -->
         <h3 style="color: var(--text-primary); margin: 40px 0 20px; font-size: 1.2rem;"><i class="fas fa-sitemap" style="color: var(--accent-cyan); margin-right: 10px;"></i>Méthodologie de veille</h3>
@@ -1608,6 +1608,28 @@
         }, { threshold: 0.3 });
 
         document.querySelectorAll('.market-bars').forEach(el => barObserver.observe(el));
+
+        // ====== INOREADER IFRAME — SYNC THEME ======
+        const INOREADER_BASE = 'https://www.inoreader.com/stream/user/1003525686/tag/Flux%20Z%C3%A9ro%20trust/view/html?l=https%3A%2F%2Fzpesystems.com%2Fwp-content%2Fuploads%2F2020%2F09%2FZeroTrust-1.png&cs=m';
+
+        function updateIframeTheme() {
+            const frame = document.getElementById('inoreader-frame');
+            if (!frame) return;
+            const isLight = document.body.classList.contains('light-mode');
+            frame.src = INOREADER_BASE + (isLight ? '&bc=0xFFFFFF' : '&bc=0x0d0d0d');
+        }
+
+        // Appliquer le bon thème au chargement
+        updateIframeTheme();
+
+        // Écouter les clics sur le bouton de thème (script.js le gère, on observe body)
+        const themeBtn = document.getElementById('theme-toggle');
+        if (themeBtn) {
+            themeBtn.addEventListener('click', () => {
+                // Laisser script.js basculer la classe en premier, puis sync iframe
+                setTimeout(updateIframeTheme, 50);
+            });
+        }
     </script>
 </body>
 </html>
