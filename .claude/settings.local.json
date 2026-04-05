@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sed -n '12,974p' \"C:/Users/ayoub/Documents/pre-portfolio/index.html\")",
+      "Bash(\"C:/Users/ayoub/Documents/pre-portfolio/css/style.css\")",
+      "Bash(sed -n '1777,1920p' \"C:/Users/ayoub/Documents/pre-portfolio/index.html\")",
+      "Bash(\"C:/Users/ayoub/Documents/pre-portfolio/js/script.js\")",
+      "Bash(python3 -:*)",
+      "Bash(python -:*)"
+    ]
+  }
+}
