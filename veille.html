@@ -964,6 +964,36 @@
             border: none;
         }
 
+        /* Carte document DOCX (fallback quand iframe non dispo) */
+        .veille-doc-card {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 36px 32px;
+            background: rgba(100,210,255,0.03);
+        }
+        .veille-doc-icon-wrap {
+            width: 72px; height: 72px; flex-shrink: 0;
+            background: rgba(10,102,194,0.12);
+            border: 1px solid rgba(10,102,194,0.25);
+            border-radius: 18px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; color: #4a9eff;
+        }
+        .veille-doc-meta h4 {
+            font-size: 1rem; font-weight: 700;
+            color: var(--text-primary); margin: 0 0 4px;
+        }
+        .veille-doc-meta p {
+            font-size: 0.82rem; color: var(--text-secondary); margin: 0 0 16px;
+        }
+        .veille-doc-actions {
+            display: flex; gap: 10px; flex-wrap: wrap;
+        }
+        @media (max-width: 600px) {
+            .veille-doc-card { flex-direction: column; align-items: flex-start; }
+        }
+
         /* ---- Graphiques HTML — placeholders ---- */
         .html-graphics-grid {
             display: grid;
@@ -1242,25 +1272,25 @@
         <!-- CTA dans le hero -->
         <div class="veille-cta-bar" style="padding: 28px 20px 0;">
             <button class="veille-cta-btn" id="veille-pdf-toggle" onclick="toggleVeillePDF()">
-                <i class="fas fa-file-pdf"></i>
-                Consulter ma veille (PDF)
+                <i class="fas fa-file-word"></i>
+                Consulter ma veille
                 <i class="fas fa-chevron-down" id="veille-pdf-arrow"></i>
             </button>
         </div>
     </header>
 
-    <!-- Visionneuse PDF inline -->
+    <!-- Visionneuse document inline -->
     <div class="veille-pdf-viewer" id="veille-pdf-viewer">
         <div class="veille-pdf-toolbar">
             <div class="veille-pdf-toolbar-left">
-                <i class="fas fa-file-pdf"></i>
-                <span>Synthèse de veille — Zero Trust &amp; ZTNA</span>
+                <i class="fas fa-file-word" style="color:#4a9eff;"></i>
+                <span>Veille technologique — Zero Trust &amp; ZTNA (Outscale)</span>
             </div>
             <div class="veille-pdf-toolbar-right">
-                <a href="annexes/veille-zero-trust.pdf" download class="vpdf-btn vpdf-btn-download">
+                <a href="annexes/Veille_ZTNA_Outscale_Final.docx" download class="vpdf-btn vpdf-btn-download">
                     <i class="fas fa-download"></i> Télécharger
                 </a>
-                <a href="annexes/veille-zero-trust.pdf" target="_blank" class="vpdf-btn vpdf-btn-newtab">
+                <a href="annexes/Veille_ZTNA_Outscale_Final.docx" target="_blank" class="vpdf-btn vpdf-btn-newtab">
                     <i class="fas fa-external-link-alt"></i> Ouvrir
                 </a>
                 <button class="vpdf-btn vpdf-btn-close" onclick="toggleVeillePDF()">
@@ -1268,8 +1298,23 @@
                 </button>
             </div>
         </div>
-        <!-- Placeholder PDF — remplacer href ci-dessus par le vrai chemin quand disponible -->
-        <iframe class="veille-pdf-embed" src="about:blank" id="veille-pdf-frame" title="Synthèse de veille Zero Trust"></iframe>
+        <div class="veille-doc-card">
+            <div class="veille-doc-icon-wrap">
+                <i class="fas fa-file-word"></i>
+            </div>
+            <div class="veille-doc-meta">
+                <h4>Veille_ZTNA_Outscale_Final.docx</h4>
+                <p>Synthèse de veille sur le Zero Trust Network Access (ZTNA) — réalisée dans le cadre du stage chez Outscale · Format Word (.docx)</p>
+                <div class="veille-doc-actions">
+                    <a href="annexes/Veille_ZTNA_Outscale_Final.docx" download class="vpdf-btn vpdf-btn-download">
+                        <i class="fas fa-download"></i> Télécharger le document
+                    </a>
+                    <a href="annexes/Veille_ZTNA_Outscale_Final.docx" target="_blank" class="vpdf-btn vpdf-btn-newtab">
+                        <i class="fas fa-external-link-alt"></i> Ouvrir dans Word
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- ===== SUBNAV INTERNE — pill flottante ===== -->
@@ -1935,21 +1980,15 @@
 
     <script src="script.js" defer></script>
     <script>
-        // ====== VISIONNEUSE PDF INLINE ======
+        // ====== VISIONNEUSE DOCUMENT INLINE ======
         function toggleVeillePDF() {
             const viewer = document.getElementById('veille-pdf-viewer');
             const arrow  = document.getElementById('veille-pdf-arrow');
-            const frame  = document.getElementById('veille-pdf-frame');
             const isOpen = viewer.classList.contains('open');
 
             viewer.classList.toggle('open');
             arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
             arrow.style.transition = 'transform 0.3s ease';
-
-            // Charger le PDF dans l'iframe seulement à l'ouverture (lazy load)
-            if (!isOpen && frame.src === 'about:blank') {
-                frame.src = 'annexes/veille-zero-trust.pdf';
-            }
 
             // Scroller vers la visionneuse si on l'ouvre
             if (!isOpen) {

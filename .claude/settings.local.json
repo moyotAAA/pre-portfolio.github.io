@@ -18,7 +18,10 @@
       "Bash(pandoc \"C:/Users/ayoub/Downloads/Veille_Zero_Trust_ZTNA.docx\" -t plain)",
       "WebFetch(domain:archanight.github.io)",
       "WebFetch(domain:ilyasseddiki.fr)",
-      "mcp__Claude_Preview__preview_start"
+      "mcp__Claude_Preview__preview_start",
+      "Bash(copy \"C:\\\\Users\\\\ayoub\\\\Downloads\\\\Veille_ZTNA_Outscale_Final.docx\" \"C:\\\\Users\\\\ayoub\\\\Documents\\\\pre-portfolio\\\\annexes\\\\Veille_ZTNA_Outscale_Final.docx\")",
+      "Bash(ls /mnt/c/Users/ayoub/Downloads/*.docx)",
+      "Bash(pandoc --version)"
     ]
   }
 }

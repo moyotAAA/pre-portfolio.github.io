@@ -109,12 +109,38 @@
             }
         }
 
+        // Fermeture fiable : appelable par le bouton X ET par le backdrop
+        function closeModalById(id) {
+            const m = document.getElementById(id);
+            if (m) m.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
         function closeTechModal(e, modalId) {
-             if (e.target.id === modalId) {
-                document.getElementById(modalId).style.display = 'none';
-                document.body.style.overflow = 'auto';
+            if (e.target.id === modalId) {
+                closeModalById(modalId);
             }
         }
+
+        // Délégation globale : tout clic sur un .close-modal restaure le scroll
+        document.addEventListener('click', function(e) {
+            const closer = e.target.closest('.close-modal');
+            if (closer) {
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Touche Échap : ferme toute modale ouverte
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal').forEach(function(m) {
+                    m.style.display = 'none';
+                });
+                const fm = document.getElementById('formation-modal');
+                if (fm) fm.classList.remove('visible');
+                document.body.style.overflow = '';
+            }
+        });
 
         // --- MODALE FORMATION COMPLÈTE ---
         function toggleFormationDetails() {
@@ -128,7 +154,7 @@
             if (!e || e.target.id === 'formation-modal') {
                 const modal = document.getElementById('formation-modal');
                 modal.classList.remove('visible');
-                document.body.style.overflow = 'auto';
+                document.body.style.overflow = '';
             }
         }
 
