@@ -239,8 +239,61 @@
         .exp-empty { display: none; text-align: center; padding: 60px 20px; color: var(--text-tertiary); }
         .exp-empty i { font-size: 3rem; margin-bottom: 16px; display: block; }
 
+        /* ---- Groupes chronologiques ---- */
+        .exp-group { margin-bottom: 48px; }
+        .exp-group-header {
+            display: flex; align-items: center; gap: 18px;
+            margin-bottom: 26px;
+        }
+        .exp-group-line { flex: 1; height: 1px; background: var(--border-glass); }
+        .exp-year-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 7px 18px; border-radius: 30px;
+            font-size: 0.78rem; font-weight: 700;
+            white-space: nowrap;
+        }
+        .eyb-stage {
+            background: rgba(255,214,10,0.09);
+            border: 1px solid rgba(255,214,10,0.28);
+            color: var(--accent-yellow);
+        }
+        .eyb-pro {
+            background: rgba(48,209,88,0.09);
+            border: 1px solid rgba(48,209,88,0.28);
+            color: var(--accent-green);
+        }
+        .eyb-benevolat {
+            background: rgba(100,210,255,0.09);
+            border: 1px solid rgba(100,210,255,0.28);
+            color: var(--accent-cyan);
+        }
+
+        /* ---- Page intro ---- */
+        .dossier-intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 60px;
+        }
+        .dossier-intro-card {
+            background: var(--card-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex; align-items: center; gap: 14px;
+        }
+        .dic-icon {
+            width: 44px; height: 44px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; flex-shrink: 0;
+        }
+        .dic-label { font-size: 0.68rem; color: var(--text-tertiary); font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; }
+        .dic-value { font-size: 0.92rem; font-weight: 700; color: var(--text-primary); margin-top: 2px; }
+
         @media (max-width: 768px) {
-            .exp-grid { grid-template-columns: 1fr; }
+            .exp-grid { flex-direction: column; }
+            .exp-card, .exp-flip-wrap { max-width: 100%; flex: 1 1 100%; }
+            .dossier-intro { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -258,7 +311,6 @@
         </a>
         <div class="nav-links">
             <div class="nav-item"><a href="index.html">Accueil</a></div>
-            <div class="nav-item"><a href="competences.html">Compétences</a></div>
             <div class="nav-item active-page dropdown">
                 <a href="dossier.html">Mon Dossier <i class="fas fa-caret-down" style="font-size:0.8rem;margin-left:4px;"></i></a>
                 <div class="dropdown-menu">
@@ -266,9 +318,10 @@
                     <a href="#documents"><i class="fas fa-envelope-open-text"></i> Lettre de Motivation</a>
                 </div>
             </div>
+            <div class="nav-item"><a href="formations.html">Formations</a></div>
+            <div class="nav-item"><a href="competences.html">Compétences</a></div>
             <div class="nav-item"><a href="projets.html">Projets</a></div>
             <div class="nav-item"><a href="veille.html">Veille</a></div>
-            <div class="nav-item"><a href="formations.html">Formations</a></div>
             <div class="nav-item"><a href="#contact">Contact</a></div>
         </div>
         <div class="nav-actions">
@@ -322,23 +375,55 @@
             <p>Mon parcours sur le terrain.</p>
         </div>
 
-        <!-- Contrôles recherche + filtres -->
-        <div class="exp-controls">
-            <div class="exp-search-wrap">
-                <i class="fas fa-search exp-search-icon"></i>
-                <input type="text" id="exp-search" class="exp-search" placeholder="Rechercher une expérience, technologie, mission…" autocomplete="off">
-                <button class="exp-search-clear" id="exp-search-clear" style="display:none;" aria-label="Effacer"><i class="fas fa-times"></i></button>
+        <!-- Repères rapides -->
+        <div class="dossier-intro">
+            <div class="dossier-intro-card">
+                <div class="dic-icon" style="background:rgba(255,214,10,0.1); color:var(--accent-yellow);">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <div>
+                    <div class="dic-label">Stages professionnels</div>
+                    <div class="dic-value">3 stages — Outscale, Fnac Darty, TD Synnex</div>
+                </div>
             </div>
-            <div class="exp-filters">
-                <button class="exp-filter-btn active" data-filter="all">Tous</button>
-                <button class="exp-filter-btn" data-filter="stage">Stages</button>
-                <button class="exp-filter-btn" data-filter="pro">Expériences pro</button>
-                <button class="exp-filter-btn" data-filter="benevolat">Bénévolat</button>
+            <div class="dossier-intro-card">
+                <div class="dic-icon" style="background:rgba(48,209,88,0.1); color:var(--accent-green);">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div>
+                    <div class="dic-label">Expérience professionnelle</div>
+                    <div class="dic-value">LIDL — Depuis 2024</div>
+                </div>
+            </div>
+            <div class="dossier-intro-card">
+                <div class="dic-icon" style="background:rgba(100,210,255,0.1); color:var(--accent-cyan);">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <div>
+                    <div class="dic-label">Engagement bénévole</div>
+                    <div class="dic-value">Association I.D.E.E.S — Depuis 2023</div>
+                </div>
             </div>
         </div>
 
-        <!-- Grille expériences -->
-        <div class="exp-grid">
+        <!-- Filtres (sans barre de recherche) -->
+        <div class="exp-filters" style="margin-bottom: 40px;">
+            <button class="exp-filter-btn active" data-filter="all">Tous</button>
+            <button class="exp-filter-btn" data-filter="stage">Stages</button>
+            <button class="exp-filter-btn" data-filter="pro">Expériences pro</button>
+            <button class="exp-filter-btn" data-filter="benevolat">Bénévolat</button>
+        </div>
+
+        <!-- ===== GROUPE 2025 — STAGES ===== -->
+        <div class="exp-group" id="group-2025">
+            <div class="exp-group-header">
+                <div class="exp-group-line"></div>
+                <div class="exp-year-badge eyb-stage">
+                    <i class="fas fa-briefcase"></i> 2025 — Stages professionnels
+                </div>
+                <div class="exp-group-line"></div>
+            </div>
+            <div class="exp-grid">
 
             <!-- Outscale — Flip card -->
             <div class="exp-flip-wrap" data-category="stage" data-keywords="outscale cloud infrastructure terraform monitoring sécurité vm dassault systèmes">
@@ -471,6 +556,20 @@
                 </div>
             </div>
 
+            </div><!-- /exp-grid 2025 -->
+        </div><!-- /exp-group 2025 -->
+
+        <!-- ===== GROUPE 2024 — STAGE + PRO ===== -->
+        <div class="exp-group" id="group-2024">
+            <div class="exp-group-header">
+                <div class="exp-group-line"></div>
+                <div class="exp-year-badge eyb-stage">
+                    <i class="fas fa-calendar-alt"></i> 2024 — Stage &amp; Expérience pro
+                </div>
+                <div class="exp-group-line"></div>
+            </div>
+            <div class="exp-grid">
+
             <!-- TD Synnex -->
             <div class="exp-card" data-category="stage" data-keywords="td synnex distribution it logistique configuration matériel contrôle qualité postes">
                 <div class="exp-card-header">
@@ -534,6 +633,20 @@
                 </div>
             </div>
 
+            </div><!-- /exp-grid 2024 -->
+        </div><!-- /exp-group 2024 -->
+
+        <!-- ===== GROUPE 2023 — BÉNÉVOLAT ===== -->
+        <div class="exp-group" id="group-2023">
+            <div class="exp-group-header">
+                <div class="exp-group-line"></div>
+                <div class="exp-year-badge eyb-benevolat">
+                    <i class="fas fa-heart"></i> Depuis 2023 — Engagement bénévole
+                </div>
+                <div class="exp-group-line"></div>
+            </div>
+            <div class="exp-grid">
+
             <!-- Association I.D.E.E.S -->
             <div class="exp-card" data-category="benevolat" data-keywords="association idees bénévolat accompagnement scolaire pédagogie écoute aide jeunes">
                 <div class="exp-card-header">
@@ -564,13 +677,9 @@
                 </div>
             </div>
 
-        </div>
+            </div><!-- /exp-grid 2023 -->
+        </div><!-- /exp-group 2023 -->
 
-        <!-- Message vide -->
-        <div class="exp-empty" id="exp-empty">
-            <i class="fas fa-search"></i>
-            <p>Aucune expérience ne correspond à votre recherche.</p>
-        </div>
     </section>
 
     <footer id="contact">
@@ -634,33 +743,25 @@
             idees: { name: 'Association I.D.E.E.S', sector: 'Bénévolat — Accompagnement scolaire', icon: 'fa-hands-helping', color: 'var(--accent-cyan)', desc: "Association d'accompagnement scolaire et pédagogique. Ce bénévolat m'a permis d'exercer ma capacité d'écoute, ma pédagogie et mon sens du service auprès de jeunes en difficulté scolaire.", link: '#' }
         };
 
-        // ====== RECHERCHE + FILTRES ======
+        // ====== FILTRES EXPÉRIENCES ======
         (function(){
-            // Include both flat cards and flip cards
             const cards = document.querySelectorAll('.exp-card, .exp-flip-wrap');
-            const searchInput = document.getElementById('exp-search');
-            const clearBtn = document.getElementById('exp-search-clear');
             const filterBtns = document.querySelectorAll('.exp-filter-btn');
-            const emptyMsg = document.getElementById('exp-empty');
+            const groups = document.querySelectorAll('.exp-group');
             let activeFilter = 'all';
 
             function applyFilters(){
-                const q = searchInput.value.toLowerCase().trim();
-                clearBtn.style.display = q ? 'block' : 'none';
-                let visible = 0;
                 cards.forEach(card => {
                     const cat = card.dataset.category;
-                    const kw = (card.dataset.keywords + ' ' + card.innerText).toLowerCase();
-                    const matchFilter = activeFilter === 'all' || cat === activeFilter;
-                    const matchSearch = !q || kw.includes(q);
-                    if(matchFilter && matchSearch){ card.classList.remove('hidden'); visible++; }
-                    else { card.classList.add('hidden'); }
+                    const show = activeFilter === 'all' || cat === activeFilter;
+                    card.classList.toggle('hidden', !show);
                 });
-                if(emptyMsg) emptyMsg.style.display = visible === 0 ? 'block' : 'none';
+                // Masquer les groupes vides
+                groups.forEach(group => {
+                    const visible = group.querySelectorAll('.exp-card:not(.hidden), .exp-flip-wrap:not(.hidden)').length;
+                    group.style.display = visible === 0 ? 'none' : '';
+                });
             }
-
-            searchInput.addEventListener('input', applyFilters);
-            clearBtn.addEventListener('click', () => { searchInput.value = ''; applyFilters(); searchInput.focus(); });
 
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', () => {

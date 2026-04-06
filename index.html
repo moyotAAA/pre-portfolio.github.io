@@ -3,10 +3,294 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayoub LeBoss | Portfolio SISR</title>
+    <title>Ayoub Touil | Portfolio SISR</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* ============================================
+           ACCUEIL — STYLES SPÉCIFIQUES
+        ============================================ */
+
+        /* ---- HERO SPLIT ---- */
+        .hero-split {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            align-items: center;
+            gap: 60px;
+            padding: 120px 20px 80px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .hero-left { display: flex; flex-direction: column; }
+        .hero-left .status-badge { margin-bottom: 28px; width: fit-content; }
+        .hero-left h1 {
+            text-align: left;
+            font-size: 4.2rem;
+            margin-bottom: 14px;
+            line-height: 1;
+        }
+        .hero-left .typing-row {
+            justify-content: flex-start;
+            margin-bottom: 24px;
+            font-size: 1.5rem;
+        }
+        .hero-left .hero-sub {
+            text-align: left;
+            margin-bottom: 36px;
+            max-width: 480px;
+            font-size: 1.05rem;
+        }
+        .hero-left .hero-ctas { justify-content: flex-start; }
+        .hero-right { display: flex; justify-content: flex-end; align-items: center; }
+
+        /* Profile card hero */
+        .hero-profile-card {
+            background: var(--card-glass);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid var(--border-glass);
+            border-radius: 28px;
+            padding: 32px 26px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue), var(--accent-purple));
+        }
+        .hpc-avatar {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            border: 2px solid rgba(100,210,255,0.3);
+            margin: 0 auto 14px;
+            display: block;
+            object-fit: cover;
+        }
+        .hpc-name {
+            font-size: 1.2rem; font-weight: 800;
+            color: var(--text-primary);
+            text-align: center; margin-bottom: 3px;
+        }
+        .hpc-role {
+            font-size: 0.8rem; color: var(--accent-cyan);
+            font-weight: 600; text-align: center; margin-bottom: 20px;
+        }
+        .hpc-infos { display: flex; flex-direction: column; gap: 9px; margin-bottom: 18px; }
+        .hpc-info {
+            display: flex; align-items: center; gap: 10px;
+            font-size: 0.8rem; color: var(--text-secondary);
+        }
+        .hpc-info i { width: 18px; color: var(--accent-cyan); font-size: 0.78rem; flex-shrink: 0; }
+        .hpc-info a { color: inherit; text-decoration: none; }
+        .hpc-stats {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 8px; margin-bottom: 18px;
+        }
+        .hpc-stat {
+            background: var(--tag-bg); border: 1px solid var(--border-glass);
+            border-radius: 12px; padding: 10px; text-align: center;
+        }
+        .hpc-stat-num { font-size: 1.3rem; font-weight: 800; color: var(--accent-cyan); display: block; }
+        .hpc-stat-label { font-size: 0.66rem; color: var(--text-tertiary); line-height: 1.3; margin-top: 2px; }
+        .hpc-links { display: flex; gap: 7px; }
+        .hpc-link {
+            flex: 1; display: flex; align-items: center; justify-content: center;
+            gap: 5px; padding: 8px 6px;
+            background: var(--tag-bg); border: 1px solid var(--border-glass);
+            border-radius: 10px; color: var(--text-secondary);
+            font-size: 0.72rem; font-weight: 600; text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .hpc-link:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); background: rgba(100,210,255,0.07); }
+
+        /* ---- SECTION LABELS ---- */
+        .idx-section-label {
+            font-size: 0.7rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 2px;
+            color: var(--accent-cyan); margin-bottom: 10px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .idx-section-label::after {
+            content: ''; flex: 1; height: 1px; background: var(--border-glass);
+        }
+        .idx-section-title {
+            font-size: 2rem; font-weight: 800;
+            color: var(--text-primary); margin-bottom: 8px; letter-spacing: -0.5px;
+        }
+        .idx-section-sub {
+            font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 32px;
+        }
+
+        /* ---- BLOC 2 — CREDIBILITÉ ---- */
+        .credibility-bar {
+            background: var(--card-glass); border: 1px solid var(--border-glass);
+            border-radius: 20px; padding: 22px 28px;
+            display: flex; align-items: center; gap: 0;
+            margin-bottom: 80px;
+        }
+        .cred-item {
+            flex: 1; display: flex; align-items: center; gap: 14px;
+            padding: 0 22px;
+        }
+        .cred-item + .cred-item { border-left: 1px solid var(--border-glass); }
+        .cred-icon {
+            width: 44px; height: 44px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; flex-shrink: 0;
+        }
+        .cred-label {
+            font-size: 0.68rem; color: var(--text-tertiary);
+            font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px;
+        }
+        .cred-value { font-size: 0.9rem; font-weight: 700; color: var(--text-primary); margin-top: 2px; }
+
+        /* ---- BLOC 3 — HUB NAVIGATION ---- */
+        .hub-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 14px; margin-bottom: 80px;
+        }
+        .hub-card {
+            background: var(--card-glass); border: 1px solid var(--border-glass);
+            border-radius: 20px; padding: 22px 18px;
+            text-decoration: none; display: flex;
+            flex-direction: column; gap: 10px;
+            transition: all 0.28s ease; position: relative; overflow: hidden;
+        }
+        .hub-card::before {
+            content: ''; position: absolute;
+            top: 0; left: 0; right: 0; height: 2px;
+            opacity: 0; transition: opacity 0.28s ease;
+        }
+        .hub-card:hover::before { opacity: 1; }
+        .hub-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px var(--shadow-color); }
+        .hub-icon {
+            width: 42px; height: 42px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+        }
+        .hub-card-title { font-size: 0.9rem; font-weight: 700; color: var(--text-primary); margin: 0; }
+        .hub-card-sub { font-size: 0.76rem; color: var(--text-secondary); margin: 0; line-height: 1.5; flex: 1; }
+        .hub-arrow { font-size: 0.74rem; color: var(--text-tertiary); display: flex; align-items: center; gap: 4px; margin-top: 4px; }
+
+        .hub-dossier:hover { border-color: rgba(255,214,10,0.3); }
+        .hub-dossier::before { background: linear-gradient(90deg, var(--accent-yellow), transparent); }
+        .hub-dossier .hub-icon { background: rgba(255,214,10,0.1); color: var(--accent-yellow); }
+        .hub-dossier:hover .hub-arrow { color: var(--accent-yellow); }
+
+        .hub-formations:hover { border-color: rgba(191,90,242,0.3); }
+        .hub-formations::before { background: linear-gradient(90deg, var(--accent-purple), transparent); }
+        .hub-formations .hub-icon { background: rgba(191,90,242,0.1); color: var(--accent-purple); }
+        .hub-formations:hover .hub-arrow { color: var(--accent-purple); }
+
+        .hub-competences:hover { border-color: rgba(10,132,255,0.3); }
+        .hub-competences::before { background: linear-gradient(90deg, var(--accent-blue), transparent); }
+        .hub-competences .hub-icon { background: rgba(10,132,255,0.1); color: var(--accent-blue); }
+        .hub-competences:hover .hub-arrow { color: var(--accent-blue); }
+
+        .hub-projets:hover { border-color: rgba(100,210,255,0.3); }
+        .hub-projets::before { background: linear-gradient(90deg, var(--accent-cyan), transparent); }
+        .hub-projets .hub-icon { background: rgba(100,210,255,0.1); color: var(--accent-cyan); }
+        .hub-projets:hover .hub-arrow { color: var(--accent-cyan); }
+
+        .hub-veille:hover { border-color: rgba(52,199,89,0.3); }
+        .hub-veille::before { background: linear-gradient(90deg, var(--accent-green), transparent); }
+        .hub-veille .hub-icon { background: rgba(52,199,89,0.1); color: var(--accent-green); }
+        .hub-veille:hover .hub-arrow { color: var(--accent-green); }
+
+        /* ---- BLOC 4 — FOCUS ACTUEL ---- */
+        .focus-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 18px; margin-bottom: 80px;
+        }
+        .focus-card {
+            background: var(--card-glass); border: 1px solid var(--border-glass);
+            border-radius: 20px; padding: 24px;
+            display: flex; flex-direction: column; gap: 12px;
+            transition: all 0.28s ease;
+        }
+        .focus-card:hover { border-color: rgba(100,210,255,0.2); transform: translateY(-2px); }
+        .focus-card.focus-full {
+            grid-column: span 2;
+            flex-direction: row; align-items: center; gap: 28px;
+        }
+        .focus-card-icon {
+            width: 60px; height: 60px; border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; flex-shrink: 0;
+        }
+        .focus-label {
+            font-size: 0.67rem; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 1.5px; color: var(--text-tertiary);
+            display: flex; align-items: center; gap: 5px;
+        }
+        .focus-title { font-size: 1rem; font-weight: 700; color: var(--text-primary); margin: 0; }
+        .focus-desc { font-size: 0.83rem; color: var(--text-secondary); line-height: 1.65; margin: 0; flex: 1; }
+        .focus-tags { display: flex; gap: 7px; flex-wrap: wrap; }
+        .focus-tag {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 4px 10px; border-radius: 20px;
+            font-size: 0.7rem; font-weight: 700;
+        }
+        .ft-purple { background: rgba(191,90,242,0.1); color: var(--accent-purple); border: 1px solid rgba(191,90,242,0.2); }
+        .ft-cyan { background: rgba(100,210,255,0.1); color: var(--accent-cyan); border: 1px solid rgba(100,210,255,0.2); }
+        .ft-green { background: rgba(52,199,89,0.1); color: var(--accent-green); border: 1px solid rgba(52,199,89,0.2); }
+        .ft-blue { background: rgba(10,132,255,0.1); color: var(--accent-blue); border: 1px solid rgba(10,132,255,0.2); }
+
+        /* ---- BLOC 5 — PARCOURS ---- */
+        .parcours-wrap {
+            background: var(--card-glass); border: 1px solid var(--border-glass);
+            border-radius: 20px; overflow: hidden; margin-bottom: 14px;
+        }
+        .parcours-row { display: flex; align-items: stretch; }
+        .parcours-step { flex: 1; display: flex; flex-direction: column; position: relative; }
+        .parcours-step + .parcours-step { border-left: 1px solid var(--border-glass); }
+        .parcours-bar { height: 3px; }
+        .parcours-step-inner { padding: 22px 18px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+        .parcours-year { font-size: 0.67rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-tertiary); }
+        .parcours-title { font-size: 0.88rem; font-weight: 800; color: var(--text-primary); }
+        .parcours-sub { font-size: 0.74rem; color: var(--text-secondary); line-height: 1.5; }
+
+        /* ---- BLOC 6 — CTA CONTACT ---- */
+        .cta-contact-block {
+            background: var(--card-glass); border: 1px solid var(--border-glass);
+            border-radius: 24px; padding: 52px 40px;
+            text-align: center; position: relative; overflow: hidden;
+            margin-bottom: 60px;
+        }
+        .cta-contact-block::before {
+            content: ''; position: absolute;
+            top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue), var(--accent-purple));
+        }
+        .cta-block-title { font-size: 2.2rem; font-weight: 800; color: var(--text-primary); margin-bottom: 12px; letter-spacing: -0.5px; }
+        .cta-block-sub { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 32px; max-width: 440px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+        .cta-block-btns { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 960px) {
+            .hero-split { grid-template-columns: 1fr; gap: 44px; min-height: unset; padding-top: 100px; }
+            .hero-right { justify-content: center; }
+            .hero-left h1 { font-size: 3rem; }
+            .credibility-bar { flex-wrap: wrap; gap: 16px; }
+            .cred-item { border-left: none !important; flex: 1 1 40%; padding: 8px 0; }
+            .hub-grid { grid-template-columns: 1fr 1fr; }
+            .focus-grid { grid-template-columns: 1fr; }
+            .focus-card.focus-full { grid-column: span 1; flex-direction: column; }
+            .parcours-row { flex-direction: column; }
+            .parcours-step + .parcours-step { border-left: none; border-top: 1px solid var(--border-glass); }
+        }
+        @media (max-width: 600px) {
+            .hub-grid { grid-template-columns: 1fr; }
+            .hero-left h1 { font-size: 2.4rem; }
+            .cta-contact-block { padding: 36px 20px; }
+        }
+    </style>
 </head>
 <body id="home">
 
@@ -22,7 +306,6 @@
         </a>
         <div class="nav-links">
             <div class="nav-item active-page"><a href="index.html">Accueil</a></div>
-            <div class="nav-item"><a href="competences.html">Compétences</a></div>
             <div class="nav-item dropdown">
                 <a href="dossier.html">Mon Dossier <i class="fas fa-caret-down" style="font-size:0.8rem;margin-left:4px;"></i></a>
                 <div class="dropdown-menu">
@@ -30,9 +313,10 @@
                     <a href="dossier.html#documents"><i class="fas fa-envelope-open-text"></i> Lettre de Motivation</a>
                 </div>
             </div>
+            <div class="nav-item"><a href="formations.html">Formations</a></div>
+            <div class="nav-item"><a href="competences.html">Compétences</a></div>
             <div class="nav-item"><a href="projets.html">Projets</a></div>
             <div class="nav-item"><a href="veille.html">Veille</a></div>
-            <div class="nav-item"><a href="formations.html">Formations</a></div>
             <div class="nav-item"><a href="#contact">Contact</a></div>
         </div>
         <div class="nav-actions">
@@ -43,150 +327,309 @@
         </div>
     </nav>
 
-    <header>
-        <!-- Badge statut -->
-        <div class="status-badge">
-            <span class="status-dot"></span>
-            En recherche d'alternance — Systèmes &amp; Réseaux
-        </div>
+    <!-- ============================================================
+         BLOC 1 — HERO SPLIT
+    ============================================================ -->
+    <div class="hero-split">
 
-        <!-- Nom principal -->
-        <h1>Ayoub <span class="hero-name-accent">TOUIL</span></h1>
-
-        <!-- Animation typing -->
-        <div class="typing-row">
-            <span class="typing-word" id="typing-word"></span><span class="typing-cursor">|</span>
-        </div>
-
-        <!-- Intro -->
-        <p class="hero-sub">
-            Étudiant passionné par l'administration des systèmes et réseaux —<br>
-            je construis chaque jour un bagage technique solide, orienté sécurité et infrastructure.
-        </p>
-
-        <!-- CTAs -->
-        <div class="hero-ctas">
-            <a href="projets.html" class="btn-main"><i class="fas fa-folder-open"></i> Voir mes projets</a>
-            <a href="dossier.html#documents" class="btn-outline"><i class="fas fa-file-download"></i> Télécharger CV</a>
-        </div>
-
-        <div class="hero-scroll-hint"><i class="fas fa-chevron-down"></i></div>
-    </header>
-
-    <section id="about" class="container">
-        <div class="section-header">
-            <h2>À propos de moi.</h2>
-            <p>Découvrez mon parcours et mes ambitions.</p>
-        </div>
-
-        <div class="about-grid">
-            <div class="about-sidebar">
-                <div class="profile-card">
-                    <div class="profile-img">
-                        <img src="annexes/test_avatar.png" alt="Ayoub Touil">
-                    </div>
-                    <h3>Ayoub Touil</h3>
-                    <p class="profile-title">BTS SIO — Option SISR</p>
-
-                    <div class="contact-links">
-                        <div class="contact-item"><i class="fas fa-map-marker-alt"></i> Île-de-France, France</div>
-                        <div class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:tonemail@gmail.com">tonemail@gmail.com</a></div>
-                        <div class="contact-item"><i class="fab fa-github"></i> <a href="#">github.com/AyoubDev</a></div>
-                    </div>
-
-                    <div class="stats-mini-grid">
-                        <div class="stat-box"><span>10</span><p>Projets Réseau</p></div>
-                        <div class="stat-box"><span>15+</span><p>Docs Techniques</p></div>
-                        <div class="stat-box"><span>2</span><p>Stages Pro</p></div>
-                        <div class="stat-box"><span>2ans</span><p>Formation SISR</p></div>
-                    </div>
-                    <a href="dossier.html#documents" class="btn-main" style="width:100%; margin-top:22px; justify-content:center; font-size:0.88rem;">
-                        <i class="fas fa-file-download"></i> Télécharger CV
-                    </a>
-                </div>
+        <!-- Gauche : texte & CTAs -->
+        <div class="hero-left">
+            <div class="status-badge">
+                <span class="status-dot"></span>
+                En recherche d'alternance — Systèmes &amp; Réseaux
             </div>
 
-            <div class="about-content">
-                <div class="card about-main-card">
-                    <div class="card-icon-title">
-                        <i class="fas fa-user-circle"></i>
-                        <h3>Qui suis-je ?</h3>
+            <h1>Ayoub <span class="hero-name-accent">TOUIL</span></h1>
+
+            <div class="typing-row">
+                <span class="typing-word" id="typing-word"></span><span class="typing-cursor">|</span>
+            </div>
+
+            <p class="hero-sub">
+                Étudiant passionné par l'administration des systèmes et réseaux —
+                je construis chaque jour un bagage technique solide, orienté sécurité et infrastructure.
+            </p>
+
+            <div class="hero-ctas">
+                <a href="projets.html" class="btn-main"><i class="fas fa-folder-open"></i> Voir mes projets</a>
+                <a href="dossier.html#documents" class="btn-outline"><i class="fas fa-file-download"></i> Télécharger CV</a>
+            </div>
+        </div>
+
+        <!-- Droite : carte profil -->
+        <div class="hero-right">
+            <div class="hero-profile-card">
+                <img src="annexes/test_avatar.png" alt="Ayoub Touil" class="hpc-avatar">
+                <p class="hpc-name">Ayoub Touil</p>
+                <p class="hpc-role">BTS SIO — Option SISR</p>
+
+                <div class="hpc-infos">
+                    <div class="hpc-info"><i class="fas fa-map-marker-alt"></i> Île-de-France, France</div>
+                    <div class="hpc-info"><i class="fas fa-university"></i> Lycée René Descartes</div>
+                    <div class="hpc-info"><i class="fas fa-graduation-cap"></i> EFREI Paris — Rentrée 2026</div>
+                    <div class="hpc-info"><i class="fas fa-envelope"></i>
+                        <a href="mailto:tonemail@gmail.com">tonemail@gmail.com</a>
                     </div>
-                    <p>
-                        Je suis un étudiant passionné par les infrastructures réseaux et la cybersécurité.
-                        Actuellement en BTS SIO option SISR au Lycée René Descartes, j'ai développé une solide rigueur technique
-                        à travers mes stages chez Fnac Darty et TD Synnex. Mon objectif est d'évoluer vers l'administration
-                        système sécurisée et, à terme, l'expertise en cybersécurité.
-                    </p>
                 </div>
 
-                <div class="about-footer-cards">
-                    <div class="card">
-                        <h3>Points forts</h3>
-                        <ul class="skill-list">
-                            <li><i class="fas fa-bolt" style="color:var(--accent-yellow);"></i> Autonomie</li>
-                            <li><i class="fas fa-shield-alt" style="color:var(--accent-green);"></i> Rigueur & Sécurité</li>
-                            <li><i class="fas fa-users" style="color:var(--accent-blue);"></i> Esprit d'équipe</li>
-                        </ul>
+                <div class="hpc-stats">
+                    <div class="hpc-stat">
+                        <span class="hpc-stat-num">10</span>
+                        <span class="hpc-stat-label">Projets réseau</span>
                     </div>
-                    <div class="card">
-                        <h3>Centres d'intérêt</h3>
-                        <ul class="skill-list">
-                            <li><i class="fas fa-code" style="color:var(--accent-purple);"></i> Veille Technologique</li>
-                            <li><i class="fas fa-gamepad" style="color:var(--accent-red);"></i> Gaming & Stratégie</li>
-                            <li><i class="fas fa-dumbbell" style="color:var(--accent-cyan);"></i> Sport & Discipline</li>
-                        </ul>
+                    <div class="hpc-stat">
+                        <span class="hpc-stat-num">2</span>
+                        <span class="hpc-stat-label">Stages pro</span>
                     </div>
+                    <div class="hpc-stat">
+                        <span class="hpc-stat-num">15+</span>
+                        <span class="hpc-stat-label">Docs techniques</span>
+                    </div>
+                    <div class="hpc-stat">
+                        <span class="hpc-stat-num">2ans</span>
+                        <span class="hpc-stat-label">Formation SISR</span>
+                    </div>
+                </div>
+
+                <div class="hpc-links">
+                    <a href="#" class="hpc-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a href="#" class="hpc-link"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="dossier.html#documents" class="hpc-link"><i class="fas fa-file-pdf"></i> CV</a>
                 </div>
             </div>
         </div>
+
+    </div><!-- /hero-split -->
+
+    <section id="about" class="container" style="padding-top: 0;">
+
+        <!-- ============================================================
+             BLOC 2 — BARRE DE CRÉDIBILITÉ
+        ============================================================ -->
+        <div class="credibility-bar">
+            <div class="cred-item">
+                <div class="cred-icon" style="background:rgba(100,210,255,0.1); color:var(--accent-cyan);">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <div class="cred-label">Formation</div>
+                    <div class="cred-value">BTS SIO SISR</div>
+                </div>
+            </div>
+            <div class="cred-item">
+                <div class="cred-icon" style="background:rgba(255,214,10,0.1); color:var(--accent-yellow);">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div>
+                    <div class="cred-label">Épreuve certifiante</div>
+                    <div class="cred-value">Projets E5</div>
+                </div>
+            </div>
+            <div class="cred-item">
+                <div class="cred-icon" style="background:rgba(191,90,242,0.1); color:var(--accent-purple);">
+                    <i class="fas fa-university"></i>
+                </div>
+                <div>
+                    <div class="cred-label">Prochaine étape</div>
+                    <div class="cred-value">EFREI Paris — 2026</div>
+                </div>
+            </div>
+            <div class="cred-item">
+                <div class="cred-icon" style="background:rgba(52,199,89,0.1); color:var(--accent-green);">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div>
+                    <div class="cred-label">Veille technologique</div>
+                    <div class="cred-value">Zero Trust & ZTNA</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================
+             BLOC 3 — HUB DE NAVIGATION
+        ============================================================ -->
+        <div class="idx-section-label"><i class="fas fa-compass"></i> Explorer le portfolio</div>
+        <h2 class="idx-section-title">Ce que vous trouverez ici</h2>
+        <p class="idx-section-sub">Un portfolio structuré autour de ma formation, mes expériences et mes réalisations.</p>
+
+        <div class="hub-grid">
+            <a href="dossier.html" class="hub-card hub-dossier">
+                <div class="hub-icon"><i class="fas fa-folder-open"></i></div>
+                <p class="hub-card-title">Mon Dossier</p>
+                <p class="hub-card-sub">CV, lettre de motivation, stages et expériences professionnelles.</p>
+                <div class="hub-arrow"><i class="fas fa-arrow-right"></i> Consulter</div>
+            </a>
+            <a href="formations.html" class="hub-card hub-formations">
+                <div class="hub-icon"><i class="fas fa-graduation-cap"></i></div>
+                <p class="hub-card-title">Formations</p>
+                <p class="hub-card-sub">BTS SIO SISR, EFREI Paris, objectif professionnel et trajectoire.</p>
+                <div class="hub-arrow"><i class="fas fa-arrow-right"></i> Découvrir</div>
+            </a>
+            <a href="competences.html" class="hub-card hub-competences">
+                <div class="hub-icon"><i class="fas fa-microchip"></i></div>
+                <p class="hub-card-title">Compétences</p>
+                <p class="hub-card-sub">Stack technique, outils, hard skills et soft skills détaillés.</p>
+                <div class="hub-arrow"><i class="fas fa-arrow-right"></i> Explorer</div>
+            </a>
+            <a href="projets.html" class="hub-card hub-projets">
+                <div class="hub-icon"><i class="fas fa-code-branch"></i></div>
+                <p class="hub-card-title">Projets</p>
+                <p class="hub-card-sub">Réalisations techniques en stage, en lab et projets E5.</p>
+                <div class="hub-arrow"><i class="fas fa-arrow-right"></i> Voir les projets</div>
+            </a>
+            <a href="veille.html" class="hub-card hub-veille">
+                <div class="hub-icon"><i class="fas fa-shield-alt"></i></div>
+                <p class="hub-card-title">Veille Techno.</p>
+                <p class="hub-card-sub">Zero Trust, ZTNA et la transition depuis le modèle VPN.</p>
+                <div class="hub-arrow"><i class="fas fa-arrow-right"></i> Consulter</div>
+            </a>
+        </div>
+
+        <!-- ============================================================
+             BLOC 4 — FOCUS ACTUEL
+        ============================================================ -->
+        <div class="idx-section-label"><i class="fas fa-bolt"></i> En ce moment</div>
+        <h2 class="idx-section-title">Focus actuel</h2>
+        <p class="idx-section-sub">Ce sur quoi je travaille et vers où je me dirige.</p>
+
+        <div class="focus-grid">
+
+            <div class="focus-card">
+                <div class="focus-label"><i class="fas fa-cloud"></i> Stage récent</div>
+                <p class="focus-title">Outscale — Infrastructure Cloud</p>
+                <p class="focus-desc">Administration de VMs, automatisation Terraform, monitoring d'infrastructure sur le cloud souverain certifié SecNumCloud de Dassault Systèmes.</p>
+                <div class="focus-tags">
+                    <span class="focus-tag ft-purple"><i class="fas fa-check-circle"></i> Terminé — Été 2025</span>
+                </div>
+            </div>
+
+            <div class="focus-card">
+                <div class="focus-label"><i class="fas fa-eye"></i> Sujet de veille E6</div>
+                <p class="focus-title">Zero Trust & ZTNA</p>
+                <p class="focus-desc">Du VPN traditionnel au modèle Zero Trust : pourquoi les entreprises migrent vers le ZTNA pour sécuriser leurs accès en environnement hybride et cloud.</p>
+                <div class="focus-tags">
+                    <span class="focus-tag ft-green"><i class="fas fa-rss"></i> Épreuve E6 SISR</span>
+                </div>
+            </div>
+
+            <div class="focus-card focus-full">
+                <div class="focus-card-icon" style="background:rgba(191,90,242,0.1); color:var(--accent-purple);">
+                    <i class="fas fa-university"></i>
+                </div>
+                <div style="flex:1;">
+                    <div class="focus-label"><i class="fas fa-arrow-right"></i> Prochaine étape</div>
+                    <p class="focus-title">Admission EFREI Paris — Ingénieur Réseaux &amp; Sécurité</p>
+                    <p class="focus-desc">Admission confirmée à l'EFREI Paris pour la rentrée 2026, en majeure Réseaux & Sécurité (Bac +5, Grade d'ingénieur CTI). Je recherche activement un contrat d'alternance pour accompagner cette formation dans un environnement technique exigeant.</p>
+                    <div class="focus-tags" style="margin-top:10px;">
+                        <span class="focus-tag ft-purple"><i class="fas fa-check-circle"></i> Admission confirmée</span>
+                        <span class="focus-tag ft-cyan"><i class="fas fa-search"></i> Alternance recherchée — 2026</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ============================================================
+             BLOC 5 — PARCOURS EN UN COUP D'ŒIL
+        ============================================================ -->
+        <div class="idx-section-label"><i class="fas fa-route"></i> Mon parcours</div>
+        <h2 class="idx-section-title">Trajectoire en un coup d'œil</h2>
+        <p class="idx-section-sub">De la prépa aux réseaux jusqu'à l'école d'ingénieurs — une progression orientée vers le haut.</p>
+
+        <div class="parcours-wrap">
+            <div class="parcours-row">
+                <div class="parcours-step">
+                    <div class="parcours-bar" style="background:rgba(100,210,255,0.5);"></div>
+                    <div class="parcours-step-inner">
+                        <div class="parcours-year">2022 – 2023</div>
+                        <div class="parcours-title">Licence Maths-Info</div>
+                        <div class="parcours-sub">Faculté — Fondamentaux algorithmiques et mathématiques</div>
+                    </div>
+                </div>
+                <div class="parcours-step">
+                    <div class="parcours-bar" style="background:var(--accent-blue);"></div>
+                    <div class="parcours-step-inner">
+                        <div class="parcours-year">2023 – 2025</div>
+                        <div class="parcours-title">BTS SIO SISR</div>
+                        <div class="parcours-sub">Lycée René Descartes — Réseaux, systèmes, cybersécurité</div>
+                    </div>
+                </div>
+                <div class="parcours-step">
+                    <div class="parcours-bar" style="background:rgba(255,214,10,0.7);"></div>
+                    <div class="parcours-step-inner">
+                        <div class="parcours-year">2024 – 2025</div>
+                        <div class="parcours-title">Stages &amp; Expériences</div>
+                        <div class="parcours-sub">Outscale, Fnac Darty, TD Synnex — Terrain et pratique</div>
+                    </div>
+                </div>
+                <div class="parcours-step">
+                    <div class="parcours-bar" style="background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));"></div>
+                    <div class="parcours-step-inner">
+                        <div class="parcours-year">Rentrée 2026</div>
+                        <div class="parcours-title">EFREI Paris</div>
+                        <div class="parcours-sub">Majeure Réseaux &amp; Sécurité — Grade d'ingénieur CTI</div>
+                    </div>
+                </div>
+                <div class="parcours-step">
+                    <div class="parcours-bar" style="background: linear-gradient(90deg, rgba(100,210,255,0.2), rgba(191,90,242,0.2));"></div>
+                    <div class="parcours-step-inner">
+                        <div class="parcours-year">Objectif</div>
+                        <div class="parcours-title">Architecte Réseaux</div>
+                        <div class="parcours-sub">Ingénieur cloud &amp; sécurité dans un grand groupe IT</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top:12px; text-align:right; margin-bottom: 70px;">
+            <a href="formations.html" class="btn-outline" style="font-size:0.83rem; padding:10px 20px;">
+                <i class="fas fa-arrow-right"></i> Voir les formations en détail
+            </a>
+        </div>
+
+        <!-- ============================================================
+             BLOC 6 — CTA CONTACT & CV
+        ============================================================ -->
+        <div class="cta-contact-block">
+            <h2 class="cta-block-title">Travaillons ensemble.</h2>
+            <p class="cta-block-sub">En recherche active d'une alternance pour la rentrée 2026, dans un environnement technique exigeant orienté réseaux, cloud et sécurité.</p>
+            <div class="cta-block-btns">
+                <a href="mailto:tonemail@gmail.com" class="btn-main"><i class="fas fa-envelope"></i> Me contacter</a>
+                <a href="annexes/CV-TOUIL Ayoub-9.pdf" download class="btn-outline"><i class="fas fa-file-download"></i> Télécharger mon CV</a>
+                <a href="#" class="btn-outline"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            </div>
+        </div>
+
     </section>
 
     <footer id="contact">
-        <h2>Travaillons ensemble.</h2>
-        <p style="color:var(--text-secondary); margin-bottom: 30px;">À la recherche d'une alternance.</p>
-        <div style="font-size: 2rem; display:flex; justify-content:center; gap:30px;">
+        <h2>Ayoub Touil.</h2>
+        <p style="color:var(--text-secondary); margin-bottom: 30px;">Portfolio BTS SIO SISR · Promotion 2025</p>
+        <div style="font-size: 1.8rem; display:flex; justify-content:center; gap:24px;">
             <a href="#" style="color: var(--text-primary); transition:0.3s;"><i class="fab fa-linkedin"></i></a>
             <a href="#" style="color: var(--text-primary); transition:0.3s;"><i class="fab fa-github"></i></a>
             <a href="mailto:tonemail@gmail.com" style="color: var(--text-primary); transition:0.3s;"><i class="fas fa-envelope"></i></a>
         </div>
-        <p style="margin-top: 40px; font-size: 0.8rem; color:var(--text-tertiary);">© 2025 Ayoub Leboss.</p>
+        <p style="margin-top: 40px; font-size: 0.8rem; color:var(--text-tertiary);">© 2025 Ayoub Touil — BTS SIO SISR</p>
     </footer>
 
     <script src="script.js" defer></script>
 
     <script>
-        // ====== ANIMATION TYPING HERO ======
         (function () {
             const words = ['Réseaux', 'Systèmes', 'Cybersécurité', 'Infrastructure', 'Cloud', 'Administration'];
             let wordIdx = 0, charIdx = 0, deleting = false;
             const el = document.getElementById('typing-word');
             if (!el) return;
-
             function tick() {
                 const word = words[wordIdx];
-                if (deleting) {
-                    charIdx--;
-                    el.textContent = word.substring(0, charIdx);
-                } else {
-                    charIdx++;
-                    el.textContent = word.substring(0, charIdx);
-                }
-
+                if (deleting) { charIdx--; el.textContent = word.substring(0, charIdx); }
+                else { charIdx++; el.textContent = word.substring(0, charIdx); }
                 let delay = deleting ? 70 : 110;
-
-                if (!deleting && charIdx === word.length) {
-                    delay = 2000;       // pause fin de mot
-                    deleting = true;
-                } else if (deleting && charIdx === 0) {
-                    deleting = false;
-                    wordIdx = (wordIdx + 1) % words.length;
-                    delay = 380;        // pause avant le mot suivant
-                }
-
+                if (!deleting && charIdx === word.length) { delay = 2000; deleting = true; }
+                else if (deleting && charIdx === 0) { deleting = false; wordIdx = (wordIdx + 1) % words.length; delay = 380; }
                 setTimeout(tick, delay);
             }
-            setTimeout(tick, 700); // délai de démarrage
+            setTimeout(tick, 700);
         })();
     </script>
 </body>
