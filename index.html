@@ -19,6 +19,10 @@
     </div>
 
     <nav>
+        <div class="nav-brand">
+            <span class="nav-brand-last">TOUIL</span>
+            <span class="nav-brand-first">Ayoub</span>
+        </div>
         <div class="nav-item"><a href="index.html">Accueil</a></div>
         <div class="nav-item dropdown">
             <a href="dossier.html">Mon Dossier <i class="fas fa-caret-down" style="font-size:0.8rem; margin-left:5px;"></i></a>
@@ -34,10 +38,40 @@
     </nav>
 
     <header>
-        <div class="tag-pill">BTS SIO • SISR</div>
-        <h1>AYOUB LEBOSS</h1>
-        <p class="hero-sub">Infrastructures Réseaux • Cybersécurité • Développement.<br></p>
-        <a href="dossier.html#documents" class="btn-main">Télécharger mon CV</a>
+        <!-- Badge statut -->
+        <div class="status-badge">
+            <span class="status-dot"></span>
+            En recherche d'alternance — Systèmes et Réseaux
+        </div>
+
+        <!-- Titre principal -->
+        <h1>AYOUB TOUIL</h1>
+
+        <!-- Animation typing -->
+        <div class="typing-row">
+            <span class="typing-word" id="typing-word"></span>
+            <span class="typing-cursor">|</span>
+        </div>
+
+        <!-- Sous-titre -->
+        <p class="hero-sub">
+            Infrastructures Réseaux &bull; Cybersécurité &bull; Administration Systèmes
+        </p>
+
+        <!-- Boutons d'action -->
+        <div class="hero-ctas">
+            <a href="dossier.html#documents" class="btn-main">
+                <i class="fas fa-file-download"></i> Télécharger mon CV
+            </a>
+            <a href="#about" class="btn-outline">
+                Découvrir mon profil <i class="fas fa-arrow-down"></i>
+            </a>
+        </div>
+
+        <!-- Indicateur de scroll -->
+        <div class="hero-scroll-hint">
+            <i class="fas fa-chevron-down"></i>
+        </div>
     </header>
 
     <section id="about" class="container">
@@ -53,7 +87,7 @@
                         <img src="annexes/test_avatar.png" alt="Ayoub Touil">
                     </div>
                     <h3>Ayoub Touil</h3>
-                    <p class="profile-title">Étudiant en BTS SIO SISR</p>
+                    <p class="profile-title">BTS SIO — Option SISR</p>
 
                     <div class="contact-links">
                         <div class="contact-item"><i class="fas fa-map-marker-alt"></i> Île-de-France, France</div>
@@ -62,17 +96,13 @@
                     </div>
 
                     <div class="stats-mini-grid">
-                        <div class="stat-box"><span>10</span><p>Projet Réseau</p></div>
-                        <div class="stat-box"><span>15+</span><p>Documentation Technique</p></div>
-                        <div class="stat-box full-width" style="border-color: var(--accent-green); box-shadow: 0 0 15px rgba(48, 209, 88, 0.1);">
-                                <span style="color: var(--accent-green); font-size: 1.1rem;">
-                                    <i class="fas fa-shield-alt"></i> SecNumAcadémie
-                                </span>
-                                <p style="color: var(--text-secondary);">Validée</p>
-                            </div>
-                        </div>
-                    <a href="dossier.html#documents" class="btn-main" style="width:100%; margin-top:20px; display:inline-block; font-size:0.9rem;">
-                    <i class="fas fa-file-download"></i> Télécharger CV
+                        <div class="stat-box"><span>10</span><p>Projets Réseau</p></div>
+                        <div class="stat-box"><span>15+</span><p>Docs Techniques</p></div>
+                        <div class="stat-box"><span>2</span><p>Stages Pro</p></div>
+                        <div class="stat-box"><span>2ans</span><p>Formation SISR</p></div>
+                    </div>
+                    <a href="dossier.html#documents" class="btn-main" style="width:100%; margin-top:22px; justify-content:center; font-size:0.88rem;">
+                        <i class="fas fa-file-download"></i> Télécharger CV
                     </a>
                 </div>
             </div>
@@ -125,5 +155,40 @@
     </footer>
 
     <script src="script.js" defer></script>
+
+    <script>
+        // ====== ANIMATION TYPING HERO ======
+        (function () {
+            const words = ['Réseaux', 'Systèmes', 'Cybersécurité', 'Infrastructure', 'Cloud', 'Administration'];
+            let wordIdx = 0, charIdx = 0, deleting = false;
+            const el = document.getElementById('typing-word');
+            if (!el) return;
+
+            function tick() {
+                const word = words[wordIdx];
+                if (deleting) {
+                    charIdx--;
+                    el.textContent = word.substring(0, charIdx);
+                } else {
+                    charIdx++;
+                    el.textContent = word.substring(0, charIdx);
+                }
+
+                let delay = deleting ? 70 : 110;
+
+                if (!deleting && charIdx === word.length) {
+                    delay = 2000;       // pause fin de mot
+                    deleting = true;
+                } else if (deleting && charIdx === 0) {
+                    deleting = false;
+                    wordIdx = (wordIdx + 1) % words.length;
+                    delay = 380;        // pause avant le mot suivant
+                }
+
+                setTimeout(tick, delay);
+            }
+            setTimeout(tick, 700); // délai de démarrage
+        })();
+    </script>
 </body>
 </html>
