@@ -49,11 +49,150 @@
         .exp-filter-btn:hover { border-color: var(--accent-cyan); color: var(--text-primary); }
         .exp-filter-btn.active { background: var(--accent-cyan); color: #000; border-color: var(--accent-cyan); }
 
-        /* Grille expériences */
+        /* Grille expériences — centrage des cartes orphelines */
         .exp-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
             gap: 24px;
+            justify-content: center;
+        }
+
+        /* Cartes plates standard */
+        .exp-card {
+            flex: 1 1 320px;
+            max-width: 420px;
+        }
+
+        /* ---- Flip cards (Outscale / Fnac Darty) ---- */
+        .exp-flip-wrap {
+            flex: 1 1 320px;
+            max-width: 420px;
+            min-height: 380px;
+            perspective: 1200px;
+        }
+        .exp-flip-wrap.hidden { display: none; }
+        .exp-flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 380px;
+            transition: transform 0.55s cubic-bezier(0.23,1,0.32,1);
+            transform-style: preserve-3d;
+        }
+        .exp-flip-wrap:hover .exp-flip-inner {
+            transform: rotateY(180deg);
+        }
+
+        .exp-flip-front,
+        .exp-flip-back {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            background: var(--card-glass);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .exp-flip-front {
+            transition: border-color 0.3s;
+        }
+        .exp-flip-wrap:hover .exp-flip-front {
+            border-color: rgba(100,210,255,0.25);
+        }
+        .exp-flip-back {
+            transform: rotateY(180deg);
+            justify-content: space-between;
+        }
+
+        /* Hint hover */
+        .flip-hint {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.72rem;
+            color: var(--text-tertiary);
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-glass);
+        }
+        .flip-hint i { font-size: 0.8rem; color: var(--accent-cyan); }
+
+        /* Back title */
+        .flip-back-title {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin: 0;
+        }
+        .flip-back-sub {
+            font-size: 0.78rem;
+            color: var(--accent-cyan);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* Back stage options grid */
+        .flip-stage-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            flex: 1;
+        }
+        .flip-stage-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            padding: 14px 10px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border-glass);
+            border-radius: 14px;
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.22s ease;
+            font-family: inherit;
+            text-align: center;
+        }
+        .flip-stage-btn i { font-size: 1.1rem; color: var(--accent-cyan); }
+        .flip-stage-btn:hover {
+            background: rgba(100,210,255,0.08);
+            border-color: var(--accent-cyan);
+            color: var(--text-primary);
+        }
+        .flip-company-btn {
+            width: 100%;
+            padding: 10px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.22s ease;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .flip-company-btn:hover {
+            background: rgba(100,210,255,0.08);
+            border-color: var(--accent-cyan);
+            color: var(--text-primary);
+        }
+
+        @media (max-width: 768px) {
+            .exp-grid { flex-direction: column; }
+            .exp-card, .exp-flip-wrap { max-width: 100%; flex: 1 1 100%; }
         }
         .exp-card {
             background: var(--card-glass); backdrop-filter: blur(25px);
@@ -201,72 +340,134 @@
         <!-- Grille expériences -->
         <div class="exp-grid">
 
-            <!-- Outscale -->
-            <div class="exp-card" data-category="stage" data-keywords="outscale cloud infrastructure terraform monitoring sécurité vm dassault systèmes">
-                <div class="exp-card-header">
-                    <div class="exp-icon" style="background:rgba(191,90,242,0.1); border-color:rgba(191,90,242,0.25); color:var(--accent-purple);">
-                        <i class="fas fa-cloud"></i>
+            <!-- Outscale — Flip card -->
+            <div class="exp-flip-wrap" data-category="stage" data-keywords="outscale cloud infrastructure terraform monitoring sécurité vm dassault systèmes">
+                <div class="exp-flip-inner">
+
+                    <!-- FACE AVANT -->
+                    <div class="exp-flip-front">
+                        <div class="exp-card-header">
+                            <div class="exp-icon" style="background:rgba(191,90,242,0.1); border-color:rgba(191,90,242,0.25); color:var(--accent-purple);">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                            <div class="exp-info">
+                                <span class="exp-badge exp-badge-stage">Stage</span>
+                                <span class="exp-date">Juillet – Août 2025</span>
+                            </div>
+                        </div>
+                        <h3 class="exp-company">Outscale <span style="color:var(--text-secondary); font-size:1rem; font-weight:500;">(3DS Outscale)</span></h3>
+                        <p class="exp-role">Infrastructure Cloud — Technicien Systèmes</p>
+                        <ul class="exp-missions">
+                            <li>Administration de machines virtuelles et gestion d'instantanés cloud souverain</li>
+                            <li>Automatisation de déploiements via Terraform et scripts personnalisés</li>
+                            <li>Monitoring d'infrastructure et renforcement des politiques de sécurité</li>
+                        </ul>
+                        <div class="exp-tags">
+                            <span class="tech-tag">Cloud</span>
+                            <span class="tech-tag">Terraform</span>
+                            <span class="tech-tag">Monitoring</span>
+                            <span class="tech-tag">Sécurité</span>
+                        </div>
+                        <div class="flip-hint">
+                            <i class="fas fa-sync-alt"></i> Survolez la carte pour accéder aux documents
+                        </div>
                     </div>
-                    <div class="exp-info">
-                        <span class="exp-badge exp-badge-stage">Stage</span>
-                        <span class="exp-date">Juillet – Août 2025</span>
+
+                    <!-- FACE ARRIÈRE -->
+                    <div class="exp-flip-back">
+                        <div>
+                            <p class="flip-back-title">Outscale — Stage 2025</p>
+                            <p class="flip-back-sub">Infrastructure Cloud · Technicien Systèmes</p>
+                        </div>
+                        <div class="flip-stage-grid">
+                            <button class="flip-stage-btn" onclick="openInfoModal('outs_photos')">
+                                <i class="fas fa-images"></i>
+                                Photos
+                            </button>
+                            <button class="flip-stage-btn" onclick="openInfoModal('outs_rapport')">
+                                <i class="fas fa-file-alt"></i>
+                                Rapport de stage
+                            </button>
+                            <button class="flip-stage-btn" onclick="openInfoModal('outs_competences')">
+                                <i class="fas fa-award"></i>
+                                Compétences
+                            </button>
+                            <button class="flip-stage-btn" onclick="openInfoModal('outs_notes')">
+                                <i class="fas fa-sticky-note"></i>
+                                Notes / Planning
+                            </button>
+                        </div>
+                        <button class="flip-company-btn" onclick="openExpModal('outscale')">
+                            <i class="fas fa-building"></i> En savoir plus sur l'entreprise
+                        </button>
                     </div>
-                </div>
-                <h3 class="exp-company">Outscale <span style="color:var(--text-secondary); font-size:1rem; font-weight:500;">(3DS Outscale)</span></h3>
-                <p class="exp-role">Infrastructure Cloud — Technicien Systèmes</p>
-                <ul class="exp-missions">
-                    <li>Administration de machines virtuelles et gestion d'instantanés cloud souverain</li>
-                    <li>Automatisation de déploiements via Terraform et scripts personnalisés</li>
-                    <li>Monitoring d'infrastructure et renforcement des politiques de sécurité</li>
-                </ul>
-                <div class="exp-tags">
-                    <span class="tech-tag">Cloud</span>
-                    <span class="tech-tag">Terraform</span>
-                    <span class="tech-tag">Monitoring</span>
-                    <span class="tech-tag">Sécurité</span>
-                </div>
-                <div class="exp-card-footer">
-                    <button class="exp-more-btn" onclick="openExpModal('outscale')">
-                        <i class="fas fa-building"></i> En savoir plus sur l'entreprise
-                    </button>
-                    <button class="exp-dossier-btn" onclick="openInfoModal('outs_rapport')">
-                        <i class="fas fa-folder-open"></i> Dossier de stage
-                    </button>
+
                 </div>
             </div>
 
-            <!-- Fnac Darty -->
-            <div class="exp-card" data-category="stage" data-keywords="fnac darty siège support technicien ivanti landesk mtr teams rooms reconditionnement parc helpdesk n2">
-                <div class="exp-card-header">
-                    <div class="exp-icon" style="background:rgba(255,214,10,0.1); border-color:rgba(255,214,10,0.25); color:var(--accent-yellow);">
-                        <i class="fas fa-store"></i>
+            <!-- Fnac Darty — Flip card -->
+            <div class="exp-flip-wrap" data-category="stage" data-keywords="fnac darty siège support technicien ivanti landesk mtr teams rooms reconditionnement parc helpdesk n2">
+                <div class="exp-flip-inner">
+
+                    <!-- FACE AVANT -->
+                    <div class="exp-flip-front">
+                        <div class="exp-card-header">
+                            <div class="exp-icon" style="background:rgba(255,214,10,0.1); border-color:rgba(255,214,10,0.25); color:var(--accent-yellow);">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <div class="exp-info">
+                                <span class="exp-badge exp-badge-stage">Stage</span>
+                                <span class="exp-date">Juin – Juillet 2025</span>
+                            </div>
+                        </div>
+                        <h3 class="exp-company">Fnac Darty <span style="color:var(--text-secondary); font-size:1rem; font-weight:500;">(Siège)</span></h3>
+                        <p class="exp-role">Support Technicien Informatique — DSI</p>
+                        <ul class="exp-missions">
+                            <li>Gestion et suivi d'incidents via Ivanti Landesk (niveaux N1/N2)</li>
+                            <li>Déploiement de salles de réunion Microsoft Teams Rooms (MTR)</li>
+                            <li>Reconditionnement et renouvellement du parc informatique</li>
+                            <li>Rédaction de procédures techniques et documentation opérationnelle</li>
+                        </ul>
+                        <div class="exp-tags">
+                            <span class="tech-tag">Support N2</span>
+                            <span class="tech-tag">Ivanti</span>
+                            <span class="tech-tag">Teams Rooms</span>
+                            <span class="tech-tag">Hardware</span>
+                        </div>
+                        <div class="flip-hint">
+                            <i class="fas fa-sync-alt"></i> Survolez la carte pour accéder aux documents
+                        </div>
                     </div>
-                    <div class="exp-info">
-                        <span class="exp-badge exp-badge-stage">Stage</span>
-                        <span class="exp-date">Juin – Juillet 2025</span>
+
+                    <!-- FACE ARRIÈRE -->
+                    <div class="exp-flip-back">
+                        <div>
+                            <p class="flip-back-title">Fnac Darty — Stage 2025</p>
+                            <p class="flip-back-sub">Support Technicien · DSI Siège</p>
+                        </div>
+                        <div class="flip-stage-grid">
+                            <button class="flip-stage-btn" onclick="openInfoModal('photos')">
+                                <i class="fas fa-images"></i>
+                                Photos
+                            </button>
+                            <button class="flip-stage-btn" onclick="openInfoModal('rapport')">
+                                <i class="fas fa-file-alt"></i>
+                                Rapport de stage
+                            </button>
+                            <button class="flip-stage-btn" onclick="openInfoModal('competences')">
+                                <i class="fas fa-award"></i>
+                                Compétences
+                            </button>
+                            <button class="flip-stage-btn" onclick="openInfoModal('planning')">
+                                <i class="fas fa-calendar-alt"></i>
+                                Planning
+                            </button>
+                        </div>
+                        <button class="flip-company-btn" onclick="openExpModal('fnac')">
+                            <i class="fas fa-building"></i> En savoir plus sur l'entreprise
+                        </button>
                     </div>
-                </div>
-                <h3 class="exp-company">Fnac Darty <span style="color:var(--text-secondary); font-size:1rem; font-weight:500;">(Siège)</span></h3>
-                <p class="exp-role">Support Technicien Informatique — DSI</p>
-                <ul class="exp-missions">
-                    <li>Gestion et suivi d'incidents via Ivanti Landesk (niveaux N1/N2)</li>
-                    <li>Déploiement de salles de réunion Microsoft Teams Rooms (MTR)</li>
-                    <li>Reconditionnement et renouvellement du parc informatique</li>
-                    <li>Rédaction de procédures techniques et documentation opérationnelle</li>
-                </ul>
-                <div class="exp-tags">
-                    <span class="tech-tag">Support N2</span>
-                    <span class="tech-tag">Ivanti</span>
-                    <span class="tech-tag">Teams Rooms</span>
-                    <span class="tech-tag">Hardware</span>
-                </div>
-                <div class="exp-card-footer">
-                    <button class="exp-more-btn" onclick="openExpModal('fnac')">
-                        <i class="fas fa-building"></i> En savoir plus sur l'entreprise
-                    </button>
-                    <button class="exp-dossier-btn" onclick="openInfoModal('rapport')">
-                        <i class="fas fa-folder-open"></i> Dossier de stage
-                    </button>
+
                 </div>
             </div>
 
@@ -435,7 +636,8 @@
 
         // ====== RECHERCHE + FILTRES ======
         (function(){
-            const cards = document.querySelectorAll('.exp-card');
+            // Include both flat cards and flip cards
+            const cards = document.querySelectorAll('.exp-card, .exp-flip-wrap');
             const searchInput = document.getElementById('exp-search');
             const clearBtn = document.getElementById('exp-search-clear');
             const filterBtns = document.querySelectorAll('.exp-filter-btn');

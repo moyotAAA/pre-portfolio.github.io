@@ -12,21 +12,31 @@
            VEILLE PAGE — STYLES SPÉCIFIQUES
         ============================================ */
 
-        /* Subnav interne sticky — version premium */
-        .veille-subnav {
+        /* Subnav interne — conteneur sticky pleine largeur */
+        .veille-subnav-outer {
             position: sticky;
-            top: 0;
+            top: 88px;
             z-index: 500;
-            background: var(--nav-glass);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-glass);
             display: flex;
             justify-content: center;
-            gap: 6px;
             padding: 10px 20px;
-            box-shadow: 0 4px 20px var(--shadow-color);
-            flex-wrap: wrap;
+            pointer-events: none;
+        }
+
+        /* Pill flottante */
+        .veille-subnav {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 10px;
+            background: rgba(10, 10, 18, 0.88);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 50px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.04);
+            flex-wrap: nowrap;
+            pointer-events: all;
         }
 
         .subnav-link {
@@ -846,7 +856,8 @@
         @media (max-width: 900px) {
             .veille-hero h1 { font-size: 2.8rem; letter-spacing: -1px; }
             .two-col, .outils-grid { grid-template-columns: 1fr; }
-            .veille-subnav { justify-content: flex-start; overflow-x: auto; }
+            .veille-subnav { gap: 2px; padding: 5px 8px; overflow-x: auto; max-width: calc(100vw - 32px); }
+            .subnav-link { padding: 6px 10px; font-size: 0.72rem; }
             .compare-table { display: block; overflow-x: auto; }
         }
 
@@ -953,13 +964,15 @@
         </div>
     </header>
 
-    <!-- ===== SUBNAV INTERNE ===== -->
-    <div class="veille-subnav" id="veille-subnav">
-        <a href="#intro" class="subnav-link active"><span class="sn-num">1</span> Contexte</a>
-        <a href="#technologies" class="subnav-link"><span class="sn-num">2</span> Technologies</a>
-        <a href="#presse" class="subnav-link"><span class="sn-num">3</span> Actualités</a>
-        <a href="#flux" class="subnav-link"><span class="sn-num">4</span> Flux RSS</a>
-        <a href="#conclusion" class="subnav-link"><span class="sn-num">5</span> Conclusion</a>
+    <!-- ===== SUBNAV INTERNE — pill flottante ===== -->
+    <div class="veille-subnav-outer">
+        <div class="veille-subnav" id="veille-subnav">
+            <a href="#intro" class="subnav-link active"><span class="sn-num">1</span> Contexte</a>
+            <a href="#technologies" class="subnav-link"><span class="sn-num">2</span> Technologies</a>
+            <a href="#presse" class="subnav-link"><span class="sn-num">3</span> Actualités</a>
+            <a href="#flux" class="subnav-link"><span class="sn-num">4</span> Flux RSS</a>
+            <a href="#conclusion" class="subnav-link"><span class="sn-num">5</span> Conclusion</a>
+        </div>
     </div>
 
     <!-- ===== 1. INTRODUCTION ===== -->

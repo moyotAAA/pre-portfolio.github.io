@@ -110,11 +110,61 @@
             border-radius: 3px;
         }
 
+        /* Barre de recherche projets */
+        .projects-search-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+        .projects-search-icon {
+            position: absolute;
+            left: 18px;
+            color: var(--text-tertiary);
+            font-size: 0.88rem;
+            pointer-events: none;
+        }
+        .projects-search {
+            width: 100%;
+            padding: 13px 50px 13px 44px;
+            background: var(--card-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 50px;
+            color: var(--text-primary);
+            font-size: 0.88rem;
+            outline: none;
+            transition: all 0.28s ease;
+            font-family: inherit;
+            backdrop-filter: blur(15px);
+        }
+        .projects-search::placeholder { color: var(--text-tertiary); }
+        .projects-search:focus {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 0 3px rgba(100,210,255,0.1);
+        }
+        .projects-search-clear {
+            position: absolute;
+            right: 16px;
+            background: none;
+            border: none;
+            color: var(--text-tertiary);
+            cursor: pointer;
+            font-size: 0.82rem;
+            padding: 4px;
+            transition: color 0.2s;
+        }
+        .projects-search-clear:hover { color: var(--text-primary); }
+
         /* Grille projets */
         .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
             gap: 20px;
+            justify-content: center;
+        }
+        .project-card {
+            flex: 1 1 280px;
+            max-width: 360px;
         }
 
         /* Carte projet */
@@ -363,6 +413,13 @@
         <div class="section-header">
             <h2>Projets & Réalisations</h2>
             <p>Travaux de formation, expériences en stage et projets personnels — BTS SIO SISR</p>
+        </div>
+
+        <!-- ===== BARRE DE RECHERCHE ===== -->
+        <div class="projects-search-wrap">
+            <i class="fas fa-search projects-search-icon"></i>
+            <input type="text" id="proj-search" class="projects-search" placeholder="Rechercher un projet, technologie, description…" autocomplete="off">
+            <button class="projects-search-clear" id="proj-search-clear" style="display:none;" aria-label="Effacer"><i class="fas fa-times"></i></button>
         </div>
 
         <!-- ===== FILTRES ===== -->
@@ -1625,10 +1682,13 @@ srv IN A   192.168.1.20</pre></div>
 
     <script src="script.js" defer></script>
     <script>
-        // ====== FILTRE PROJETS ======
+        // ====== FILTRE + RECHERCHE PROJETS ======
         const CATS = ['all','e5','lab','stage1','stage2','infra','admin','services','cyber','virt','supervision'];
         const cards = Array.from(document.querySelectorAll('.project-card'));
         const visibleCount = document.getElementById('visible-count');
+        const projSearch = document.getElementById('proj-search');
+        const projClear = document.getElementById('proj-search-clear');
+        let activeFilter = 'all';
 
         function updateCounts() {
             CATS.forEach(cat => {
@@ -1641,12 +1701,16 @@ srv IN A   192.168.1.20</pre></div>
             });
         }
 
-        function applyFilter(filter) {
+        function applyFilters() {
+            const q = projSearch.value.toLowerCase().trim();
+            projClear.style.display = q ? 'inline-block' : 'none';
             let shown = 0;
             cards.forEach(card => {
                 const cats = (card.dataset.cats || '').split(' ');
-                const show = filter === 'all' || cats.includes(filter);
-                if (show) {
+                const matchCat = activeFilter === 'all' || cats.includes(activeFilter);
+                const searchText = (card.innerText + ' ' + (card.dataset.cats || '')).toLowerCase();
+                const matchSearch = !q || searchText.includes(q);
+                if (matchCat && matchSearch) {
                     card.style.display = '';
                     shown++;
                 } else {
@@ -1654,22 +1718,29 @@ srv IN A   192.168.1.20</pre></div>
                 }
             });
             visibleCount.textContent = shown;
-            // Afficher/masquer le bouton fiche E5
             const e5Bar = document.getElementById('e5-fiche-bar');
-            if (e5Bar) e5Bar.style.display = filter === 'e5' ? 'block' : 'none';
+            if (e5Bar) e5Bar.style.display = activeFilter === 'e5' && !q ? 'block' : 'none';
         }
 
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                applyFilter(btn.dataset.filter);
+                activeFilter = btn.dataset.filter;
+                applyFilters();
             });
+        });
+
+        projSearch.addEventListener('input', applyFilters);
+        projClear.addEventListener('click', () => {
+            projSearch.value = '';
+            applyFilters();
+            projSearch.focus();
         });
 
         // Initialisation
         updateCounts();
-        applyFilter('all');
+        applyFilters();
     </script>
 </body>
 </html>

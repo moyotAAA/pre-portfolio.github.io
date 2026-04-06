@@ -17,7 +17,8 @@
       "Read(//c/Users/ayoub/AppData/Roaming/Claude/local-agent-mode-sessions/skills-plugin/71ed0e9a-ff4b-4636-850c-1fbe6c9d861a/5eb70936-8eea-4f17-a8a2-3fedbeb4d015/skills/docx/**)",
       "Bash(pandoc \"C:/Users/ayoub/Downloads/Veille_Zero_Trust_ZTNA.docx\" -t plain)",
       "WebFetch(domain:archanight.github.io)",
-      "WebFetch(domain:ilyasseddiki.fr)"
+      "WebFetch(domain:ilyasseddiki.fr)",
+      "mcp__Claude_Preview__preview_start"
     ]
   }
 }

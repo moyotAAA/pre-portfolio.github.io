@@ -381,6 +381,138 @@
         @media (max-width: 600px) {
             .nav-dock { bottom: 16px; right: 12px; }
         }
+
+        /* ---- EFREI Discover button ---- */
+        .efrei-discover-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 22px;
+            background: linear-gradient(135deg, rgba(191,90,242,0.1), rgba(10,132,255,0.1));
+            border: 1px solid rgba(191,90,242,0.3);
+            border-radius: 14px;
+            color: var(--accent-purple);
+            font-size: 0.88rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-family: inherit;
+            margin-top: 22px;
+            width: 100%;
+            justify-content: flex-start;
+        }
+        .efrei-discover-btn:hover {
+            background: linear-gradient(135deg, rgba(191,90,242,0.18), rgba(10,132,255,0.18));
+            border-color: rgba(191,90,242,0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(191,90,242,0.15);
+        }
+
+        /* ---- EFREI Modal ---- */
+        .efrei-modal-content {
+            background: var(--bg-main);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 860px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        .efrei-modal-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        .efrei-modal-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 14px;
+            background: rgba(191,90,242,0.1);
+            border: 1px solid rgba(191,90,242,0.25);
+            border-radius: 20px;
+            color: var(--accent-purple);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 14px;
+        }
+        .efrei-modal-text h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin: 0 0 4px;
+        }
+        .efrei-modal-sub {
+            color: var(--accent-purple);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 0 0 18px !important;
+        }
+        .efrei-modal-text p {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+        .efrei-modal-stats {
+            display: flex;
+            gap: 12px;
+            margin-top: 22px;
+            flex-wrap: wrap;
+        }
+        .efrei-stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 14px;
+            background: rgba(191,90,242,0.06);
+            border: 1px solid rgba(191,90,242,0.15);
+            border-radius: 12px;
+            flex: 1;
+            min-width: 70px;
+            text-align: center;
+        }
+        .efrei-stat-num {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--accent-purple);
+        }
+        .efrei-stat-label {
+            font-size: 0.67rem;
+            color: var(--text-tertiary);
+            margin-top: 3px;
+            line-height: 1.3;
+        }
+        .efrei-modal-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .efrei-logo-placeholder {
+            width: 100%;
+            min-height: 280px;
+            border: 2px dashed rgba(191,90,242,0.25);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: rgba(191,90,242,0.03);
+        }
+        .efrei-logo-placeholder i { font-size: 2.5rem; color: rgba(191,90,242,0.3); }
+        .efrei-logo-placeholder p { font-size: 0.95rem; font-weight: 600; color: var(--text-secondary); margin: 0; }
+        .efrei-logo-placeholder span { font-size: 0.75rem; color: var(--text-tertiary); }
+        @media (max-width: 700px) {
+            .efrei-modal-inner { grid-template-columns: 1fr; }
+            .efrei-modal-content { padding: 24px 16px; }
+        }
     </style>
 </head>
 <body>
@@ -593,6 +725,11 @@
                 <span class="skill-badge">Gestion de projet</span>
                 <span class="skill-badge">Protocoles avancés</span>
             </div>
+
+            <button class="efrei-discover-btn" onclick="document.getElementById('efrei-modal').style.display='flex'">
+                <i class="fas fa-university"></i> Découvrir l'EFREI Paris
+                <i class="fas fa-chevron-right" style="font-size:0.72rem; margin-left:auto;"></i>
+            </button>
         </div>
 
         <!-- ============================================================
@@ -806,6 +943,50 @@
         <div class="dock-sep"></div>
         <button class="dock-btn" id="dock-down" title="Étape suivante"><i class="fas fa-angle-down"></i></button>
         <button class="dock-btn" id="dock-bottom" title="Bas de page"><i class="fas fa-angle-double-down"></i></button>
+    </div>
+
+    <!-- ===== MODAL EFREI PARIS ===== -->
+    <div id="efrei-modal" class="modal" onclick="if(event.target===this)this.style.display='none'">
+        <div class="efrei-modal-content" onclick="event.stopPropagation()">
+            <span onclick="document.getElementById('efrei-modal').style.display='none'" style="position:absolute;top:16px;right:22px;font-size:26px;cursor:pointer;color:var(--text-secondary);line-height:1;">&times;</span>
+            <div class="efrei-modal-inner">
+
+                <!-- Colonne gauche : présentation -->
+                <div class="efrei-modal-text">
+                    <div class="efrei-modal-badge"><i class="fas fa-award"></i> Grande École d'Ingénieurs</div>
+                    <h2>EFREI Paris</h2>
+                    <p class="efrei-modal-sub">L'école de l'excellence numérique</p>
+                    <p>Fondée en 1936 et membre du Groupe OMNES Education, l'EFREI Paris est une grande école d'ingénieurs du numérique accréditée CTI. Elle figure parmi les meilleures écoles d'informatique françaises, reconnue pour l'exigence de ses programmes et la qualité de ses diplômés.</p>
+                    <p>Avec un réseau de plus de 18 000 diplômés dans le monde et des partenariats avec les plus grands acteurs du secteur — Microsoft, Cisco, Thales, Capgemini, IBM — l'EFREI ouvre des portes vers les environnements technologiques les plus exigeants.</p>
+                    <p>La majeure <strong>Réseaux &amp; Sécurité</strong> prépare aux enjeux de la cybersécurité, des architectures cloud souveraines, du Zero Trust et des systèmes d'information critiques. Les étudiants travaillent sur des projets réels en lien avec l'industrie, dans des laboratoires de pointe.</p>
+                    <div class="efrei-modal-stats">
+                        <div class="efrei-stat">
+                            <span class="efrei-stat-num">1936</span>
+                            <span class="efrei-stat-label">Année de fondation</span>
+                        </div>
+                        <div class="efrei-stat">
+                            <span class="efrei-stat-num">18k+</span>
+                            <span class="efrei-stat-label">Diplômés dans le monde</span>
+                        </div>
+                        <div class="efrei-stat">
+                            <span class="efrei-stat-num">CTI</span>
+                            <span class="efrei-stat-label">Grade ingénieur accrédité</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Colonne droite : emplacement logo -->
+                <div class="efrei-modal-logo">
+                    <!-- Remplacer ce bloc par une balise <img> avec le logo EFREI -->
+                    <div class="efrei-logo-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p>Logo EFREI Paris</p>
+                        <span>Emplacement réservé pour l'image</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 
     <script src="script.js" defer></script>
