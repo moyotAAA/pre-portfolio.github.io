@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -523,10 +523,10 @@
                     <span>Fiche synthèse E5 — Projets BTS SIO SISR</span>
                 </div>
                 <div class="fiche-e5-toolbar-right">
-                    <a href="annexes/fiche-e5-synthese.pdf" download class="fe5-btn fe5-btn-dl">
+                    <a href="annexes/fiche-E5-officiel.pdf" download class="fe5-btn fe5-btn-dl">
                         <i class="fas fa-download"></i> Télécharger
                     </a>
-                    <a href="annexes/fiche-e5-synthese.pdf" target="_blank" class="fe5-btn fe5-btn-open">
+                    <a href="annexes/fiche-E5-officiel.pdf" target="_blank" class="fe5-btn fe5-btn-open">
                         <i class="fas fa-external-link-alt"></i> Ouvrir
                     </a>
                     <button class="fe5-btn fe5-btn-close" onclick="toggleFicheE5()">
@@ -613,7 +613,8 @@
                 <button class="btn-details" onclick="openTechModal('m-fiabilisation')">Voir les détails</button>
             </div>
 
-            <div class="project-card" data-cats="stage1 admin">
+            <div class="project-card e5-card" data-cats="stage1 admin e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
                 <span class="ctx-badge ctx-stage1">Stage 1re année</span>
                 <i class="fas fa-headset card-main-icon" style="color:var(--accent-purple);"></i>
                 <h3>Support N2</h3>
@@ -623,6 +624,20 @@
                     <span class="card-tag">Diagnostic</span>
                 </div>
                 <button class="btn-details" onclick="openTechModal('m-support-n2')">Voir les détails</button>
+            </div>
+
+            <div class="project-card e5-card" data-cats="stage1 admin e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
+                <span class="ctx-badge ctx-stage1">Stage 1re année</span>
+                <i class="fas fa-recycle card-main-icon" style="color:var(--accent-green);"></i>
+                <h3>Démarche RSE — Réemploi informatique</h3>
+                <p class="card-desc">Préparation d'environ 34 postes pour le reconditionnement : tri, diagnostic, récupération des composants réutilisables et traçabilité du réemploi.</p>
+                <div class="card-tags">
+                    <span class="card-tag">RSE</span>
+                    <span class="card-tag">Réemploi</span>
+                    <span class="card-tag">Parc informatique</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-rse')">Voir les détails</button>
             </div>
 
             <!-- ============ STAGE 2 — OUTSCALE / DATACENTER ============ -->
@@ -693,7 +708,8 @@
                 <button class="btn-details" onclick="openTechModal('m-ucs')">Voir les détails</button>
             </div>
 
-            <div class="project-card" data-cats="stage2 supervision services">
+            <div class="project-card e5-card" data-cats="stage2 supervision services e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
                 <span class="ctx-badge ctx-stage2">Stage 2e année</span>
                 <i class="fas fa-clock card-main-icon" style="color:var(--accent-cyan);"></i>
                 <h3>NTP, SNMP, Syslog</h3>
@@ -706,7 +722,8 @@
                 <button class="btn-details" onclick="openTechModal('m-ntp-snmp')">Voir les détails</button>
             </div>
 
-            <div class="project-card" data-cats="stage2 infra">
+            <div class="project-card e5-card" data-cats="stage2 infra e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
                 <span class="ctx-badge ctx-stage2">Stage 2e année</span>
                 <i class="fas fa-project-diagram card-main-icon" style="color:var(--accent-blue);"></i>
                 <h3>Simulation réseau CML / GNS3</h3>
@@ -719,7 +736,8 @@
                 <button class="btn-details" onclick="openTechModal('m-cml')">Voir les détails</button>
             </div>
 
-            <div class="project-card" data-cats="stage2 services">
+            <div class="project-card e5-card" data-cats="stage2 services e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
                 <span class="ctx-badge ctx-stage2">Stage 2e année</span>
                 <i class="fas fa-file-alt card-main-icon" style="color:var(--accent-green);"></i>
                 <h3>Rédaction de SOP</h3>
@@ -731,8 +749,23 @@
                 <button class="btn-details" onclick="openTechModal('m-sop')">Voir les détails</button>
             </div>
 
+            <div class="project-card e5-card" data-cats="stage2 infra supervision e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
+                <span class="ctx-badge ctx-stage2">Stage 2e année</span>
+                <i class="fas fa-exclamation-triangle card-main-icon" style="color:var(--accent-red);"></i>
+                <h3>Diagnostic & résolution d'incidents réseau</h3>
+                <p class="card-desc">Intervention sur incidents critiques en datacenter : crash KVM, pannes réseau — diagnostic, isolation, résolution et reporting post-incident.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Incident</span>
+                    <span class="card-tag">KVM</span>
+                    <span class="card-tag">Datacenter</span>
+                </div>
+                <button class="btn-details" onclick="openTechModal('m-incidents')">Voir les détails</button>
+            </div>
+
             <!-- ============ LAB & COURS ============ -->
-            <div class="project-card" data-cats="lab infra cyber">
+            <div class="project-card e5-card" data-cats="lab infra cyber e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
                 <span class="ctx-badge ctx-lab">Lab & Cours</span>
                 <i class="fas fa-network-wired card-main-icon" style="color:var(--accent-blue);"></i>
                 <h3>Infrastructure VPN</h3>
@@ -745,7 +778,8 @@
                 <button class="btn-details" onclick="openTechModal('m-vpn')">Voir les détails</button>
             </div>
 
-            <div class="project-card" data-cats="lab services">
+            <div class="project-card e5-card" data-cats="lab services e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
                 <span class="ctx-badge ctx-lab">Lab & Cours</span>
                 <i class="fas fa-phone-alt card-main-icon" style="color:var(--accent-purple);"></i>
                 <h3>Téléphonie sur IP</h3>
@@ -758,7 +792,8 @@
                 <button class="btn-details" onclick="openTechModal('m-voip')">Voir les détails</button>
             </div>
 
-            <div class="project-card" data-cats="lab supervision">
+            <div class="project-card e5-card" data-cats="lab supervision e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
                 <span class="ctx-badge ctx-lab">Lab & Cours</span>
                 <i class="fas fa-chart-line card-main-icon" style="color:var(--accent-green);"></i>
                 <h3>Supervision Observium</h3>
@@ -784,7 +819,8 @@
                 <button class="btn-details" onclick="openTechModal('m-ha')">Voir les détails</button>
             </div>
 
-            <div class="project-card" data-cats="lab admin">
+            <div class="project-card e5-card" data-cats="lab admin e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
                 <span class="ctx-badge ctx-lab">Lab & Cours</span>
                 <i class="fas fa-users-cog card-main-icon" style="color:var(--accent-cyan);"></i>
                 <h3>Automatisation Active Directory</h3>
@@ -797,7 +833,8 @@
                 <button class="btn-details" onclick="openTechModal('m-ad')">Voir les détails</button>
             </div>
 
-            <div class="project-card" data-cats="lab infra">
+            <div class="project-card e5-card" data-cats="lab infra e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
                 <span class="ctx-badge ctx-lab">Lab & Cours</span>
                 <i class="fas fa-project-diagram card-main-icon" style="color:var(--accent-red);"></i>
                 <h3>Segmentation VLAN</h3>
@@ -810,7 +847,8 @@
                 <button class="btn-details" onclick="openTechModal('m-vlan')">Voir les détails</button>
             </div>
 
-            <div class="project-card" data-cats="lab admin services">
+            <div class="project-card e5-card" data-cats="lab admin services e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
                 <span class="ctx-badge ctx-lab">Lab & Cours</span>
                 <i class="fas fa-ticket-alt card-main-icon" style="color:var(--accent-blue);"></i>
                 <h3>GLPI — Service Desk</h3>
@@ -836,7 +874,8 @@
                 <button class="btn-details" onclick="openTechModal('m-docker')">Voir les détails</button>
             </div>
 
-            <div class="project-card" data-cats="lab cyber services">
+            <div class="project-card e5-card" data-cats="lab cyber services e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
                 <span class="ctx-badge ctx-lab">Lab & Cours</span>
                 <i class="fas fa-shield-alt card-main-icon" style="color:var(--accent-red);"></i>
                 <h3>Pi-hole — Filtrage DNS</h3>
@@ -849,7 +888,8 @@
                 <button class="btn-details" onclick="openTechModal('m-pihole')">Voir les détails</button>
             </div>
 
-            <div class="project-card" data-cats="lab services cyber">
+            <div class="project-card e5-card" data-cats="lab services cyber e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
                 <span class="ctx-badge ctx-lab">Lab & Cours</span>
                 <i class="fas fa-exchange-alt card-main-icon" style="color:var(--accent-green);"></i>
                 <h3>Reverse Proxy Nginx</h3>
@@ -862,7 +902,8 @@
                 <button class="btn-details" onclick="openTechModal('m-proxy')">Voir les détails</button>
             </div>
 
-            <div class="project-card" data-cats="lab supervision services">
+            <div class="project-card e5-card" data-cats="lab supervision services e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
                 <span class="ctx-badge ctx-lab">Lab & Cours</span>
                 <i class="fas fa-hdd card-main-icon" style="color:var(--accent-yellow);"></i>
                 <h3>Sauvegarde Bacula</h3>
@@ -875,7 +916,8 @@
                 <button class="btn-details" onclick="openTechModal('m-bacula')">Voir les détails</button>
             </div>
 
-            <div class="project-card" data-cats="lab services">
+            <div class="project-card e5-card" data-cats="lab services e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
                 <span class="ctx-badge ctx-lab">Lab & Cours</span>
                 <i class="fas fa-cloud card-main-icon" style="color:var(--accent-purple);"></i>
                 <h3>Nextcloud — Stockage collaboratif</h3>
@@ -888,7 +930,8 @@
                 <button class="btn-details" onclick="openTechModal('m-nextcloud')">Voir les détails</button>
             </div>
 
-            <div class="project-card" data-cats="lab services infra">
+            <div class="project-card e5-card" data-cats="lab services infra e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
                 <span class="ctx-badge ctx-lab">Lab & Cours</span>
                 <i class="fas fa-hdd card-main-icon" style="color:var(--accent-blue);"></i>
                 <h3>Serveur NAS</h3>
@@ -901,7 +944,8 @@
                 <button class="btn-details" onclick="openTechModal('m-nas')">Voir les détails</button>
             </div>
 
-            <div class="project-card" data-cats="lab services infra">
+            <div class="project-card e5-card" data-cats="lab services infra e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
                 <span class="ctx-badge ctx-lab">Lab & Cours</span>
                 <i class="fas fa-folder-open card-main-icon" style="color:var(--accent-cyan);"></i>
                 <h3>Serveur NFS</h3>
@@ -914,7 +958,8 @@
                 <button class="btn-details" onclick="openTechModal('m-nfs')">Voir les détails</button>
             </div>
 
-            <div class="project-card" data-cats="lab services infra">
+            <div class="project-card e5-card" data-cats="lab services infra e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
                 <span class="ctx-badge ctx-lab">Lab & Cours</span>
                 <i class="fas fa-sitemap card-main-icon" style="color:var(--accent-green);"></i>
                 <h3>DHCP / DNS Bind9</h3>
@@ -927,7 +972,8 @@
                 <button class="btn-details" onclick="openTechModal('m-dhcp-dns')">Voir les détails</button>
             </div>
 
-            <div class="project-card" data-cats="lab virt">
+            <div class="project-card e5-card" data-cats="lab virt e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
                 <span class="ctx-badge ctx-lab">Lab & Cours</span>
                 <i class="fas fa-cubes card-main-icon" style="color:var(--accent-purple);"></i>
                 <h3>Virtualisation Raspberry Pi</h3>
@@ -940,7 +986,8 @@
                 <button class="btn-details" onclick="openTechModal('m-virt-rpi')">Voir les détails</button>
             </div>
 
-            <div class="project-card" data-cats="lab virt services">
+            <div class="project-card e5-card" data-cats="lab virt services e5">
+                <div class="e5-ribbon"><i class="fas fa-star"></i> E5</div>
                 <span class="ctx-badge ctx-lab">Lab & Cours</span>
                 <i class="fas fa-cloud-upload-alt card-main-icon" style="color:var(--accent-blue);"></i>
                 <h3>Cloud personnel</h3>
@@ -965,9 +1012,14 @@
                     <span class="card-tag">IPv4</span>
                     <span class="card-tag">CIDR</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab infra">
@@ -980,9 +1032,14 @@
                     <span class="card-tag">CIDR</span>
                     <span class="card-tag">Multi-sites</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab infra">
@@ -994,9 +1051,14 @@
                     <span class="card-tag">Cisco IOS</span>
                     <span class="card-tag">Switch</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab infra">
@@ -1009,9 +1071,14 @@
                     <span class="card-tag">Routeur</span>
                     <span class="card-tag">Routage</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab infra">
@@ -1024,9 +1091,14 @@
                     <span class="card-tag">Redondance</span>
                     <span class="card-tag">Cisco</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab infra">
@@ -1038,9 +1110,14 @@
                     <span class="card-tag">EtherChannel</span>
                     <span class="card-tag">LACP</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab infra">
@@ -1052,9 +1129,14 @@
                     <span class="card-tag">DHCP</span>
                     <span class="card-tag">Cisco IOS</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab infra">
@@ -1067,9 +1149,14 @@
                     <span class="card-tag">Packet Tracer</span>
                     <span class="card-tag">WPA2</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab infra">
@@ -1081,9 +1168,14 @@
                     <span class="card-tag">Packet Tracer</span>
                     <span class="card-tag">Simulation</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab infra">
@@ -1096,9 +1188,14 @@
                     <span class="card-tag">FHRP</span>
                     <span class="card-tag">Redondance</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab infra">
@@ -1111,9 +1208,14 @@
                     <span class="card-tag">WLAN</span>
                     <span class="card-tag">Cisco</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab infra services">
@@ -1126,9 +1228,14 @@
                     <span class="card-tag">Wireshark</span>
                     <span class="card-tag">Analyse</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <!-- SYSTÈME -->
@@ -1142,9 +1249,14 @@
                     <span class="card-tag">CLI</span>
                     <span class="card-tag">Administration</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab admin">
@@ -1157,9 +1269,14 @@
                     <span class="card-tag">apt/dnf</span>
                     <span class="card-tag">Paquets</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab admin">
@@ -1172,9 +1289,14 @@
                     <span class="card-tag">Windows Server</span>
                     <span class="card-tag">Installation</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab admin">
@@ -1187,9 +1309,14 @@
                     <span class="card-tag">Dual Boot</span>
                     <span class="card-tag">GRUB</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab admin">
@@ -1202,9 +1329,14 @@
                     <span class="card-tag">GPO</span>
                     <span class="card-tag">Windows Server</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab admin">
@@ -1217,9 +1349,14 @@
                     <span class="card-tag">Windows</span>
                     <span class="card-tag">Assistance</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab admin services">
@@ -1232,9 +1369,14 @@
                     <span class="card-tag">rsync</span>
                     <span class="card-tag">Réplication</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab admin">
@@ -1247,9 +1389,14 @@
                     <span class="card-tag">Stockage</span>
                     <span class="card-tag">Redondance</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <!-- SERVICES -->
@@ -1263,9 +1410,14 @@
                     <span class="card-tag">SMB</span>
                     <span class="card-tag">Partage</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab services">
@@ -1278,9 +1430,14 @@
                     <span class="card-tag">HTTP/HTTPS</span>
                     <span class="card-tag">VirtualHost</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab services">
@@ -1293,9 +1450,14 @@
                     <span class="card-tag">Asterisk</span>
                     <span class="card-tag">SIP</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <!-- SÉCURITÉ -->
@@ -1309,9 +1471,14 @@
                     <span class="card-tag">Ubuntu</span>
                     <span class="card-tag">Firewall</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab cyber">
@@ -1324,9 +1491,14 @@
                     <span class="card-tag">GPG</span>
                     <span class="card-tag">Chiffrement</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab cyber infra">
@@ -1339,9 +1511,14 @@
                     <span class="card-tag">WHOIS</span>
                     <span class="card-tag">OSINT</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab cyber">
@@ -1354,9 +1531,14 @@
                     <span class="card-tag">Firewall</span>
                     <span class="card-tag">Lab</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab cyber infra">
@@ -1369,9 +1551,14 @@
                     <span class="card-tag">Routage</span>
                     <span class="card-tag">Règles</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab cyber">
@@ -1384,9 +1571,14 @@
                     <span class="card-tag">Hachage</span>
                     <span class="card-tag">Intégrité</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab cyber">
@@ -1399,9 +1591,14 @@
                     <span class="card-tag">Pentest</span>
                     <span class="card-tag">Mots de passe</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab cyber">
@@ -1414,9 +1611,14 @@
                     <span class="card-tag">Pentest</span>
                     <span class="card-tag">Exploit</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab cyber">
@@ -1429,9 +1631,14 @@
                     <span class="card-tag">DNSSEC</span>
                     <span class="card-tag">Sécurité</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab cyber infra">
@@ -1444,9 +1651,14 @@
                     <span class="card-tag">ACL</span>
                     <span class="card-tag">Sécurisation</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab cyber services">
@@ -1459,9 +1671,14 @@
                     <span class="card-tag">Proxy</span>
                     <span class="card-tag">UTM</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab cyber admin">
@@ -1474,9 +1691,14 @@
                     <span class="card-tag">Clé publique</span>
                     <span class="card-tag">Sécurité</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <!-- SUPERVISION -->
@@ -1490,9 +1712,14 @@
                     <span class="card-tag">SNMP</span>
                     <span class="card-tag">Supervision</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab supervision">
@@ -1505,9 +1732,14 @@
                     <span class="card-tag">rsyslog</span>
                     <span class="card-tag">Journalisation</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <div class="project-card" data-cats="lab supervision admin">
@@ -1520,9 +1752,14 @@
                     <span class="card-tag">Backup</span>
                     <span class="card-tag">Restauration</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
             <!-- VIRTUALISATION -->
@@ -1536,9 +1773,14 @@
                     <span class="card-tag">VMware</span>
                     <span class="card-tag">VM</span>
                 </div>
-                <button class="btn-doc btn-doc-confidentiel" disabled>
-                    <i class="fas fa-lock"></i> Environnement confidentiel
-                </button>
+                <!-- VERSION A : bouton actif — remplacer href="#" par le chemin du PDF quand disponible -->
+                <a href="#" class="btn-doc btn-doc-active" onclick="return false;">
+                    <i class="fas fa-file-pdf"></i> Voir la documentation
+                </a>
+                <!-- VERSION B : décommenter ci-dessous et commenter VERSION A si environnement confidentiel -->
+                <!-- <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable
+                </button> -->
             </div>
 
         </div><!-- end grid -->
@@ -1583,6 +1825,15 @@
                 <div class="techno-chips"><span class="tc">QR Code</span><span class="tc">Mailto URL scheme</span><span class="tc">Documentation Word</span></div></div>
                 <div class="modal-block"><h4><i class="fas fa-certificate"></i> Compétences mobilisées</h4>
                 <ul><li>Analyse et compréhension du besoin utilisateur</li><li>Automatisation d'un processus métier sans développement lourd</li><li>Déploiement et validation en condition réelle</li></ul></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -1613,6 +1864,15 @@
                 <div class="techno-chips"><span class="tc">Windows</span><span class="tc">MDT / WDS</span><span class="tc">Ivanti</span><span class="tc">Active Directory</span><span class="tc">GPO</span></div></div>
                 <div class="modal-block"><h4><i class="fas fa-certificate"></i> Compétences mobilisées</h4>
                 <ul><li>Déploiement systématique et reproductible de postes</li><li>Intégration dans un environnement AD existant</li><li>Gestion de parc et traçabilité</li></ul></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -1643,6 +1903,15 @@
                 <div class="techno-chips"><span class="tc">Active Directory</span><span class="tc">Exchange</span><span class="tc">VPN</span><span class="tc">GLPI</span></div></div>
                 <div class="modal-block"><h4><i class="fas fa-certificate"></i> Compétences mobilisées</h4>
                 <ul><li>Coordination multi-équipes</li><li>Administration systèmes et identités</li><li>Rédaction de procédures reproductibles</li></ul></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -1669,6 +1938,15 @@
                 <ul><li>Désactivation et suppression des comptes AD et messagerie</li><li>Révocation des accès VPN et applicatifs</li><li>Récupération et inventaire du matériel restitué</li><li>Remise à zéro et réintégration du poste en stock</li><li>Archivage de la traçabilité dans GLPI</li></ul></div>
                 <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies & outils</h4>
                 <div class="techno-chips"><span class="tc">Active Directory</span><span class="tc">GLPI</span><span class="tc">Exchange</span><span class="tc">VPN</span></div></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -1706,6 +1984,15 @@ foreach ($svc in $services) {
         Write-Output "[FIX] $svc redémarré"
     }
 }</pre></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -1727,6 +2014,15 @@ foreach ($svc in $services) {
                 <ul><li>Analyse et résolution d'incidents techniques (réseau, OS, applicatifs)</li><li>Intervention sur Active Directory, messagerie, VPN</li><li>Documentation des résolutions pour capitalisation</li><li>Escalade N3 si nécessaire avec dossier complet</li></ul></div>
                 <div class="modal-block"><h4><i class="fas fa-microchip"></i> Outils utilisés</h4>
                 <div class="techno-chips"><span class="tc">GLPI</span><span class="tc">Active Directory</span><span class="tc">Exchange</span><span class="tc">Remote Desktop</span></div></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -1756,6 +2052,15 @@ foreach ($svc in $services) {
                 <ul><li>Conception de l'architecture selon les spécifications de l'ingénieur réseau</li><li>Configuration des VLANs, trunks et routage inter-VLAN</li><li>Mise en place des protocoles de routage (OSPF, BGP internes)</li><li>Tests de connectivité et validation en environnement de pré-production</li><li>Documentation technique complète de l'infrastructure déployée</li></ul></div>
                 <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies & outils</h4>
                 <div class="techno-chips"><span class="tc">Cisco Nexus</span><span class="tc">NX-OS</span><span class="tc">OSPF</span><span class="tc">BGP</span><span class="tc">VLAN</span><span class="tc">STP</span></div></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -1790,6 +2095,15 @@ foreach ($svc in $services) {
 interface port-channel 10
   switchport mode trunk
   vpc peer-link</pre></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -1816,6 +2130,15 @@ interface port-channel 10
                 <ul><li>Inventaire des consoles Digi existantes et cartographie des ports</li><li>Installation et configuration initiale des Opengear</li><li>Migration des connexions série équipement par équipement</li><li>Tests de connectivité OOB sur chaque équipement</li><li>Mise à jour de la documentation réseau</li></ul></div>
                 <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
                 <div class="techno-chips"><span class="tc">Opengear</span><span class="tc">Console OOB</span><span class="tc">RS-232</span><span class="tc">SSH</span></div></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -1842,6 +2165,15 @@ interface port-channel 10
                 <ul><li>Inventaire des équipements dans NetBox avant migration</li><li>Création des tickets pour chaque intervention planifiée</li><li>Migration et reconfiguration des équipements</li><li>Mise à jour de NetBox (IPs, câblage, rack) post-migration</li><li>Clôture des tickets avec compte-rendu d'intervention</li></ul></div>
                 <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
                 <div class="techno-chips"><span class="tc">NetBox</span><span class="tc">IPAM</span><span class="tc">CMDB</span><span class="tc">Ticketing</span><span class="tc">Python</span></div></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -1868,6 +2200,15 @@ interface port-channel 10
                 <ul><li>Configuration initiale du domaine UCS Manager</li><li>Configuration des fabric interconnects et des VLANs associés</li><li>Création des profils de service serveur</li><li>Association des profils aux lames et mise sous tension</li><li>Intégration réseau et tests de connectivité</li></ul></div>
                 <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
                 <div class="techno-chips"><span class="tc">Cisco UCS</span><span class="tc">UCS Manager</span><span class="tc">Fabric Interconnect</span><span class="tc">vNIC</span></div></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -1889,6 +2230,15 @@ interface port-channel 10
                 <ul><li>Configuration et synchronisation des serveurs NTP sur tous les équipements</li><li>Mise en place des communautés SNMP v2c/v3 pour la supervision</li><li>Configuration du serveur Syslog centralisé</li><li>Vérification de la cohérence des logs et des horodatages</li></ul></div>
                 <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
                 <div class="techno-chips"><span class="tc">NTP</span><span class="tc">SNMP v3</span><span class="tc">Syslog</span><span class="tc">NX-OS</span><span class="tc">IOS-XE</span></div></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -1910,6 +2260,15 @@ interface port-channel 10
                 <ul><li>Modélisation fidèle des topologies à déployer</li><li>Test des configurations (OSPF, vPC, STP, VLAN)</li><li>Validation des plans de routage et des politiques</li><li>Export des configs vers les équipements réels</li></ul></div>
                 <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
                 <div class="techno-chips"><span class="tc">CML</span><span class="tc">GNS3</span><span class="tc">Cisco IOS</span><span class="tc">NX-OS</span></div></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -1929,6 +2288,15 @@ interface port-channel 10
                 <p>Pour capitaliser les procédures d'intervention sur les équipements réseau du datacenter et permettre leur exécution par d'autres techniciens, rédaction de Standard Operating Procedures (SOP) détaillées.</p></div>
                 <div class="modal-block"><h4><i class="fas fa-tasks"></i> Travaux réalisés</h4>
                 <ul><li>Identification des procédures récurrentes à documenter</li><li>Rédaction pas-à-pas avec captures d'écran et commandes</li><li>Validation avec l'équipe réseau senior</li><li>Intégration dans la base documentaire de l'équipe</li></ul></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -1962,6 +2330,15 @@ interface port-channel 10
     keep state label "Allow OpenVPN"
 pass in on $OVPN_IF from 10.0.8.0/24 to 192.168.1.0/24
     keep state label "Allow VPN to LAN"</pre></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -1992,6 +2369,15 @@ host=dynamic
 context=internal-phones</pre></div>
                 <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
                 <div class="techno-chips"><span class="tc">Asterisk</span><span class="tc">SIP</span><span class="tc">RTP</span><span class="tc">Yealink</span></div></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -2017,6 +2403,15 @@ sysLocation "Salle Serveur A"
 service snmpd restart</pre></div>
                 <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
                 <div class="techno-chips"><span class="tc">Observium</span><span class="tc">SNMP</span><span class="tc">Linux</span></div></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -2044,6 +2439,15 @@ service snmpd restart</pre></div>
 }</pre></div>
                 <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
                 <div class="techno-chips"><span class="tc">Keepalived</span><span class="tc">VRRP</span><span class="tc">Linux</span></div></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -2071,6 +2475,15 @@ ForEach ($User in $Users) {
 }</pre></div>
                 <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
                 <div class="techno-chips"><span class="tc">PowerShell</span><span class="tc">Active Directory</span><span class="tc">GPO</span></div></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -2099,6 +2512,15 @@ interface GigabitEthernet0/1
  switchport voice vlan 20</pre></div>
                 <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
                 <div class="techno-chips"><span class="tc">Cisco IOS</span><span class="tc">VLAN</span><span class="tc">Trunk</span><span class="tc">Inter-VLAN</span></div></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -2120,6 +2542,15 @@ interface GigabitEthernet0/1
                 <ul><li>Déploiement GLPI sur serveur Linux (LAMP)</li><li>Configuration des catégories de tickets et SLA</li><li>Intégration FusionInventory pour l'inventaire automatique</li><li>Gestion des utilisateurs et des profils</li></ul></div>
                 <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
                 <div class="techno-chips"><span class="tc">GLPI</span><span class="tc">FusionInventory</span><span class="tc">MySQL</span><span class="tc">Apache</span></div></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -2151,6 +2582,15 @@ interface GigabitEthernet0/1
     ports: ["8080:8080"]</pre></div>
                 <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
                 <div class="techno-chips"><span class="tc">Docker</span><span class="tc">Compose</span><span class="tc">Nginx</span><span class="tc">MariaDB</span></div></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -2172,6 +2612,15 @@ interface GigabitEthernet0/1
                 <ul><li>Installation Pi-hole sur Raspberry Pi OS</li><li>Configuration comme DNS primaire du réseau (DHCP)</li><li>Ajout de listes de blocage personnalisées</li><li>Consultation et analyse des logs DNS</li></ul></div>
                 <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
                 <div class="techno-chips"><span class="tc">Pi-hole</span><span class="tc">DNS</span><span class="tc">Raspberry Pi</span><span class="tc">Linux</span></div></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -2199,6 +2648,15 @@ interface GigabitEthernet0/1
 }</pre></div>
                 <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
                 <div class="techno-chips"><span class="tc">Nginx</span><span class="tc">SSL/TLS</span><span class="tc">Let's Encrypt</span><span class="tc">Linux</span></div></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -2218,6 +2676,15 @@ interface GigabitEthernet0/1
                 <ul><li>Déploiement Bacula Director, Storage Daemon et File Daemon</li><li>Définition des pools et politique de rétention (quotidien/hebdo/mensuel)</li><li>Planification des jobs de sauvegarde</li><li>Tests de restauration complets et partiels</li></ul></div>
                 <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
                 <div class="techno-chips"><span class="tc">Bacula</span><span class="tc">Linux</span><span class="tc">PostgreSQL</span></div></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -2237,6 +2704,15 @@ interface GigabitEthernet0/1
                 <ul><li>Installation Nextcloud sur stack LAMP</li><li>Configuration du stockage et des quotas</li><li>Intégration LDAP pour l'authentification</li><li>Accès HTTPS via reverse proxy</li></ul></div>
                 <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
                 <div class="techno-chips"><span class="tc">Nextcloud</span><span class="tc">PHP</span><span class="tc">MariaDB</span><span class="tc">LDAP</span><span class="tc">Nginx</span></div></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -2262,6 +2738,15 @@ interface GigabitEthernet0/1
                 <ul><li>Installation et configuration du système NAS (TrueNAS / OpenMediaVault)</li><li>Création de volumes de stockage et de partages réseaux (SMB/CIFS, NFS)</li><li>Configuration des droits d'accès par utilisateur et groupe</li><li>Accès distant sécurisé via SFTP</li><li>Tests de montage sur clients Windows et Linux</li></ul></div>
                 <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
                 <div class="techno-chips"><span class="tc">TrueNAS / OpenMediaVault</span><span class="tc">SMB/CIFS</span><span class="tc">NFS</span><span class="tc">SFTP</span></div></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -2285,6 +2770,15 @@ interface GigabitEthernet0/1
 mount -t nfs 192.168.1.10:/srv/partage /mnt/nfs</pre></div>
                 <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
                 <div class="techno-chips"><span class="tc">NFS v4</span><span class="tc">Linux</span><span class="tc">exports</span></div></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -2312,6 +2806,15 @@ ns1 IN A   192.168.1.10
 srv IN A   192.168.1.20</pre></div>
                 <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
                 <div class="techno-chips"><span class="tc">ISC DHCP</span><span class="tc">Bind9</span><span class="tc">Linux</span><span class="tc">DNS</span></div></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -2333,6 +2836,15 @@ srv IN A   192.168.1.20</pre></div>
                 <ul><li>Installation d'un hyperviseur léger (KVM/QEMU ou Proxmox ARM)</li><li>Déploiement de VMs Linux légères (Alpine, Debian minimal)</li><li>Configuration réseau (bridge, NAT)</li><li>Tests de performance et limites de la solution</li></ul></div>
                 <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
                 <div class="techno-chips"><span class="tc">Raspberry Pi</span><span class="tc">KVM/QEMU</span><span class="tc">Linux</span><span class="tc">Virtualisation</span></div></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
             </div>
         </div>
@@ -2354,7 +2866,96 @@ srv IN A   192.168.1.20</pre></div>
                 <ul><li>Stack Docker Compose : Nextcloud, Portainer, Nginx reverse proxy, Grafana</li><li>Certificats SSL via Let's Encrypt</li><li>Tunnel sécurisé pour l'accès distant</li><li>Monitoring de l'infrastructure via Grafana + Prometheus</li></ul></div>
                 <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies</h4>
                 <div class="techno-chips"><span class="tc">Docker</span><span class="tc">Nginx</span><span class="tc">Nextcloud</span><span class="tc">Grafana</span><span class="tc">Let's Encrypt</span></div></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
                 <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal RSE / Réemploi -->
+    <div id="m-rse" class="modal" onclick="closeTechModal(event,'m-rse')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <div>
+                    <div class="modal-header-sub"><i class="fas fa-star" style="color:var(--accent-yellow);"></i> Projet E5 &nbsp;·&nbsp; <i class="fas fa-briefcase" style="color:var(--accent-green);"></i> Stage 1re année — Fnac Darty</div>
+                    <h2>Démarche RSE — Réemploi informatique</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-rse').style.display='none'" style="position:static;font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div class="modal-meta-strip">
+                    <span class="meta-b e5"><i class="fas fa-star"></i> Projet E5</span>
+                    <span class="meta-b cadre"><i class="fas fa-briefcase"></i> Stage 1re année</span>
+                    <span class="meta-b type"><i class="fas fa-recycle"></i> Gestion de parc · RSE</span>
+                </div>
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>Dans le cadre du renouvellement du parc informatique de Fnac Darty, un lot d'environ 34 postes obsolètes devait être traité dans une démarche responsable. La DSI souhaitait limiter les déchets électroniques et maximiser le réemploi des composants.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-bullseye"></i> Objectif</h4>
+                <p>Préparer les postes en fin de vie pour le reconditionnement : diagnostic de l'état matériel, tri sélectif des composants récupérables et traçabilité complète du processus.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-tasks"></i> Travaux réalisés</h4>
+                <ul><li>Diagnostic de l'état matériel de ~34 postes (RAM, disques, alimentation)</li><li>Tri et séparation des composants réutilisables des équipements irréparables</li><li>Effacement sécurisé des données selon les procédures RGPD</li><li>Inventaire et traçabilité des équipements dans la CMDB</li><li>Coordination avec le prestataire de reconditionnement</li></ul></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies & outils</h4>
+                <div class="techno-chips"><span class="tc">Ivanti</span><span class="tc">Effacement sécurisé</span><span class="tc">CMDB</span><span class="tc">Gestion de parc</span></div></div>
+                <div class="modal-block"><h4><i class="fas fa-certificate"></i> Compétences mobilisées</h4>
+                <ul><li>Gestion du patrimoine informatique en fin de vie</li><li>Application des procédures RGPD (effacement des données)</li><li>Engagement dans une démarche RSE et d'économie circulaire</li></ul></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
+                <div style="margin-top:22px;text-align:center;"><a href="#" target="_blank" class="btn-main"><i class="fas fa-file-pdf"></i> Voir la Documentation PDF</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Diagnostic réseau -->
+    <div id="m-incidents" class="modal" onclick="closeTechModal(event,'m-incidents')">
+        <div class="modal-tech-content" onclick="event.stopPropagation()">
+            <div class="modal-tech-header">
+                <div>
+                    <div class="modal-header-sub"><i class="fas fa-star" style="color:var(--accent-yellow);"></i> Projet E5 &nbsp;·&nbsp; <i class="fas fa-briefcase" style="color:var(--accent-purple);"></i> Stage 2e année — Outscale</div>
+                    <h2>Diagnostic & résolution d'incidents réseau</h2>
+                </div>
+                <span class="close-modal" onclick="document.getElementById('m-incidents').style.display='none'" style="position:static;font-size:30px;">&times;</span>
+            </div>
+            <div class="modal-tech-body">
+                <div class="modal-meta-strip">
+                    <span class="meta-b e5"><i class="fas fa-star"></i> Projet E5</span>
+                    <span class="meta-b cadre"><i class="fas fa-briefcase"></i> Stage 2e année</span>
+                    <span class="meta-b type"><i class="fas fa-network-wired"></i> Infra · Supervision · Datacenter</span>
+                </div>
+                <div class="modal-block"><h4><i class="fas fa-map-marker-alt"></i> Contexte</h4>
+                <p>En environnement datacenter chez Outscale (3DS Outscale), des incidents critiques peuvent survenir à tout moment et nécessitent une intervention rapide et structurée pour minimiser l'impact sur la disponibilité des services cloud souverain.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-bullseye"></i> Objectif</h4>
+                <p>Diagnostiquer et résoudre les incidents réseau critiques (crash KVM, pannes réseau) dans un délai minimal, avec une documentation post-incident rigoureuse.</p></div>
+                <div class="modal-block"><h4><i class="fas fa-tasks"></i> Travaux réalisés</h4>
+                <ul><li>Analyse des logs et métriques pour identifier la cause racine des incidents</li><li>Intervention sur crash KVM : redémarrage contrôlé et vérification de l'intégrité des VMs</li><li>Diagnostic et résolution de pannes réseau au niveau switching et routage</li><li>Coordination avec l'équipe NOC pour la gestion des escalades</li><li>Rédaction de rapports post-incident (RCA) et mise à jour des SOP</li></ul></div>
+                <div class="modal-block"><h4><i class="fas fa-microchip"></i> Technologies & outils</h4>
+                <div class="techno-chips"><span class="tc">KVM</span><span class="tc">Cisco Nexus</span><span class="tc">Monitoring</span><span class="tc">NetBox</span><span class="tc">Syslog</span><span class="tc">SNMP</span></div></div>
+                <div class="modal-block"><h4><i class="fas fa-certificate"></i> Compétences mobilisées</h4>
+                <ul><li>Gestion d'incidents critiques en environnement de production</li><li>Diagnostic réseau avancé (couches L2/L3, virtualisation)</li><li>Rédaction de rapports post-incident et amélioration continue</li></ul></div>
+                <!-- GALERIE PHOTOS (optionnel) : retirez style="display:none" pour afficher -->
+                <div class="modal-block modal-gallery" style="display:none;">
+                    <h4><i class="fas fa-images"></i> Galerie photos</h4>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-top:8px;">
+                        <img src="annexes/photos/projet/photo-1.jpg" alt="Photo 1" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-2.jpg" alt="Photo 2" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                        <img src="annexes/photos/projet/photo-3.jpg" alt="Photo 3" style="width:100%; border-radius:8px; object-fit:cover; aspect-ratio:4/3; border:1px solid var(--border-glass);">
+                    </div>
+                </div>
+                <div style="margin-top:22px;text-align:center;"><button class="btn-doc btn-doc-confidentiel" disabled><i class="fas fa-lock"></i> Environnement confidentiel — documentation non partageable</button></div>
             </div>
         </div>
     </div>
@@ -2389,7 +2990,7 @@ srv IN A   192.168.1.20</pre></div>
             arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
             arrow.style.transition = 'transform 0.3s ease';
             if (!isOpen && frame.src === 'about:blank') {
-                frame.src = 'annexes/fiche-e5-synthese.pdf';
+                frame.src = 'annexes/fiche-E5-officiel.pdf';
             }
             if (!isOpen) setTimeout(() => viewer.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
         }
@@ -2434,6 +3035,7 @@ srv IN A   192.168.1.20</pre></div>
         // Initialisation
         updateCounts();
         applyFilters();
+
     </script>
 </body>
 </html>
