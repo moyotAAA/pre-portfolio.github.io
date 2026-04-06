@@ -1272,25 +1272,27 @@
         <!-- CTA dans le hero -->
         <div class="veille-cta-bar" style="padding: 28px 20px 0;">
             <button class="veille-cta-btn" id="veille-pdf-toggle" onclick="toggleVeillePDF()">
-                <i class="fas fa-file-word"></i>
+                <i class="fas fa-file-pdf"></i>
                 Consulter ma veille
                 <i class="fas fa-chevron-down" id="veille-pdf-arrow"></i>
             </button>
         </div>
     </header>
 
-    <!-- Visionneuse document inline -->
+    <!-- Visionneuse PDF inline -->
+    <!-- NOTE : placer la version PDF de la veille dans annexes/Veille_ZTNA_Outscale_Final.pdf -->
+    <!-- (Ouvrir le .docx dans Word → Fichier → Enregistrer une copie → PDF) -->
     <div class="veille-pdf-viewer" id="veille-pdf-viewer">
         <div class="veille-pdf-toolbar">
             <div class="veille-pdf-toolbar-left">
-                <i class="fas fa-file-word" style="color:#4a9eff;"></i>
+                <i class="fas fa-file-pdf"></i>
                 <span>Veille technologique — Zero Trust &amp; ZTNA (Outscale)</span>
             </div>
             <div class="veille-pdf-toolbar-right">
                 <a href="annexes/Veille_ZTNA_Outscale_Final.docx" download class="vpdf-btn vpdf-btn-download">
-                    <i class="fas fa-download"></i> Télécharger
+                    <i class="fas fa-download"></i> Télécharger (.docx)
                 </a>
-                <a href="annexes/Veille_ZTNA_Outscale_Final.docx" target="_blank" class="vpdf-btn vpdf-btn-newtab">
+                <a href="annexes/Veille_ZTNA_Outscale_Final.pdf" target="_blank" class="vpdf-btn vpdf-btn-newtab">
                     <i class="fas fa-external-link-alt"></i> Ouvrir
                 </a>
                 <button class="vpdf-btn vpdf-btn-close" onclick="toggleVeillePDF()">
@@ -1298,23 +1300,7 @@
                 </button>
             </div>
         </div>
-        <div class="veille-doc-card">
-            <div class="veille-doc-icon-wrap">
-                <i class="fas fa-file-word"></i>
-            </div>
-            <div class="veille-doc-meta">
-                <h4>Veille_ZTNA_Outscale_Final.docx</h4>
-                <p>Synthèse de veille sur le Zero Trust Network Access (ZTNA) — réalisée dans le cadre du stage chez Outscale · Format Word (.docx)</p>
-                <div class="veille-doc-actions">
-                    <a href="annexes/Veille_ZTNA_Outscale_Final.docx" download class="vpdf-btn vpdf-btn-download">
-                        <i class="fas fa-download"></i> Télécharger le document
-                    </a>
-                    <a href="annexes/Veille_ZTNA_Outscale_Final.docx" target="_blank" class="vpdf-btn vpdf-btn-newtab">
-                        <i class="fas fa-external-link-alt"></i> Ouvrir dans Word
-                    </a>
-                </div>
-            </div>
-        </div>
+        <iframe class="veille-pdf-embed" src="about:blank" id="veille-pdf-frame" title="Synthèse de veille Zero Trust ZTNA"></iframe>
     </div>
 
     <!-- ===== SUBNAV INTERNE — pill flottante ===== -->
@@ -1848,11 +1834,10 @@
         <h2>Travaillons ensemble.</h2>
         <p style="color:var(--text-secondary); margin-bottom: 30px;">À la recherche d'une alternance.</p>
         <div style="font-size: 2rem; display:flex; justify-content:center; gap:30px;">
-            <a href="#" style="color: var(--text-primary); transition:0.3s;"><i class="fab fa-linkedin"></i></a>
-            <a href="#" style="color: var(--text-primary); transition:0.3s;"><i class="fab fa-github"></i></a>
-            <a href="mailto:tonemail@gmail.com" style="color: var(--text-primary); transition:0.3s;"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/ayoub-touil-233530341/" target="_blank" style="color: var(--text-primary); transition:0.3s;"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:ayoub.touil0403@gmail.com" style="color: var(--text-primary); transition:0.3s;"><i class="fas fa-envelope"></i></a>
         </div>
-        <p style="margin-top: 40px; font-size: 0.8rem; color:var(--text-tertiary);">© 2025 Ayoub Leboss.</p>
+        <p style="margin-top: 40px; font-size: 0.8rem; color:var(--text-tertiary);">© 2025 Ayoub Touil.</p>
     </footer>
 
     <!-- ===== DOCK DE NAVIGATION FLOTTANT ===== -->
@@ -1980,15 +1965,21 @@
 
     <script src="script.js" defer></script>
     <script>
-        // ====== VISIONNEUSE DOCUMENT INLINE ======
+        // ====== VISIONNEUSE PDF INLINE ======
         function toggleVeillePDF() {
             const viewer = document.getElementById('veille-pdf-viewer');
             const arrow  = document.getElementById('veille-pdf-arrow');
+            const frame  = document.getElementById('veille-pdf-frame');
             const isOpen = viewer.classList.contains('open');
 
             viewer.classList.toggle('open');
             arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
             arrow.style.transition = 'transform 0.3s ease';
+
+            // Charger le PDF seulement à la première ouverture (lazy load)
+            if (!isOpen && frame && frame.src === 'about:blank') {
+                frame.src = 'annexes/Veille_ZTNA_Outscale_Final.pdf';
+            }
 
             // Scroller vers la visionneuse si on l'ouvre
             if (!isOpen) {

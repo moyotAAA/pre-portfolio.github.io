@@ -40,36 +40,21 @@
             box-shadow: 0 16px 48px var(--shadow-color);
         }
 
-        /* Zone de prévisualisation */
+        /* Zone de prévisualisation — vrai iframe PDF */
         .doc-preview-zone {
             position: relative;
-            height: 160px;
+            height: 200px;
             background: var(--tag-bg);
             border-bottom: 1px solid var(--border-glass);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 22px 28px;
             overflow: hidden;
         }
-        .doc-preview-lines {
+        .doc-preview-iframe {
             width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+            height: 100%;
+            border: none;
+            display: block;
+            pointer-events: none; /* juste un aperçu, pas interactif */
         }
-        .doc-preview-line {
-            height: 8px;
-            background: var(--border-glass);
-            border-radius: 4px;
-            opacity: 0.6;
-        }
-        .doc-preview-line:nth-child(1) { width: 60%; }
-        .doc-preview-line:nth-child(2) { width: 90%; }
-        .doc-preview-line:nth-child(3) { width: 75%; }
-        .doc-preview-line:nth-child(4) { width: 85%; }
-        .doc-preview-line:nth-child(5) { width: 50%; }
-        .doc-preview-line:nth-child(6) { width: 70%; }
         .doc-preview-badge {
             position: absolute;
             top: 14px; right: 16px;
@@ -173,6 +158,53 @@
             .doc-btn-download, .doc-btn-open { flex: 1; justify-content: center; }
         }
 
+        /* ---- Visionneuse PDF inline (dossier) ---- */
+        .doc-inline-viewer {
+            display: none;
+            background: var(--card-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 12px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+            animation: fadeSlideDown 0.3s ease;
+        }
+        .doc-inline-viewer.open { display: block; }
+        @keyframes fadeSlideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .doc-viewer-toolbar {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px 20px; background: var(--card-glass);
+            border-bottom: 1px solid var(--border-glass);
+            gap: 12px; flex-wrap: wrap;
+        }
+        .doc-viewer-toolbar-left {
+            display: flex; align-items: center; gap: 10px;
+            font-weight: 700; font-size: 0.88rem; color: var(--text-primary);
+        }
+        .doc-viewer-toolbar-left i { color: #FF453A; font-size: 1.1rem; }
+        .doc-viewer-toolbar-right { display: flex; align-items: center; gap: 8px; }
+        .dvr-btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 14px; border-radius: 50px;
+            font-size: 0.78rem; font-weight: 700;
+            cursor: pointer; text-decoration: none;
+            border: 1px solid transparent; transition: all 0.2s ease;
+            font-family: inherit;
+        }
+        .dvr-btn-dl  { background: rgba(255,59,48,0.1); border-color: rgba(255,59,48,0.25); color: #FF453A; }
+        .dvr-btn-dl:hover  { background: rgba(255,59,48,0.18); }
+        .dvr-btn-tab { background: rgba(255,255,255,0.05); border-color: var(--border-glass); color: var(--text-secondary); }
+        .dvr-btn-tab:hover { background: rgba(255,255,255,0.1); color: var(--text-primary); }
+        .dvr-btn-close { background: rgba(100,210,255,0.07); border-color: rgba(100,210,255,0.2); color: var(--accent-cyan); }
+        .dvr-btn-close:hover { background: rgba(100,210,255,0.14); }
+        .doc-viewer-iframe {
+            width: 100%; height: 700px;
+            display: block; border: none;
+        }
+
         /* Controls barre de recherche + filtres */
         .exp-controls {
             display: flex; flex-direction: column; gap: 16px; margin-bottom: 36px;
@@ -226,9 +258,9 @@
 
         /* ---- Flip cards (Outscale / Fnac Darty) ---- */
         .exp-flip-wrap {
-            flex: 1 1 320px;
-            max-width: 420px;
-            min-height: 380px;
+            flex: 1 1 340px;
+            max-width: 480px;
+            min-height: 560px;
             perspective: 1200px;
         }
         .exp-flip-wrap.hidden { display: none; }
@@ -236,7 +268,7 @@
             position: relative;
             width: 100%;
             height: 100%;
-            min-height: 380px;
+            min-height: 560px;
             transition: transform 0.55s cubic-bezier(0.23,1,0.32,1);
             transform-style: preserve-3d;
         }
@@ -254,10 +286,9 @@
             backdrop-filter: blur(25px);
             border: 1px solid var(--border-glass);
             border-radius: 24px;
-            padding: 28px;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            gap: 14px;
         }
         .exp-flip-front {
             transition: border-color 0.3s;
@@ -268,6 +299,58 @@
         .exp-flip-back {
             transform: rotateY(180deg);
             justify-content: space-between;
+            padding: 28px;
+            gap: 14px;
+        }
+
+        /* Zone photo placeholder (face avant) */
+        .flip-photo-zone {
+            width: 100%;
+            height: 130px;
+            background: var(--tag-bg);
+            border-bottom: 1px solid var(--border-glass);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 8px;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .flip-photo-zone img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0; left: 0;
+        }
+        .flip-photo-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            pointer-events: none;
+        }
+        .flip-photo-placeholder i {
+            font-size: 1.6rem;
+            color: var(--text-tertiary);
+            opacity: 0.4;
+        }
+        .flip-photo-placeholder span {
+            font-size: 0.68rem;
+            color: var(--text-tertiary);
+            opacity: 0.5;
+            letter-spacing: 0.5px;
+        }
+
+        /* Contenu face avant */
+        .flip-front-body {
+            padding: 22px 24px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
         }
 
         /* Hint hover */
@@ -278,7 +361,7 @@
             font-size: 0.72rem;
             color: var(--text-tertiary);
             margin-top: auto;
-            padding-top: 12px;
+            padding-top: 10px;
             border-top: 1px solid var(--border-glass);
         }
         .flip-hint i { font-size: 0.8rem; color: var(--accent-cyan); }
@@ -505,18 +588,12 @@
 
             <!-- CV -->
             <div class="doc-premium-card">
-                <!-- Zone de prévisualisation -->
+                <!-- Zone de prévisualisation — vrai PDF -->
                 <div class="doc-preview-zone">
-                    <div class="doc-preview-lines">
-                        <div class="doc-preview-line"></div>
-                        <div class="doc-preview-line"></div>
-                        <div class="doc-preview-line"></div>
-                        <div class="doc-preview-line"></div>
-                        <div class="doc-preview-line"></div>
-                        <div class="doc-preview-line"></div>
-                    </div>
+                    <iframe class="doc-preview-iframe"
+                        src="annexes/CV-TOUIL Ayoub-9.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
+                        title="Aperçu CV"></iframe>
                     <span class="doc-preview-badge">PDF</span>
-                    <i class="fas fa-id-card doc-preview-icon"></i>
                 </div>
                 <!-- Corps -->
                 <div class="doc-premium-body">
@@ -534,27 +611,41 @@
                         <a href="annexes/CV-TOUIL Ayoub-9.pdf" download class="doc-btn-download">
                             <i class="fas fa-download"></i> Télécharger
                         </a>
-                        <button class="doc-btn-open" onclick="openModal(event, 'CV')">
-                            <i class="fas fa-arrow-up-right-from-square"></i> Ouvrir
+                        <button class="doc-btn-open" onclick="toggleDocViewer('cv-viewer', 'annexes/CV-TOUIL Ayoub-9.pdf')">
+                            <i class="fas fa-expand-alt"></i> Ouvrir
                         </button>
                     </div>
                 </div>
             </div>
+            <!-- Visionneuse PDF inline — CV -->
+            <div class="doc-inline-viewer" id="cv-viewer">
+                <div class="doc-viewer-toolbar">
+                    <div class="doc-viewer-toolbar-left">
+                        <i class="fas fa-file-pdf"></i> Curriculum Vitae — Ayoub Touil
+                    </div>
+                    <div class="doc-viewer-toolbar-right">
+                        <a href="annexes/CV-TOUIL Ayoub-9.pdf" download class="dvr-btn dvr-btn-dl">
+                            <i class="fas fa-download"></i> Télécharger
+                        </a>
+                        <a href="annexes/CV-TOUIL Ayoub-9.pdf" target="_blank" class="dvr-btn dvr-btn-tab">
+                            <i class="fas fa-external-link-alt"></i> Nouvel onglet
+                        </a>
+                        <button class="dvr-btn dvr-btn-close" onclick="toggleDocViewer('cv-viewer', '')">
+                            <i class="fas fa-times"></i> Fermer
+                        </button>
+                    </div>
+                </div>
+                <iframe class="doc-viewer-iframe" src="about:blank" id="cv-frame" title="CV Ayoub Touil"></iframe>
+            </div>
 
             <!-- LM -->
             <div class="doc-premium-card">
-                <!-- Zone de prévisualisation -->
+                <!-- Zone de prévisualisation — vrai PDF -->
                 <div class="doc-preview-zone">
-                    <div class="doc-preview-lines">
-                        <div class="doc-preview-line"></div>
-                        <div class="doc-preview-line"></div>
-                        <div class="doc-preview-line"></div>
-                        <div class="doc-preview-line"></div>
-                        <div class="doc-preview-line"></div>
-                        <div class="doc-preview-line"></div>
-                    </div>
+                    <iframe class="doc-preview-iframe"
+                        src="annexes/LM-M.TOUIL Ayoub-1.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
+                        title="Aperçu LM"></iframe>
                     <span class="doc-preview-badge">PDF</span>
-                    <i class="fas fa-envelope-open-text doc-preview-icon"></i>
                 </div>
                 <!-- Corps -->
                 <div class="doc-premium-body">
@@ -572,11 +663,31 @@
                         <a href="annexes/LM-M.TOUIL Ayoub-1.pdf" download class="doc-btn-download">
                             <i class="fas fa-download"></i> Télécharger
                         </a>
-                        <button class="doc-btn-open" onclick="openModal(event, 'LM')">
-                            <i class="fas fa-arrow-up-right-from-square"></i> Ouvrir
+                        <button class="doc-btn-open" onclick="toggleDocViewer('lm-viewer', 'annexes/LM-M.TOUIL Ayoub-1.pdf')">
+                            <i class="fas fa-expand-alt"></i> Ouvrir
                         </button>
                     </div>
                 </div>
+            </div>
+            <!-- Visionneuse PDF inline — LM -->
+            <div class="doc-inline-viewer" id="lm-viewer">
+                <div class="doc-viewer-toolbar">
+                    <div class="doc-viewer-toolbar-left">
+                        <i class="fas fa-file-pdf"></i> Lettre de Motivation — Ayoub Touil
+                    </div>
+                    <div class="doc-viewer-toolbar-right">
+                        <a href="annexes/LM-M.TOUIL Ayoub-1.pdf" download class="dvr-btn dvr-btn-dl">
+                            <i class="fas fa-download"></i> Télécharger
+                        </a>
+                        <a href="annexes/LM-M.TOUIL Ayoub-1.pdf" target="_blank" class="dvr-btn dvr-btn-tab">
+                            <i class="fas fa-external-link-alt"></i> Nouvel onglet
+                        </a>
+                        <button class="dvr-btn dvr-btn-close" onclick="toggleDocViewer('lm-viewer', '')">
+                            <i class="fas fa-times"></i> Fermer
+                        </button>
+                    </div>
+                </div>
+                <iframe class="doc-viewer-iframe" src="about:blank" id="lm-frame" title="Lettre de Motivation Ayoub Touil"></iframe>
             </div>
 
         </div>
@@ -645,37 +756,47 @@
 
                     <!-- FACE AVANT -->
                     <div class="exp-flip-front">
-                        <div class="exp-card-header">
-                            <div class="exp-icon" style="background:rgba(191,90,242,0.1); border-color:rgba(191,90,242,0.25); color:var(--accent-purple);">
-                                <i class="fas fa-cloud"></i>
-                            </div>
-                            <div class="exp-info">
-                                <span class="exp-badge exp-badge-stage">Stage</span>
-                                <span class="exp-date">Février – Mars 2026</span>
+                        <!-- Zone photo — remplacer src par votre photo, ou retirer le tag <img> pour garder le placeholder -->
+                        <div class="flip-photo-zone">
+                            <!-- <img src="images/photo-outscale.jpg" alt="Photo Outscale"> -->
+                            <div class="flip-photo-placeholder">
+                                <i class="fas fa-image"></i>
+                                <span>Photo à ajouter</span>
                             </div>
                         </div>
-                        <h3 class="exp-company">Outscale <span style="color:var(--text-secondary); font-size:1rem; font-weight:500;">(3DS Outscale)</span></h3>
-                        <p class="exp-role">Infrastructure Cloud — Technicien Systèmes</p>
-                        <ul class="exp-missions">
-                            <li>Administration de machines virtuelles et gestion d'instantanés cloud souverain</li>
-                            <li>Automatisation de déploiements via Terraform et scripts personnalisés</li>
-                            <li>Monitoring d'infrastructure et renforcement des politiques de sécurité</li>
-                        </ul>
-                        <div class="exp-tags">
-                            <span class="tech-tag">Cloud</span>
-                            <span class="tech-tag">Terraform</span>
-                            <span class="tech-tag">Monitoring</span>
-                            <span class="tech-tag">Sécurité</span>
-                        </div>
-                        <div class="flip-hint">
-                            <i class="fas fa-sync-alt"></i> Survolez la carte pour accéder aux documents
+                        <div class="flip-front-body">
+                            <div class="exp-card-header">
+                                <div class="exp-icon" style="background:rgba(191,90,242,0.1); border-color:rgba(191,90,242,0.25); color:var(--accent-purple);">
+                                    <i class="fas fa-cloud"></i>
+                                </div>
+                                <div class="exp-info">
+                                    <span class="exp-badge exp-badge-stage">Stage</span>
+                                    <span class="exp-date">Février – Mars 2026</span>
+                                </div>
+                            </div>
+                            <h3 class="exp-company">Outscale <span style="color:var(--text-secondary); font-size:1rem; font-weight:500;">(3DS Outscale)</span></h3>
+                            <p class="exp-role">Infrastructure Cloud — Technicien Systèmes</p>
+                            <ul class="exp-missions">
+                                <li>Administration de machines virtuelles et gestion d'instantanés cloud souverain</li>
+                                <li>Automatisation de déploiements via Terraform et scripts personnalisés</li>
+                                <li>Monitoring d'infrastructure et renforcement des politiques de sécurité</li>
+                            </ul>
+                            <div class="exp-tags">
+                                <span class="tech-tag">Cloud</span>
+                                <span class="tech-tag">Terraform</span>
+                                <span class="tech-tag">Monitoring</span>
+                                <span class="tech-tag">Sécurité</span>
+                            </div>
+                            <div class="flip-hint">
+                                <i class="fas fa-sync-alt"></i> Survolez la carte pour accéder aux documents
+                            </div>
                         </div>
                     </div>
 
                     <!-- FACE ARRIÈRE -->
                     <div class="exp-flip-back">
                         <div>
-                            <p class="flip-back-title">Outscale — Stage 2025</p>
+                            <p class="flip-back-title">Outscale — Stage 2026</p>
                             <p class="flip-back-sub">Infrastructure Cloud · Technicien Systèmes</p>
                         </div>
                         <div class="flip-stage-grid">
@@ -710,31 +831,41 @@
 
                     <!-- FACE AVANT -->
                     <div class="exp-flip-front">
-                        <div class="exp-card-header">
-                            <div class="exp-icon" style="background:rgba(255,214,10,0.1); border-color:rgba(255,214,10,0.25); color:var(--accent-yellow);">
-                                <i class="fas fa-store"></i>
-                            </div>
-                            <div class="exp-info">
-                                <span class="exp-badge exp-badge-stage">Stage</span>
-                                <span class="exp-date">Juin – Juillet 2025</span>
+                        <!-- Zone photo — remplacer src par votre photo, ou retirer le tag <img> pour garder le placeholder -->
+                        <div class="flip-photo-zone">
+                            <!-- <img src="images/photo-fnac-darty.jpg" alt="Photo Fnac Darty"> -->
+                            <div class="flip-photo-placeholder">
+                                <i class="fas fa-image"></i>
+                                <span>Photo à ajouter</span>
                             </div>
                         </div>
-                        <h3 class="exp-company">Fnac Darty <span style="color:var(--text-secondary); font-size:1rem; font-weight:500;">(Siège)</span></h3>
-                        <p class="exp-role">Support Technicien Informatique — DSI</p>
-                        <ul class="exp-missions">
-                            <li>Gestion et suivi d'incidents via Ivanti Landesk (niveaux N1/N2)</li>
-                            <li>Déploiement de salles de réunion Microsoft Teams Rooms (MTR)</li>
-                            <li>Reconditionnement et renouvellement du parc informatique</li>
-                            <li>Rédaction de procédures techniques et documentation opérationnelle</li>
-                        </ul>
-                        <div class="exp-tags">
-                            <span class="tech-tag">Support N2</span>
-                            <span class="tech-tag">Ivanti</span>
-                            <span class="tech-tag">Teams Rooms</span>
-                            <span class="tech-tag">Hardware</span>
-                        </div>
-                        <div class="flip-hint">
-                            <i class="fas fa-sync-alt"></i> Survolez la carte pour accéder aux documents
+                        <div class="flip-front-body">
+                            <div class="exp-card-header">
+                                <div class="exp-icon" style="background:rgba(255,214,10,0.1); border-color:rgba(255,214,10,0.25); color:var(--accent-yellow);">
+                                    <i class="fas fa-store"></i>
+                                </div>
+                                <div class="exp-info">
+                                    <span class="exp-badge exp-badge-stage">Stage</span>
+                                    <span class="exp-date">Juin – Juillet 2025</span>
+                                </div>
+                            </div>
+                            <h3 class="exp-company">Fnac Darty <span style="color:var(--text-secondary); font-size:1rem; font-weight:500;">(Siège)</span></h3>
+                            <p class="exp-role">Support Technicien Informatique — DSI</p>
+                            <ul class="exp-missions">
+                                <li>Gestion et suivi d'incidents via Ivanti Landesk (niveaux N1/N2)</li>
+                                <li>Déploiement de salles de réunion Microsoft Teams Rooms (MTR)</li>
+                                <li>Reconditionnement et renouvellement du parc informatique</li>
+                                <li>Rédaction de procédures techniques et documentation opérationnelle</li>
+                            </ul>
+                            <div class="exp-tags">
+                                <span class="tech-tag">Support N2</span>
+                                <span class="tech-tag">Ivanti</span>
+                                <span class="tech-tag">Teams Rooms</span>
+                                <span class="tech-tag">Hardware</span>
+                            </div>
+                            <div class="flip-hint">
+                                <i class="fas fa-sync-alt"></i> Survolez la carte pour accéder aux documents
+                            </div>
                         </div>
                     </div>
 
@@ -900,9 +1031,8 @@
         <h2>Travaillons ensemble.</h2>
         <p style="color:var(--text-secondary); margin-bottom: 30px;">À la recherche d'une alternance.</p>
         <div style="font-size: 2rem; display:flex; justify-content:center; gap:30px;">
-            <a href="#" style="color: var(--text-primary); transition:0.3s;"><i class="fab fa-linkedin"></i></a>
-            <a href="#" style="color: var(--text-primary); transition:0.3s;"><i class="fab fa-github"></i></a>
-            <a href="mailto:tonemail@gmail.com" style="color: var(--text-primary); transition:0.3s;"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/ayoub-touil-233530341/" target="_blank" style="color: var(--text-primary); transition:0.3s;"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:ayoub.touil0403@gmail.com" style="color: var(--text-primary); transition:0.3s;"><i class="fas fa-envelope"></i></a>
         </div>
         <p style="margin-top: 40px; font-size: 0.8rem; color:var(--text-tertiary);">© 2025 Ayoub Touil.</p>
     </footer>
@@ -948,6 +1078,24 @@
     <script src="script.js" defer></script>
 
     <script>
+        // ====== VISIONNEUSE PDF INLINE (dossier) ======
+        function toggleDocViewer(viewerId, fileSrc) {
+            const viewer = document.getElementById(viewerId);
+            const frame  = viewer.querySelector('iframe');
+            const isOpen = viewer.classList.contains('open');
+
+            viewer.classList.toggle('open');
+
+            // Lazy-load le PDF seulement à la première ouverture
+            if (!isOpen && fileSrc && frame.src === 'about:blank') {
+                frame.src = fileSrc;
+            }
+            // Scroller vers la visionneuse à l'ouverture
+            if (!isOpen) {
+                setTimeout(() => viewer.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+            }
+        }
+
         // ====== DONNÉES ENTREPRISES ======
         const expData = {
             outscale: { name: 'Outscale', sector: 'Cloud souverain — Filiale Dassault Systèmes', icon: 'fa-cloud', color: 'var(--accent-purple)', desc: "3DS Outscale est un fournisseur de cloud souverain certifié SecNumCloud par l'ANSSI, filiale de Dassault Systèmes. Spécialisé dans l'infrastructure cloud pour les acteurs sensibles (défense, santé, industrie), il propose des solutions IaaS entièrement hébergées en France.", link: 'https://outscale.com' },
