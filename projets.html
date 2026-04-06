@@ -366,6 +366,75 @@
         .e5-fiche-btn i:first-child { font-size: 0.85rem; }
         .e5-fiche-btn i:last-child { font-size: 0.75rem; opacity: 0.7; }
 
+        /* Boutons documentation carte */
+        .btn-doc {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+            margin-top: 6px;
+            font-family: inherit;
+            width: 100%;
+            justify-content: center;
+        }
+        .btn-doc-active {
+            background: rgba(100,210,255,0.1);
+            border-color: rgba(100,210,255,0.3);
+            color: var(--accent-cyan);
+        }
+        .btn-doc-active:hover {
+            background: rgba(100,210,255,0.2);
+            border-color: rgba(100,210,255,0.6);
+            transform: translateY(-1px);
+        }
+        .btn-doc-confidentiel {
+            background: rgba(255,59,48,0.07);
+            border-color: rgba(255,59,48,0.2);
+            color: #a33;
+            cursor: not-allowed;
+            opacity: 0.75;
+        }
+
+        /* Visionneuse fiche E5 inline */
+        .fiche-e5-viewer {
+            display: none;
+            margin: 16px 0;
+            background: var(--card-glass);
+            border: 1px solid rgba(255,214,0,0.25);
+            border-radius: 20px;
+            overflow: hidden;
+            animation: fadeInCard 0.3s ease;
+            box-shadow: 0 8px 40px rgba(255,214,0,0.08);
+        }
+        .fiche-e5-viewer.open { display: block; }
+        .fiche-e5-toolbar {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px 18px; background: var(--card-glass);
+            border-bottom: 1px solid var(--border-glass); flex-wrap: wrap; gap: 10px;
+        }
+        .fiche-e5-toolbar-left { display: flex; align-items: center; gap: 9px; font-weight: 700; font-size: 0.88rem; color: var(--text-primary); }
+        .fiche-e5-toolbar-right { display: flex; align-items: center; gap: 8px; }
+        .fe5-btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 14px; border-radius: 50px; font-size: 0.78rem;
+            font-weight: 700; cursor: pointer; text-decoration: none;
+            border: 1px solid transparent; transition: all 0.2s ease; font-family: inherit;
+        }
+        .fe5-btn-dl { background: rgba(255,214,0,0.1); border-color: rgba(255,214,0,0.35); color: var(--accent-yellow); }
+        .fe5-btn-dl:hover { background: rgba(255,214,0,0.2); }
+        .fe5-btn-open { background: rgba(255,255,255,0.05); border-color: var(--border-glass); color: var(--text-secondary); }
+        .fe5-btn-open:hover { background: rgba(255,255,255,0.1); color: var(--text-primary); }
+        .fe5-btn-close { background: rgba(255,69,58,0.1); border-color: rgba(255,69,58,0.25); color: #ff453a; }
+        .fe5-btn-close:hover { background: rgba(255,69,58,0.2); }
+        .fiche-e5-embed { width: 100%; height: 680px; display: block; border: none; }
+
         @media (max-width: 768px) {
             .projects-grid { grid-template-columns: 1fr; }
             .filter-btn { font-size: 0.75rem; padding: 7px 10px; }
@@ -399,7 +468,7 @@
             <div class="nav-item"><a href="competences.html">Compétences</a></div>
             <div class="nav-item active-page"><a href="projets.html">Projets</a></div>
             <div class="nav-item"><a href="veille.html">Veille</a></div>
-            <div class="nav-item"><a href="#contact">Contact</a></div>
+            <div class="nav-item"><a href="contact.html">Contact</a></div>
         </div>
         <div class="nav-actions">
             <button class="theme-toggle-btn" id="theme-toggle"><i class="fas fa-moon"></i></button>
@@ -439,11 +508,33 @@
 
         <!-- ===== BOUTON FICHE E5 (visible uniquement sur filtre E5) ===== -->
         <div id="e5-fiche-bar" style="display:none;">
-            <a href="#" target="_blank" class="e5-fiche-btn" id="e5-fiche-link">
+            <button class="e5-fiche-btn" id="e5-fiche-link" onclick="toggleFicheE5()">
                 <i class="fas fa-star"></i>
-                Ma fiche synthèse E5
-                <i class="fas fa-external-link-alt"></i>
-            </a>
+                Afficher ma fiche synthèse E5
+                <i class="fas fa-chevron-down" id="e5-fiche-arrow"></i>
+            </button>
+        </div>
+
+        <!-- Visionneuse fiche E5 inline -->
+        <div class="fiche-e5-viewer" id="fiche-e5-viewer">
+            <div class="fiche-e5-toolbar">
+                <div class="fiche-e5-toolbar-left">
+                    <i class="fas fa-star" style="color:var(--accent-yellow);"></i>
+                    <span>Fiche synthèse E5 — Projets BTS SIO SISR</span>
+                </div>
+                <div class="fiche-e5-toolbar-right">
+                    <a href="annexes/fiche-e5-synthese.pdf" download class="fe5-btn fe5-btn-dl">
+                        <i class="fas fa-download"></i> Télécharger
+                    </a>
+                    <a href="annexes/fiche-e5-synthese.pdf" target="_blank" class="fe5-btn fe5-btn-open">
+                        <i class="fas fa-external-link-alt"></i> Ouvrir
+                    </a>
+                    <button class="fe5-btn fe5-btn-close" onclick="toggleFicheE5()">
+                        <i class="fas fa-times"></i> Fermer
+                    </button>
+                </div>
+            </div>
+            <iframe class="fiche-e5-embed" src="about:blank" id="fiche-e5-frame" title="Fiche synthèse E5"></iframe>
         </div>
 
         <!-- ===== INFO BAR ===== -->
@@ -860,6 +951,594 @@
                     <span class="card-tag">Docker</span>
                 </div>
                 <button class="btn-details" onclick="openTechModal('m-cloud-perso')">Voir les détails</button>
+            </div>
+
+            <!-- ============ NOUVELLES CARTES LAB ============ -->
+
+            <!-- RÉSEAU -->
+            <div class="project-card" data-cats="lab infra">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-network-wired card-main-icon" style="color:var(--accent-cyan);"></i>
+                <h3>Adressage IPv4</h3>
+                <p class="card-desc">Compréhension et mise en pratique des principes d'adressage IPv4 : classes, masques, notation CIDR et configuration d'interfaces.</p>
+                <div class="card-tags">
+                    <span class="card-tag">IPv4</span>
+                    <span class="card-tag">CIDR</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab infra">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-sitemap card-main-icon" style="color:var(--accent-blue);"></i>
+                <h3>Segmentation IPv4</h3>
+                <p class="card-desc">Subnetting, CIDR et élaboration d'un plan d'adressage multi-sites : découpage de plages IP et optimisation de l'espace d'adressage.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Subnetting</span>
+                    <span class="card-tag">CIDR</span>
+                    <span class="card-tag">Multi-sites</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab infra">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-ethernet card-main-icon" style="color:var(--accent-green);"></i>
+                <h3>Configuration de base Switch</h3>
+                <p class="card-desc">Initialisation et configuration fondamentale d'un switch Cisco IOS : hostname, mots de passe, SSH, VLANs de gestion et sauvegarde.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Cisco IOS</span>
+                    <span class="card-tag">Switch</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab infra">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-router card-main-icon" style="color:var(--accent-blue);"></i>
+                <h3>Configuration de base Routeur</h3>
+                <p class="card-desc">Mise en service d'un routeur Cisco IOS : interfaces, routes statiques, protocoles de routage dynamique et sécurisation de l'accès.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Cisco IOS</span>
+                    <span class="card-tag">Routeur</span>
+                    <span class="card-tag">Routage</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab infra">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-project-diagram card-main-icon" style="color:var(--accent-yellow);"></i>
+                <h3>STP — Spanning Tree Protocol</h3>
+                <p class="card-desc">Étude et configuration du Spanning Tree Protocol pour éliminer les boucles de commutation et assurer la redondance des liaisons.</p>
+                <div class="card-tags">
+                    <span class="card-tag">STP</span>
+                    <span class="card-tag">Redondance</span>
+                    <span class="card-tag">Cisco</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab infra">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-link card-main-icon" style="color:var(--accent-purple);"></i>
+                <h3>EtherChannel (LACP)</h3>
+                <p class="card-desc">Agrégation de liens avec EtherChannel et protocole LACP pour augmenter la bande passante et la résilience entre commutateurs.</p>
+                <div class="card-tags">
+                    <span class="card-tag">EtherChannel</span>
+                    <span class="card-tag">LACP</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab infra">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-broadcast-tower card-main-icon" style="color:var(--accent-cyan);"></i>
+                <h3>DHCP Cisco IOS</h3>
+                <p class="card-desc">Configuration d'un serveur DHCP directement sur un routeur Cisco IOS : pools, exclusions, options et relais DHCP inter-VLAN.</p>
+                <div class="card-tags">
+                    <span class="card-tag">DHCP</span>
+                    <span class="card-tag">Cisco IOS</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab infra">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-wifi card-main-icon" style="color:var(--accent-green);"></i>
+                <h3>Réseau Wi-Fi (Packet Tracer)</h3>
+                <p class="card-desc">Simulation et configuration d'un réseau sans fil sous Cisco Packet Tracer : point d'accès, SSID, sécurité WPA2 et association de clients.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Wi-Fi</span>
+                    <span class="card-tag">Packet Tracer</span>
+                    <span class="card-tag">WPA2</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab infra">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-search-location card-main-icon" style="color:var(--accent-blue);"></i>
+                <h3>Exploration réseau Packet Tracer</h3>
+                <p class="card-desc">Exploration des fonctionnalités réseau via Cisco Packet Tracer : topologies, protocoles, simulation de trafic et dépannage.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Packet Tracer</span>
+                    <span class="card-tag">Simulation</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab infra">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-random card-main-icon" style="color:var(--accent-yellow);"></i>
+                <h3>FHRP / HSRP</h3>
+                <p class="card-desc">Mise en place de la redondance de passerelle par défaut avec HSRP (First Hop Redundancy Protocol) pour assurer la continuité de service.</p>
+                <div class="card-tags">
+                    <span class="card-tag">HSRP</span>
+                    <span class="card-tag">FHRP</span>
+                    <span class="card-tag">Redondance</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab infra">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-broadcast-tower card-main-icon" style="color:var(--accent-purple);"></i>
+                <h3>WLAN avec WLC Cisco</h3>
+                <p class="card-desc">Déploiement d'un réseau WLAN d'entreprise avec un contrôleur WLC Cisco : gestion centralisée des points d'accès et profils SSID.</p>
+                <div class="card-tags">
+                    <span class="card-tag">WLC</span>
+                    <span class="card-tag">WLAN</span>
+                    <span class="card-tag">Cisco</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab infra services">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-globe card-main-icon" style="color:var(--accent-cyan);"></i>
+                <h3>Trafic DNS (analyse)</h3>
+                <p class="card-desc">Analyse du trafic DNS avec Wireshark : capture, décodage des requêtes/réponses, identification des enregistrements A, MX, PTR et CNAME.</p>
+                <div class="card-tags">
+                    <span class="card-tag">DNS</span>
+                    <span class="card-tag">Wireshark</span>
+                    <span class="card-tag">Analyse</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <!-- SYSTÈME -->
+            <div class="project-card" data-cats="lab admin">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-terminal card-main-icon" style="color:var(--accent-green);"></i>
+                <h3>Commandes Linux (système)</h3>
+                <p class="card-desc">Maîtrise des commandes essentielles Linux : navigation, gestion des fichiers, droits, processus, services et administration système.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Linux</span>
+                    <span class="card-tag">CLI</span>
+                    <span class="card-tag">Administration</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab admin">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-download card-main-icon" style="color:var(--accent-blue);"></i>
+                <h3>Installation de logiciels Linux</h3>
+                <p class="card-desc">Gestion des paquets Linux avec apt/yum/dnf : installation, mise à jour, suppression et résolution de dépendances en ligne de commande.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Linux</span>
+                    <span class="card-tag">apt/dnf</span>
+                    <span class="card-tag">Paquets</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab admin">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fab fa-windows card-main-icon" style="color:var(--accent-cyan);"></i>
+                <h3>Installation système Windows</h3>
+                <p class="card-desc">Procédure complète d'installation de Windows Server et Windows client : partitionnement, paramétrage initial, jonction au domaine et post-configuration.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Windows</span>
+                    <span class="card-tag">Windows Server</span>
+                    <span class="card-tag">Installation</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab admin">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-hdd card-main-icon" style="color:var(--accent-purple);"></i>
+                <h3>SAE 1.03 Dual Boot Windows / Arch Linux</h3>
+                <p class="card-desc">Installation en dual boot d'un poste Windows et Arch Linux : partitionnement UEFI/GPT, GRUB, configuration post-install et cohabitation des systèmes.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Arch Linux</span>
+                    <span class="card-tag">Dual Boot</span>
+                    <span class="card-tag">GRUB</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab admin">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-users-cog card-main-icon" style="color:var(--accent-yellow);"></i>
+                <h3>Labo Windows AD DS, utilisateurs et GPO</h3>
+                <p class="card-desc">Déploiement d'un Active Directory DS en lab : création d'une arborescence OU, gestion des comptes et application de stratégies de groupe (GPO).</p>
+                <div class="card-tags">
+                    <span class="card-tag">Active Directory</span>
+                    <span class="card-tag">GPO</span>
+                    <span class="card-tag">Windows Server</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab admin">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-headset card-main-icon" style="color:var(--accent-green);"></i>
+                <h3>Assistance aux utilisateurs Windows</h3>
+                <p class="card-desc">Procédures d'assistance aux utilisateurs Windows : diagnostic, résolution d'incidents courants, prise de main à distance et documentation.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Support</span>
+                    <span class="card-tag">Windows</span>
+                    <span class="card-tag">Assistance</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab admin services">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-copy card-main-icon" style="color:var(--accent-blue);"></i>
+                <h3>Réplication (DRBD/rsync)</h3>
+                <p class="card-desc">Mise en place de la réplication de données entre serveurs avec DRBD et rsync pour assurer la synchronisation et la haute disponibilité des données.</p>
+                <div class="card-tags">
+                    <span class="card-tag">DRBD</span>
+                    <span class="card-tag">rsync</span>
+                    <span class="card-tag">Réplication</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab admin">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-layer-group card-main-icon" style="color:var(--accent-red);"></i>
+                <h3>RAID (niveaux et configuration)</h3>
+                <p class="card-desc">Étude et configuration des différents niveaux RAID (0, 1, 5, 10) : tolérance aux pannes, performances et mise en œuvre logicielle/matérielle.</p>
+                <div class="card-tags">
+                    <span class="card-tag">RAID</span>
+                    <span class="card-tag">Stockage</span>
+                    <span class="card-tag">Redondance</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <!-- SERVICES -->
+            <div class="project-card" data-cats="lab services admin">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-folder-open card-main-icon" style="color:var(--accent-yellow);"></i>
+                <h3>SAMBA4 (partage de fichiers Windows/Linux)</h3>
+                <p class="card-desc">Configuration de SAMBA4 comme serveur de fichiers partagés entre Windows et Linux : ACL, intégration AD et profils itinérants.</p>
+                <div class="card-tags">
+                    <span class="card-tag">SAMBA4</span>
+                    <span class="card-tag">SMB</span>
+                    <span class="card-tag">Partage</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab services">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-globe card-main-icon" style="color:#FF9F0A;"></i>
+                <h3>Apache2 (serveur web)</h3>
+                <p class="card-desc">Installation et configuration d'Apache2 : hébergement de sites web, Virtual Hosts, modules SSL et sécurisation de l'accès.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Apache2</span>
+                    <span class="card-tag">HTTP/HTTPS</span>
+                    <span class="card-tag">VirtualHost</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab services">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-phone-alt card-main-icon" style="color:var(--accent-purple);"></i>
+                <h3>ToIP avec ASTLinux</h3>
+                <p class="card-desc">Déploiement d'une solution de téléphonie sur IP avec ASTLinux (Asterisk) : configuration des postes SIP, plan de numérotation et messagerie vocale.</p>
+                <div class="card-tags">
+                    <span class="card-tag">ASTLinux</span>
+                    <span class="card-tag">Asterisk</span>
+                    <span class="card-tag">SIP</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <!-- SÉCURITÉ -->
+            <div class="project-card" data-cats="lab cyber">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-fire card-main-icon" style="color:var(--accent-red);"></i>
+                <h3>Pare-feu UFW Ubuntu</h3>
+                <p class="card-desc">Configuration du pare-feu UFW sur Ubuntu : création de règles entrantes/sortantes, gestion des profils d'application et durcissement du système.</p>
+                <div class="card-tags">
+                    <span class="card-tag">UFW</span>
+                    <span class="card-tag">Ubuntu</span>
+                    <span class="card-tag">Firewall</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab cyber">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-key card-main-icon" style="color:var(--accent-yellow);"></i>
+                <h3>Signature & chiffrement PGP</h3>
+                <p class="card-desc">Mise en œuvre du chiffrement asymétrique avec PGP : génération de clés, signature numérique, chiffrement/déchiffrement de messages et fichiers.</p>
+                <div class="card-tags">
+                    <span class="card-tag">PGP</span>
+                    <span class="card-tag">GPG</span>
+                    <span class="card-tag">Chiffrement</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab cyber infra">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-search card-main-icon" style="color:var(--accent-cyan);"></i>
+                <h3>Analyse DNS / WHOIS</h3>
+                <p class="card-desc">Reconnaissance passive d'une infrastructure via DNS et WHOIS : collecte d'informations, cartographie des noms de domaine et identification des serveurs.</p>
+                <div class="card-tags">
+                    <span class="card-tag">DNS</span>
+                    <span class="card-tag">WHOIS</span>
+                    <span class="card-tag">OSINT</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab cyber">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-shield-alt card-main-icon" style="color:var(--accent-red);"></i>
+                <h3>Lab Firewall pfSense</h3>
+                <p class="card-desc">Laboratoire complet d'exploration pfSense : interface, zones réseau, règles de filtrage, NAT et premiers pas avec le pare-feu open source.</p>
+                <div class="card-tags">
+                    <span class="card-tag">pfSense</span>
+                    <span class="card-tag">Firewall</span>
+                    <span class="card-tag">Lab</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab cyber infra">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-cog card-main-icon" style="color:var(--accent-blue);"></i>
+                <h3>pfSense (routage, règles, sauvegarde)</h3>
+                <p class="card-desc">Configuration avancée de pfSense : routage inter-VLAN, règles de filtrage granulaires, NAT avancé et procédure de sauvegarde/restauration de la configuration.</p>
+                <div class="card-tags">
+                    <span class="card-tag">pfSense</span>
+                    <span class="card-tag">Routage</span>
+                    <span class="card-tag">Règles</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab cyber">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-fingerprint card-main-icon" style="color:var(--accent-purple);"></i>
+                <h3>Hachage MD5 (sécurité)</h3>
+                <p class="card-desc">Étude du hachage MD5 : génération d'empreintes, vérification d'intégrité, limites cryptographiques et comparaison avec SHA-256.</p>
+                <div class="card-tags">
+                    <span class="card-tag">MD5</span>
+                    <span class="card-tag">Hachage</span>
+                    <span class="card-tag">Intégrité</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab cyber">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-hammer card-main-icon" style="color:var(--accent-red);"></i>
+                <h3>John the Ripper (audit de mots de passe)</h3>
+                <p class="card-desc">Utilisation de John the Ripper pour l'audit de robustesse des mots de passe : attaques par dictionnaire, force brute et règles personnalisées.</p>
+                <div class="card-tags">
+                    <span class="card-tag">John the Ripper</span>
+                    <span class="card-tag">Pentest</span>
+                    <span class="card-tag">Mots de passe</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab cyber">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-skull-crossbones card-main-icon" style="color:var(--accent-red);"></i>
+                <h3>Metasploit (framework pentest)</h3>
+                <p class="card-desc">Prise en main du framework Metasploit en environnement contrôlé : recherche d'exploits, exploitation de vulnérabilités et post-exploitation.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Metasploit</span>
+                    <span class="card-tag">Pentest</span>
+                    <span class="card-tag">Exploit</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab cyber">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-user-secret card-main-icon" style="color:var(--accent-red);"></i>
+                <h3>DNS Spoofing (attaque et contre-mesures)</h3>
+                <p class="card-desc">Démonstration du DNS Spoofing en lab isolé : empoisonnement du cache DNS, redirection de trafic et mise en place des contre-mesures (DNSSEC, filtrage).</p>
+                <div class="card-tags">
+                    <span class="card-tag">DNS Spoofing</span>
+                    <span class="card-tag">DNSSEC</span>
+                    <span class="card-tag">Sécurité</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab cyber infra">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-lock card-main-icon" style="color:var(--accent-green);"></i>
+                <h3>Sécurisation des réseaux (hardening)</h3>
+                <p class="card-desc">Durcissement d'une infrastructure réseau : désactivation des protocoles non sécurisés, segmentation, ACL et bonnes pratiques de configuration sécurisée.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Hardening</span>
+                    <span class="card-tag">ACL</span>
+                    <span class="card-tag">Sécurisation</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab cyber services">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-filter card-main-icon" style="color:var(--accent-blue);"></i>
+                <h3>UTM Squid Proxy</h3>
+                <p class="card-desc">Déploiement d'un proxy Squid comme UTM : filtrage de contenu web, contrôle des accès, journalisation et intégration dans une architecture sécurisée.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Squid</span>
+                    <span class="card-tag">Proxy</span>
+                    <span class="card-tag">UTM</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab cyber admin">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-terminal card-main-icon" style="color:var(--accent-green);"></i>
+                <h3>SSH (accès distant sécurisé)</h3>
+                <p class="card-desc">Configuration et sécurisation de SSH : authentification par clé publique, durcissement du daemon, tunnels SSH et gestion des accès distants.</p>
+                <div class="card-tags">
+                    <span class="card-tag">SSH</span>
+                    <span class="card-tag">Clé publique</span>
+                    <span class="card-tag">Sécurité</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <!-- SUPERVISION -->
+            <div class="project-card" data-cats="lab supervision">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-chart-bar card-main-icon" style="color:var(--accent-green);"></i>
+                <h3>Zabbix (supervision réseau/système)</h3>
+                <p class="card-desc">Déploiement de Zabbix pour la supervision d'infrastructures réseau et système : agents, templates, déclencheurs et tableaux de bord.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Zabbix</span>
+                    <span class="card-tag">SNMP</span>
+                    <span class="card-tag">Supervision</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab supervision">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-file-alt card-main-icon" style="color:var(--accent-cyan);"></i>
+                <h3>Analyse de logs (journalisation)</h3>
+                <p class="card-desc">Collecte et analyse des journaux système et réseau : centralisation avec rsyslog, analyse des événements et détection d'anomalies.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Logs</span>
+                    <span class="card-tag">rsyslog</span>
+                    <span class="card-tag">Journalisation</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <div class="project-card" data-cats="lab supervision admin">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-save card-main-icon" style="color:var(--accent-blue);"></i>
+                <h3>Windows Backup (sauvegarde Windows Server)</h3>
+                <p class="card-desc">Mise en place de sauvegardes Windows Server avec Windows Server Backup : planification, sauvegardes complètes/incrémentielles et procédures de restauration.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Windows Server</span>
+                    <span class="card-tag">Backup</span>
+                    <span class="card-tag">Restauration</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
+            </div>
+
+            <!-- VIRTUALISATION -->
+            <div class="project-card" data-cats="lab virt">
+                <span class="ctx-badge ctx-lab">Lab & Cours</span>
+                <i class="fas fa-cubes card-main-icon" style="color:var(--accent-purple);"></i>
+                <h3>Installation d'un système virtualisé (VirtualBox/VMware)</h3>
+                <p class="card-desc">Création et configuration de machines virtuelles avec VirtualBox et VMware : installation d'OS, configuration réseau, snapshots et gestion des ressources.</p>
+                <div class="card-tags">
+                    <span class="card-tag">VirtualBox</span>
+                    <span class="card-tag">VMware</span>
+                    <span class="card-tag">VM</span>
+                </div>
+                <button class="btn-doc btn-doc-confidentiel" disabled>
+                    <i class="fas fa-lock"></i> Environnement confidentiel
+                </button>
             </div>
 
         </div><!-- end grid -->
@@ -1699,6 +2378,20 @@ srv IN A   192.168.1.20</pre></div>
                     : cards.filter(c => c.dataset.cats && c.dataset.cats.split(' ').includes(cat)).length;
                 el.textContent = n;
             });
+        }
+
+        function toggleFicheE5() {
+            const viewer = document.getElementById('fiche-e5-viewer');
+            const arrow  = document.getElementById('e5-fiche-arrow');
+            const frame  = document.getElementById('fiche-e5-frame');
+            const isOpen = viewer.classList.contains('open');
+            viewer.classList.toggle('open');
+            arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+            arrow.style.transition = 'transform 0.3s ease';
+            if (!isOpen && frame.src === 'about:blank') {
+                frame.src = 'annexes/fiche-e5-synthese.pdf';
+            }
+            if (!isOpen) setTimeout(() => viewer.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
         }
 
         function applyFilters() {

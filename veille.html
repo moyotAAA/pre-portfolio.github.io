@@ -38,6 +38,12 @@
             flex-wrap: nowrap;
             pointer-events: all;
         }
+        /* Light mode — pill subnav */
+        body.light-mode .veille-subnav {
+            background: rgba(245, 245, 252, 0.94);
+            border-color: rgba(0,0,0,0.09);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.04);
+        }
 
         .subnav-link {
             text-decoration: none;
@@ -1011,6 +1017,97 @@
             .html-graphic-full { grid-column: 1; }
         }
 
+        /* ---- Schéma ZTNA — diagramme cycle authentification ---- */
+        .ztna-diagram {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin: 20px 0 8px;
+            overflow-x: auto;
+            padding-bottom: 6px;
+        }
+        .ztna-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            min-width: 110px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .ztna-node-main { min-width: 140px; }
+        .ztna-node-icon {
+            width: 54px; height: 54px;
+            border-radius: 16px;
+            border: 1px solid;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem;
+        }
+        .ztna-node-label {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .ztna-node-sub {
+            font-size: 0.68rem;
+            color: var(--text-tertiary);
+            line-height: 1.4;
+            max-width: 110px;
+        }
+        .ztna-checks {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            margin-top: 4px;
+        }
+        .ztna-checks span {
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+        }
+        .ztna-arrow-wrap {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            min-width: 60px;
+            padding-bottom: 28px;
+        }
+        .ztna-arrow-line {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--border-glass), rgba(100,210,255,0.35), var(--border-glass));
+        }
+        .ztna-arrow-head {
+            width: 0; height: 0;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 8px solid rgba(100,210,255,0.4);
+            align-self: flex-end;
+            margin-top: -14px;
+            margin-right: -1px;
+        }
+        .ztna-arrow-tag {
+            font-size: 0.62rem;
+            color: var(--text-tertiary);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        @media (max-width: 700px) {
+            .ztna-diagram { flex-direction: column; align-items: stretch; }
+            .ztna-arrow-wrap { flex-direction: row; min-width: unset; padding-bottom: 0; padding-right: 0; }
+            .ztna-arrow-line { width: 2px; height: 30px; background: linear-gradient(180deg, var(--border-glass), rgba(100,210,255,0.35)); flex-shrink: 0; }
+            .ztna-arrow-head { border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 8px solid rgba(100,210,255,0.4); border-bottom: none; align-self: center; margin: -12px 0 0; }
+            .ztna-node { flex-direction: row; text-align: left; gap: 14px; min-width: unset; }
+            .ztna-node-sub, .ztna-node-label { text-align: left; }
+        }
+
         /* ---- Amélioration typographique globale veille ---- */
         .veille-section .card p,
         .veille-section p {
@@ -1117,7 +1214,7 @@
             <div class="nav-item"><a href="competences.html">Compétences</a></div>
             <div class="nav-item"><a href="projets.html">Projets</a></div>
             <div class="nav-item active-page"><a href="veille.html">Veille</a></div>
-            <div class="nav-item"><a href="#contact">Contact</a></div>
+            <div class="nav-item"><a href="contact.html">Contact</a></div>
         </div>
         <div class="nav-actions">
             <button class="theme-toggle-btn" id="theme-toggle"><i class="fas fa-moon"></i></button>
@@ -1141,16 +1238,16 @@
             <span><i class="fas fa-shield-alt"></i> Option SISR</span>
             <span><i class="fas fa-calendar-alt"></i> 2025-2026</span>
         </div>
-    </header>
 
-    <!-- ===== BOUTON CONSULTER + VISIONNEUSE PDF ===== -->
-    <div class="veille-cta-bar">
-        <button class="veille-cta-btn" id="veille-pdf-toggle" onclick="toggleVeillePDF()">
-            <i class="fas fa-file-pdf"></i>
-            Consulter ma veille (PDF)
-            <i class="fas fa-chevron-down" id="veille-pdf-arrow"></i>
-        </button>
-    </div>
+        <!-- CTA dans le hero -->
+        <div class="veille-cta-bar" style="padding: 28px 20px 0;">
+            <button class="veille-cta-btn" id="veille-pdf-toggle" onclick="toggleVeillePDF()">
+                <i class="fas fa-file-pdf"></i>
+                Consulter ma veille (PDF)
+                <i class="fas fa-chevron-down" id="veille-pdf-arrow"></i>
+            </button>
+        </div>
+    </header>
 
     <!-- Visionneuse PDF inline -->
     <div class="veille-pdf-viewer" id="veille-pdf-viewer">
@@ -1482,13 +1579,71 @@
                 </div>
             </div>
 
-            <!-- Graphique 3 — Placeholder (pleine largeur, réservé) -->
-            <div class="html-graphic-placeholder html-graphic-full" id="graphic-3">
-                <div class="hgp-inner">
-                    <i class="fas fa-sitemap"></i>
-                    <span class="hgp-label">Schéma 3</span>
-                    <span class="hgp-hint">Zone réservée pleine largeur — à remplacer par votre schéma HTML</span>
+            <!-- Schéma 3 — Cycle d'authentification ZTNA (pleine largeur) -->
+            <div class="html-graphic-card html-graphic-full" id="graphic-3">
+                <h3 class="hgc-title">Cycle d'authentification ZTNA — Architecture "Inside-Out"</h3>
+                <p class="hgc-sub">L'application n'est jamais exposée directement sur Internet — le connecteur initie une connexion sortante vers le broker</p>
+
+                <div class="ztna-diagram">
+                    <div class="ztna-node">
+                        <div class="ztna-node-icon" style="background:rgba(100,210,255,0.12);border-color:rgba(100,210,255,0.3);color:var(--accent-cyan);">
+                            <i class="fas fa-user-lock"></i>
+                        </div>
+                        <span class="ztna-node-label">Utilisateur</span>
+                        <span class="ztna-node-sub">Terminal quelconque</span>
+                    </div>
+
+                    <div class="ztna-arrow-wrap">
+                        <div class="ztna-arrow-line"></div>
+                        <div class="ztna-arrow-tag"><i class="fas fa-lock"></i> TLS mutuel</div>
+                        <div class="ztna-arrow-head"></div>
+                    </div>
+
+                    <div class="ztna-node ztna-node-main">
+                        <div class="ztna-node-icon" style="background:rgba(191,90,242,0.12);border-color:rgba(191,90,242,0.3);color:var(--accent-purple);">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <span class="ztna-node-label">Broker ZTNA</span>
+                        <span class="ztna-node-sub">Vérification identité + contexte</span>
+                        <div class="ztna-checks">
+                            <span><i class="fas fa-check-circle" style="color:var(--accent-green);"></i> Identité MFA</span>
+                            <span><i class="fas fa-check-circle" style="color:var(--accent-green);"></i> Posture terminal</span>
+                            <span><i class="fas fa-check-circle" style="color:var(--accent-green);"></i> Politique d'accès</span>
+                        </div>
+                    </div>
+
+                    <div class="ztna-arrow-wrap">
+                        <div class="ztna-arrow-line"></div>
+                        <div class="ztna-arrow-tag"><i class="fas fa-arrow-right"></i> Tunnel sortant</div>
+                        <div class="ztna-arrow-head"></div>
+                    </div>
+
+                    <div class="ztna-node">
+                        <div class="ztna-node-icon" style="background:rgba(52,199,89,0.12);border-color:rgba(52,199,89,0.3);color:var(--accent-green);">
+                            <i class="fas fa-plug"></i>
+                        </div>
+                        <span class="ztna-node-label">Connecteur</span>
+                        <span class="ztna-node-sub">Connexion sortante uniquement</span>
+                    </div>
+
+                    <div class="ztna-arrow-wrap">
+                        <div class="ztna-arrow-line"></div>
+                        <div class="ztna-arrow-tag"><i class="fas fa-eye-slash"></i> Accès privé</div>
+                        <div class="ztna-arrow-head"></div>
+                    </div>
+
+                    <div class="ztna-node">
+                        <div class="ztna-node-icon" style="background:rgba(255,214,10,0.12);border-color:rgba(255,214,10,0.3);color:var(--accent-yellow);">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <span class="ztna-node-label">Application</span>
+                        <span class="ztna-node-sub">Invisible sur Internet</span>
+                    </div>
                 </div>
+
+                <p style="font-size:0.75rem;color:var(--text-tertiary);text-align:right;margin:16px 0 0;">
+                    Source : NIST SP 800-207 · Architecture ZTNA Gartner 2024
+                </p>
             </div>
 
         </div>

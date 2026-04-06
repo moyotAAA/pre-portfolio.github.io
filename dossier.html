@@ -13,97 +13,164 @@
         ============================================ */
 
         /* ---- Cartes documents premium ---- */
+        .doc-section-overline {
+            font-size: 0.68rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-tertiary);
+            margin-bottom: 6px;
+        }
         .doc-premium-grid {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 20px;
         }
         .doc-premium-card {
             background: var(--card-glass);
             backdrop-filter: blur(25px);
             border: 1px solid var(--border-glass);
             border-radius: 20px;
-            padding: 24px 28px;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+        .doc-premium-card:hover {
+            border-color: rgba(100,210,255,0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 16px 48px var(--shadow-color);
+        }
+
+        /* Zone de prévisualisation */
+        .doc-preview-zone {
+            position: relative;
+            height: 160px;
+            background: var(--tag-bg);
+            border-bottom: 1px solid var(--border-glass);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 22px 28px;
+            overflow: hidden;
+        }
+        .doc-preview-lines {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .doc-preview-line {
+            height: 8px;
+            background: var(--border-glass);
+            border-radius: 4px;
+            opacity: 0.6;
+        }
+        .doc-preview-line:nth-child(1) { width: 60%; }
+        .doc-preview-line:nth-child(2) { width: 90%; }
+        .doc-preview-line:nth-child(3) { width: 75%; }
+        .doc-preview-line:nth-child(4) { width: 85%; }
+        .doc-preview-line:nth-child(5) { width: 50%; }
+        .doc-preview-line:nth-child(6) { width: 70%; }
+        .doc-preview-badge {
+            position: absolute;
+            top: 14px; right: 16px;
+            background: rgba(255,59,48,0.12);
+            border: 1px solid rgba(255,59,48,0.3);
+            color: #FF453A;
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 3px 9px;
+            border-radius: 6px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .doc-preview-icon {
+            position: absolute;
+            bottom: 14px; right: 18px;
+            font-size: 2.5rem;
+            opacity: 0.07;
+        }
+
+        /* Bas de la carte */
+        .doc-premium-body {
+            padding: 20px 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 24px;
-            transition: all 0.28s ease;
-        }
-        .doc-premium-card:hover {
-            border-color: rgba(100,210,255,0.2);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px var(--shadow-color);
+            gap: 20px;
         }
         .doc-premium-left {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 16px;
             flex: 1;
+            min-width: 0;
         }
         .doc-premium-icon {
-            width: 52px; height: 52px;
-            border-radius: 14px;
+            width: 48px; height: 48px;
+            border-radius: 13px;
             border: 1px solid;
             display: flex; align-items: center; justify-content: center;
-            font-size: 1.3rem; flex-shrink: 0;
+            font-size: 1.2rem; flex-shrink: 0;
         }
-        .doc-premium-type {
+        .doc-premium-meta {
             font-size: 0.68rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-weight: 600;
             color: var(--text-tertiary);
-            margin-bottom: 4px;
+            margin-bottom: 3px;
+            letter-spacing: 0.3px;
         }
         .doc-premium-title {
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 800;
             color: var(--text-primary);
-            margin: 0 0 6px;
+            margin: 0 0 3px;
         }
         .doc-premium-desc {
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             color: var(--text-secondary);
-            line-height: 1.55;
+            line-height: 1.5;
             margin: 0;
-            max-width: 520px;
         }
         .doc-premium-actions {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             flex-shrink: 0;
         }
-        .doc-btn-visualize, .doc-btn-download {
+        /* Bouton primaire plein : Télécharger */
+        .doc-btn-download {
             display: inline-flex; align-items: center; gap: 7px;
             padding: 10px 18px; border-radius: 12px;
             font-size: 0.82rem; font-weight: 700;
             cursor: pointer; transition: all 0.22s ease;
             font-family: inherit; text-decoration: none;
-            border: 1px solid var(--border-glass);
-        }
-        .doc-btn-visualize {
-            background: rgba(255,255,255,0.05);
-            color: var(--text-secondary);
-        }
-        .doc-btn-visualize:hover {
-            background: rgba(100,210,255,0.08);
-            border-color: var(--accent-cyan);
-            color: var(--accent-cyan);
-        }
-        .doc-btn-download {
-            background: rgba(100,210,255,0.08);
-            color: var(--accent-cyan);
-            border-color: rgba(100,210,255,0.25);
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border: 1px solid transparent;
         }
         .doc-btn-download:hover {
-            background: rgba(100,210,255,0.16);
-            border-color: var(--accent-cyan);
+            opacity: 0.88;
+            transform: translateY(-1px);
+        }
+        /* Bouton fantôme : Ouvrir */
+        .doc-btn-open {
+            display: inline-flex; align-items: center; gap: 7px;
+            padding: 10px 18px; border-radius: 12px;
+            font-size: 0.82rem; font-weight: 700;
+            cursor: pointer; transition: all 0.22s ease;
+            font-family: inherit; text-decoration: none;
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-glass);
+        }
+        .doc-btn-open:hover {
+            border-color: rgba(100,210,255,0.4);
+            color: var(--accent-cyan);
+            background: rgba(100,210,255,0.05);
         }
         @media (max-width: 680px) {
-            .doc-premium-card { flex-direction: column; align-items: flex-start; }
+            .doc-premium-body { flex-direction: column; align-items: flex-start; }
             .doc-premium-actions { width: 100%; }
-            .doc-btn-visualize, .doc-btn-download { flex: 1; justify-content: center; }
+            .doc-btn-download, .doc-btn-open { flex: 1; justify-content: center; }
         }
 
         /* Controls barre de recherche + filtres */
@@ -416,7 +483,7 @@
             <div class="nav-item"><a href="competences.html">Compétences</a></div>
             <div class="nav-item"><a href="projets.html">Projets</a></div>
             <div class="nav-item"><a href="veille.html">Veille</a></div>
-            <div class="nav-item"><a href="#contact">Contact</a></div>
+            <div class="nav-item"><a href="contact.html">Contact</a></div>
         </div>
         <div class="nav-actions">
             <button class="theme-toggle-btn" id="theme-toggle"><i class="fas fa-moon"></i></button>
@@ -429,7 +496,8 @@
     <!-- ===== DOCUMENTS ===== -->
     <section id="documents" class="container">
         <div class="section-header">
-            <h2>Documents Officiels.</h2>
+            <p class="doc-section-overline">Documents Officiels</p>
+            <h2>CV &amp; Lettre de motivation.</h2>
             <p>Aperçu et téléchargement.</p>
         </div>
 
@@ -437,45 +505,77 @@
 
             <!-- CV -->
             <div class="doc-premium-card">
-                <div class="doc-premium-left">
-                    <div class="doc-premium-icon" style="background:rgba(100,210,255,0.1); color:var(--accent-cyan); border-color:rgba(100,210,255,0.25);">
-                        <i class="fas fa-id-card"></i>
+                <!-- Zone de prévisualisation -->
+                <div class="doc-preview-zone">
+                    <div class="doc-preview-lines">
+                        <div class="doc-preview-line"></div>
+                        <div class="doc-preview-line"></div>
+                        <div class="doc-preview-line"></div>
+                        <div class="doc-preview-line"></div>
+                        <div class="doc-preview-line"></div>
+                        <div class="doc-preview-line"></div>
                     </div>
-                    <div>
-                        <div class="doc-premium-type">PDF · Document officiel</div>
-                        <h3 class="doc-premium-title">Curriculum Vitae</h3>
-                        <p class="doc-premium-desc">CV mis à jour — formation BTS SIO SISR, stages chez Outscale et Fnac Darty, compétences techniques réseaux &amp; systèmes.</p>
-                    </div>
+                    <span class="doc-preview-badge">PDF</span>
+                    <i class="fas fa-id-card doc-preview-icon"></i>
                 </div>
-                <div class="doc-premium-actions">
-                    <button class="doc-btn-visualize" onclick="openModal(event, 'CV')">
-                        <i class="fas fa-eye"></i> Visualiser
-                    </button>
-                    <a href="annexes/CV-TOUIL Ayoub-9.pdf" download class="doc-btn-download">
-                        <i class="fas fa-download"></i> Télécharger
-                    </a>
+                <!-- Corps -->
+                <div class="doc-premium-body">
+                    <div class="doc-premium-left">
+                        <div class="doc-premium-icon" style="background:rgba(100,210,255,0.1); color:var(--accent-cyan); border-color:rgba(100,210,255,0.25);">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <div>
+                            <div class="doc-premium-meta">Mis à jour 2025 · PDF</div>
+                            <h3 class="doc-premium-title">Curriculum Vitae</h3>
+                            <p class="doc-premium-desc">Formation BTS SIO SISR, stages chez Outscale et Fnac Darty, compétences réseaux &amp; systèmes.</p>
+                        </div>
+                    </div>
+                    <div class="doc-premium-actions">
+                        <a href="annexes/CV-TOUIL Ayoub-9.pdf" download class="doc-btn-download">
+                            <i class="fas fa-download"></i> Télécharger
+                        </a>
+                        <button class="doc-btn-open" onclick="openModal(event, 'CV')">
+                            <i class="fas fa-arrow-up-right-from-square"></i> Ouvrir
+                        </button>
+                    </div>
                 </div>
             </div>
 
             <!-- LM -->
             <div class="doc-premium-card">
-                <div class="doc-premium-left">
-                    <div class="doc-premium-icon" style="background:rgba(191,90,242,0.1); color:var(--accent-purple); border-color:rgba(191,90,242,0.25);">
-                        <i class="fas fa-envelope-open-text"></i>
+                <!-- Zone de prévisualisation -->
+                <div class="doc-preview-zone">
+                    <div class="doc-preview-lines">
+                        <div class="doc-preview-line"></div>
+                        <div class="doc-preview-line"></div>
+                        <div class="doc-preview-line"></div>
+                        <div class="doc-preview-line"></div>
+                        <div class="doc-preview-line"></div>
+                        <div class="doc-preview-line"></div>
                     </div>
-                    <div>
-                        <div class="doc-premium-type">PDF · Document officiel</div>
-                        <h3 class="doc-premium-title">Lettre de Motivation</h3>
-                        <p class="doc-premium-desc">Lettre de motivation pour une alternance — contexte EFREI Paris, motivation pour les réseaux, la sécurité et l'infrastructure cloud.</p>
-                    </div>
+                    <span class="doc-preview-badge">PDF</span>
+                    <i class="fas fa-envelope-open-text doc-preview-icon"></i>
                 </div>
-                <div class="doc-premium-actions">
-                    <button class="doc-btn-visualize" onclick="openModal(event, 'LM')">
-                        <i class="fas fa-eye"></i> Visualiser
-                    </button>
-                    <a href="annexes/LM-M.TOUIL Ayoub-1.pdf" download class="doc-btn-download">
-                        <i class="fas fa-download"></i> Télécharger
-                    </a>
+                <!-- Corps -->
+                <div class="doc-premium-body">
+                    <div class="doc-premium-left">
+                        <div class="doc-premium-icon" style="background:rgba(191,90,242,0.1); color:var(--accent-purple); border-color:rgba(191,90,242,0.25);">
+                            <i class="fas fa-envelope-open-text"></i>
+                        </div>
+                        <div>
+                            <div class="doc-premium-meta">Mis à jour 2025 · PDF</div>
+                            <h3 class="doc-premium-title">Lettre de Motivation</h3>
+                            <p class="doc-premium-desc">Candidature alternance EFREI Paris — réseaux, sécurité et infrastructure cloud.</p>
+                        </div>
+                    </div>
+                    <div class="doc-premium-actions">
+                        <a href="annexes/LM-M.TOUIL Ayoub-1.pdf" download class="doc-btn-download">
+                            <i class="fas fa-download"></i> Télécharger
+                        </a>
+                        <button class="doc-btn-open" onclick="openModal(event, 'LM')">
+                            <i class="fas fa-arrow-up-right-from-square"></i> Ouvrir
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -551,7 +651,7 @@
                             </div>
                             <div class="exp-info">
                                 <span class="exp-badge exp-badge-stage">Stage</span>
-                                <span class="exp-date">Juillet – Août 2025</span>
+                                <span class="exp-date">Février – Mars 2026</span>
                             </div>
                         </div>
                         <h3 class="exp-company">Outscale <span style="color:var(--text-secondary); font-size:1rem; font-weight:500;">(3DS Outscale)</span></h3>
