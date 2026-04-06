@@ -326,8 +326,6 @@
 </head>
 <body>
 
-    <button class="theme-toggle-btn" id="theme-toggle"><i class="fas fa-moon"></i></button>
-
     <div class="liquid-bg">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
@@ -335,22 +333,30 @@
     </div>
 
     <nav>
-        <div class="nav-brand">
-            <span class="nav-brand-last">TOUIL</span>
-            <span class="nav-brand-first">Ayoub</span>
-        </div>
-        <div class="nav-item"><a href="index.html">Accueil</a></div>
-        <div class="nav-item dropdown">
-            <a href="dossier.html">Mon Dossier <i class="fas fa-caret-down" style="font-size:0.8rem; margin-left:5px;"></i></a>
-            <div class="dropdown-menu">
-                <a href="dossier.html#documents"><i class="fas fa-file-alt"></i> CV</a>
-                <a href="dossier.html#documents"><i class="fas fa-envelope-open-text"></i> Lettre de Motivation</a>
+        <a class="nav-brand" href="index.html">
+            <span class="nb-first">Ayoub</span><span class="nb-last">TOUIL</span>
+        </a>
+        <div class="nav-links">
+            <div class="nav-item"><a href="index.html">Accueil</a></div>
+            <div class="nav-item"><a href="competences.html">Compétences</a></div>
+            <div class="nav-item dropdown">
+                <a href="dossier.html">Mon Dossier <i class="fas fa-caret-down" style="font-size:0.8rem;margin-left:4px;"></i></a>
+                <div class="dropdown-menu">
+                    <a href="dossier.html#documents"><i class="fas fa-file-alt"></i> CV</a>
+                    <a href="dossier.html#documents"><i class="fas fa-envelope-open-text"></i> Lettre de Motivation</a>
+                </div>
             </div>
+            <div class="nav-item active-page"><a href="projets.html">Projets</a></div>
+            <div class="nav-item"><a href="veille.html">Veille</a></div>
+            <div class="nav-item"><a href="formations.html">Formations</a></div>
+            <div class="nav-item"><a href="#contact">Contact</a></div>
         </div>
-        <div class="nav-item"><a href="projets.html">Projets</a></div>
-        <div class="nav-item"><a href="veille.html">Veille</a></div>
-        <div class="nav-item"><a href="formations.html">Formations</a></div>
-        <div class="nav-item"><a href="#contact">Contact</a></div>
+        <div class="nav-actions">
+            <button class="theme-toggle-btn" id="theme-toggle"><i class="fas fa-moon"></i></button>
+            <a href="annexes/CV-TOUIL Ayoub-9.pdf" download class="nav-cv-btn">
+                <i class="fas fa-download"></i> CV
+            </a>
+        </div>
     </nav>
 
     <section id="projets-section" class="container">

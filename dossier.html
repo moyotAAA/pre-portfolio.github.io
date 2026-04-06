@@ -3,14 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Dossier | Ayoub LeBoss</title>
+    <title>Mon Dossier | Ayoub Touil</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* ============================================
+           DOSSIER PAGE — STYLES SPÉCIFIQUES
+        ============================================ */
+
+        /* Controls barre de recherche + filtres */
+        .exp-controls {
+            display: flex; flex-direction: column; gap: 16px; margin-bottom: 36px;
+        }
+        .exp-search-wrap {
+            position: relative; display: flex; align-items: center;
+        }
+        .exp-search-icon {
+            position: absolute; left: 18px; color: var(--text-tertiary); font-size: 0.9rem; pointer-events: none;
+        }
+        .exp-search {
+            width: 100%; padding: 14px 50px 14px 44px;
+            background: var(--card-glass); border: 1px solid var(--border-glass);
+            border-radius: 50px; color: var(--text-primary); font-size: 0.9rem;
+            outline: none; transition: all 0.3s ease; font-family: inherit;
+            backdrop-filter: blur(15px);
+        }
+        .exp-search::placeholder { color: var(--text-tertiary); }
+        .exp-search:focus { border-color: var(--accent-cyan); box-shadow: 0 0 0 3px rgba(100,210,255,0.1); }
+        .exp-search-clear {
+            position: absolute; right: 16px;
+            background: none; border: none; color: var(--text-tertiary);
+            cursor: pointer; font-size: 0.85rem; padding: 4px; transition: color 0.2s;
+        }
+        .exp-search-clear:hover { color: var(--text-primary); }
+        .exp-filters {
+            display: flex; gap: 10px; flex-wrap: wrap;
+        }
+        .exp-filter-btn {
+            padding: 7px 20px; border-radius: 30px; font-size: 0.82rem; font-weight: 600;
+            border: 1px solid var(--border-glass); background: var(--tag-bg);
+            color: var(--text-secondary); cursor: pointer; transition: all 0.25s ease;
+            font-family: inherit;
+        }
+        .exp-filter-btn:hover { border-color: var(--accent-cyan); color: var(--text-primary); }
+        .exp-filter-btn.active { background: var(--accent-cyan); color: #000; border-color: var(--accent-cyan); }
+
+        /* Grille expériences */
+        .exp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+        }
+        .exp-card {
+            background: var(--card-glass); backdrop-filter: blur(25px);
+            border: 1px solid var(--border-glass); border-radius: 24px; padding: 28px;
+            display: flex; flex-direction: column; gap: 14px;
+            transition: all 0.35s ease;
+        }
+        .exp-card:hover { transform: translateY(-4px); border-color: rgba(100,210,255,0.2); box-shadow: 0 20px 40px var(--shadow-color); }
+        .exp-card.hidden { display: none; }
+        .exp-card-header { display: flex; align-items: center; gap: 14px; }
+        .exp-icon {
+            width: 46px; height: 46px; border-radius: 14px; border: 1px solid;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; flex-shrink: 0;
+        }
+        .exp-info { display: flex; flex-direction: column; gap: 3px; }
+        .exp-badge {
+            font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+            padding: 3px 10px; border-radius: 20px; width: fit-content;
+        }
+        .exp-badge-stage { background: rgba(255,214,10,0.12); color: var(--accent-yellow); border: 1px solid rgba(255,214,10,0.3); }
+        .exp-badge-pro { background: rgba(48,209,88,0.1); color: var(--accent-green); border: 1px solid rgba(48,209,88,0.3); }
+        .exp-badge-benevolat { background: rgba(10,132,255,0.1); color: var(--accent-blue); border: 1px solid rgba(10,132,255,0.3); }
+        .exp-date { font-size: 0.78rem; color: var(--text-tertiary); font-weight: 500; }
+        .exp-company { font-size: 1.4rem; font-weight: 800; color: var(--text-primary); margin: 0; }
+        .exp-role { font-size: 0.88rem; color: var(--accent-cyan); font-weight: 600; margin: 0; }
+        .exp-missions { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+        .exp-missions li { font-size: 0.86rem; color: var(--text-secondary); display: flex; align-items: flex-start; gap: 8px; line-height: 1.5; }
+        .exp-missions li::before { content: '›'; color: var(--accent-cyan); font-weight: 700; flex-shrink: 0; }
+        .exp-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+        .exp-tags .tech-tag { margin: 0; font-size: 0.72rem; padding: 4px 11px; }
+        .exp-card-footer { display: flex; gap: 10px; flex-wrap: wrap; margin-top: auto; padding-top: 4px; border-top: 1px solid var(--border-glass); }
+        .exp-more-btn, .exp-dossier-btn {
+            flex: 1; min-width: 140px;
+            padding: 9px 14px; border-radius: 14px; font-size: 0.8rem; font-weight: 600;
+            cursor: pointer; transition: all 0.25s ease; border: 1px solid var(--border-glass);
+            display: flex; align-items: center; justify-content: center; gap: 7px;
+            font-family: inherit;
+        }
+        .exp-more-btn { background: rgba(255,255,255,0.04); color: var(--text-secondary); }
+        .exp-more-btn:hover { background: rgba(100,210,255,0.08); border-color: var(--accent-cyan); color: var(--text-primary); }
+        .exp-dossier-btn { background: rgba(255,214,10,0.06); color: var(--accent-yellow); border-color: rgba(255,214,10,0.2); }
+        .exp-dossier-btn:hover { background: rgba(255,214,10,0.12); }
+        .exp-empty { display: none; text-align: center; padding: 60px 20px; color: var(--text-tertiary); }
+        .exp-empty i { font-size: 3rem; margin-bottom: 16px; display: block; }
+
+        @media (max-width: 768px) {
+            .exp-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-
-    <button class="theme-toggle-btn" id="theme-toggle"><i class="fas fa-moon"></i></button>
 
     <div class="liquid-bg">
         <div class="blob blob-1"></div>
@@ -19,24 +114,33 @@
     </div>
 
     <nav>
-        <div class="nav-brand">
-            <span class="nav-brand-last">TOUIL</span>
-            <span class="nav-brand-first">Ayoub</span>
-        </div>
-        <div class="nav-item"><a href="index.html">Accueil</a></div>
-        <div class="nav-item dropdown">
-            <a href="dossier.html">Mon Dossier <i class="fas fa-caret-down" style="font-size:0.8rem; margin-left:5px;"></i></a>
-            <div class="dropdown-menu">
-                <a href="#documents"><i class="fas fa-file-alt"></i> CV</a>
-                <a href="#documents"><i class="fas fa-envelope-open-text"></i> Lettre de Motivation</a>
+        <a class="nav-brand" href="index.html">
+            <span class="nb-first">Ayoub</span><span class="nb-last">TOUIL</span>
+        </a>
+        <div class="nav-links">
+            <div class="nav-item"><a href="index.html">Accueil</a></div>
+            <div class="nav-item"><a href="competences.html">Compétences</a></div>
+            <div class="nav-item active-page dropdown">
+                <a href="dossier.html">Mon Dossier <i class="fas fa-caret-down" style="font-size:0.8rem;margin-left:4px;"></i></a>
+                <div class="dropdown-menu">
+                    <a href="#documents"><i class="fas fa-file-alt"></i> CV</a>
+                    <a href="#documents"><i class="fas fa-envelope-open-text"></i> Lettre de Motivation</a>
+                </div>
             </div>
+            <div class="nav-item"><a href="projets.html">Projets</a></div>
+            <div class="nav-item"><a href="veille.html">Veille</a></div>
+            <div class="nav-item"><a href="formations.html">Formations</a></div>
+            <div class="nav-item"><a href="#contact">Contact</a></div>
         </div>
-        <div class="nav-item"><a href="projets.html">Projets</a></div>
-        <div class="nav-item"><a href="veille.html">Veille</a></div>
-        <div class="nav-item"><a href="formations.html">Formations</a></div>
-        <div class="nav-item"><a href="#contact">Contact</a></div>
+        <div class="nav-actions">
+            <button class="theme-toggle-btn" id="theme-toggle"><i class="fas fa-moon"></i></button>
+            <a href="annexes/CV-TOUIL Ayoub-9.pdf" download class="nav-cv-btn">
+                <i class="fas fa-download"></i> CV
+            </a>
+        </div>
     </nav>
 
+    <!-- ===== DOCUMENTS ===== -->
     <section id="documents" class="container">
         <div class="section-header">
             <h2>Documents Officiels.</h2>
@@ -72,118 +176,199 @@
         </div>
     </section>
 
+    <!-- ===== EXPÉRIENCES ===== -->
     <section id="cv-section" class="container">
         <div class="section-header">
             <h2>Expériences.</h2>
             <p>Mon parcours sur le terrain.</p>
         </div>
 
-        <div class="bento-grid">
+        <!-- Contrôles recherche + filtres -->
+        <div class="exp-controls">
+            <div class="exp-search-wrap">
+                <i class="fas fa-search exp-search-icon"></i>
+                <input type="text" id="exp-search" class="exp-search" placeholder="Rechercher une expérience, technologie, mission…" autocomplete="off">
+                <button class="exp-search-clear" id="exp-search-clear" style="display:none;" aria-label="Effacer"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="exp-filters">
+                <button class="exp-filter-btn active" data-filter="all">Tous</button>
+                <button class="exp-filter-btn" data-filter="stage">Stages</button>
+                <button class="exp-filter-btn" data-filter="pro">Expériences pro</button>
+                <button class="exp-filter-btn" data-filter="benevolat">Bénévolat</button>
+            </div>
+        </div>
 
-            <div class="span-2 row-2 flip-card-container">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <div>
-                            <div style="display:flex; justify-content:space-between; align-items:start;">
-                                <span class="card-date" style="color: var(--accent-purple);">Juillet 2025 - Août 2025</span>
-                                <i class="fas fa-cloud" style="font-size:1.5rem; color:var(--accent-purple);"></i>
-                            </div>
-                            <h3 style="font-size: 2rem; margin-top:10px;">OUTSCALE</h3>
-                            <h4>Stage — Infrastructure Cloud</h4>
-                            <ul class="skill-list" style="margin-top: 20px;">
-                                <li><i class="fas fa-server" style="color:var(--accent-purple);"></i>Administration Cloud & VM</li>
-                                <li><i class="fas fa-code" style="color:var(--accent-purple);"></i>Automatisation (Terraform / scripts)</li>
-                                <li><i class="fas fa-shield-alt" style="color:var(--accent-purple);"></i>Monitoring & Sécurité</li>
-                            </ul>
-                        </div>
-                        <div style="margin-top: 20px;">
-                             <p style="font-size:0.8rem; opacity:0.7; margin-bottom:10px;"><i class="fas fa-mouse-pointer"></i> Survolez pour voir le dossier</p>
-                             <span class="tech-tag">Cloud</span>
-                             <span class="tech-tag">Automatisation</span>
-                        </div>
+        <!-- Grille expériences -->
+        <div class="exp-grid">
+
+            <!-- Outscale -->
+            <div class="exp-card" data-category="stage" data-keywords="outscale cloud infrastructure terraform monitoring sécurité vm dassault systèmes">
+                <div class="exp-card-header">
+                    <div class="exp-icon" style="background:rgba(191,90,242,0.1); border-color:rgba(191,90,242,0.25); color:var(--accent-purple);">
+                        <i class="fas fa-cloud"></i>
                     </div>
-                    <div class="flip-card-back">
-                        <h3 style="color:white; margin-bottom:5px;">Dossier de Stage</h3>
-                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.7);">Accédez aux documents</p>
-                        <div class="stage-options-grid">
-                            <div class="stage-btn" onclick="openInfoModal('outs_photos')">
-                                <i class="fas fa-images"></i><span>Photos</span>
-                            </div>
-                            <div class="stage-btn" onclick="openInfoModal('outs_rapport')">
-                                <i class="fas fa-file-pdf"></i><span>Rapport</span>
-                            </div>
-                            <div class="stage-btn" onclick="openInfoModal('outs_competences')">
-                                <i class="fas fa-check-double"></i><span>Compétences</span>
-                            </div>
-                            <div class="stage-btn" onclick="openInfoModal('outs_notes')">
-                                <i class="fas fa-sticky-note"></i><span>Notes</span>
-                            </div>
-                        </div>
+                    <div class="exp-info">
+                        <span class="exp-badge exp-badge-stage">Stage</span>
+                        <span class="exp-date">Juillet – Août 2025</span>
                     </div>
                 </div>
-            </div>
-
-            <div class="span-2 row-2 flip-card-container">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <div>
-                            <div style="display:flex; justify-content:space-between; align-items:start;">
-                                <span class="card-date" style="color: var(--accent-yellow);">Juin 2025 - Juillet 2025</span>
-                                <i class="fas fa-store" style="font-size:1.5rem; color:var(--accent-yellow);"></i>
-                            </div>
-                            <h3 style="font-size: 2rem; margin-top:10px;">Fnac Darty (Siège)</h3>
-                            <h4>Technicien Support Informatique</h4>
-                            <ul class="skill-list" style="margin-top: 20px;">
-                                <li><i class="fas fa-ticket-alt" style="color:var(--accent-yellow);"></i>Gestion incidents&nbsp;<b>Ivanti Landesk</b></li>
-                                <li><i class="fas fa-video" style="color:var(--accent-yellow);"></i> Déploiement&nbsp;<b>MTR (Teams Rooms)</b></li>
-                                <li><i class="fas fa-recycle" style="color:var(--accent-yellow);"></i>Reconditionnement parc</li>
-                            </ul>
-                        </div>
-                        <div style="margin-top: 20px;">
-                             <p style="font-size:0.8rem; opacity:0.7; margin-bottom:10px;"><i class="fas fa-mouse-pointer"></i> Survolez pour voir le dossier</p>
-                             <span class="tech-tag">Support N2</span>
-                             <span class="tech-tag">Hardware</span>
-                        </div>
-                    </div>
-                    <div class="flip-card-back">
-                        <h3 style="color:white; margin-bottom:5px;">Dossier de Stage</h3>
-                        <p style="font-size:0.9rem; color:rgba(255,255,255,0.7);">Accédez aux documents</p>
-                        <div class="stage-options-grid">
-                            <div class="stage-btn" onclick="openInfoModal('photos')">
-                                <i class="fas fa-images"></i><span>Photos</span>
-                            </div>
-                            <div class="stage-btn" onclick="openInfoModal('rapport')">
-                                <i class="fas fa-file-pdf"></i><span>Rapport</span>
-                            </div>
-                            <div class="stage-btn" onclick="openInfoModal('competences')">
-                                <i class="fas fa-check-double"></i><span>Compétences</span>
-                            </div>
-                            <div class="stage-btn" onclick="openInfoModal('planning')">
-                                <i class="fas fa-calendar-alt"></i><span>Planning</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card span-4">
-                <span class="card-date">Juin 2024 - Juillet 2024</span>
-                <h3>TD Synnex</h3>
-                <h4>Préparation Matériel</h4>
-                <ul class="skill-list">
-                    <li><i class="fas fa-check-circle" style="color: var(--accent-blue);"></i> Config & Maintenance postes</li>
-                    <li><i class="fas fa-check-circle" style="color: var(--accent-blue);"></i> Contrôle Qualité Logiciel</li>
-                    <li><i class="fas fa-check-circle" style="color: var(--accent-blue);"></i> Logistique</li>
+                <h3 class="exp-company">Outscale <span style="color:var(--text-secondary); font-size:1rem; font-weight:500;">(3DS Outscale)</span></h3>
+                <p class="exp-role">Infrastructure Cloud — Technicien Systèmes</p>
+                <ul class="exp-missions">
+                    <li>Administration de machines virtuelles et gestion d'instantanés cloud souverain</li>
+                    <li>Automatisation de déploiements via Terraform et scripts personnalisés</li>
+                    <li>Monitoring d'infrastructure et renforcement des politiques de sécurité</li>
                 </ul>
+                <div class="exp-tags">
+                    <span class="tech-tag">Cloud</span>
+                    <span class="tech-tag">Terraform</span>
+                    <span class="tech-tag">Monitoring</span>
+                    <span class="tech-tag">Sécurité</span>
+                </div>
+                <div class="exp-card-footer">
+                    <button class="exp-more-btn" onclick="openExpModal('outscale')">
+                        <i class="fas fa-building"></i> En savoir plus sur l'entreprise
+                    </button>
+                    <button class="exp-dossier-btn" onclick="openInfoModal('outs_rapport')">
+                        <i class="fas fa-folder-open"></i> Dossier de stage
+                    </button>
+                </div>
             </div>
 
-            <div class="card span-2 assos-card">
-                <span class="card-date">Depuis 2023</span>
-                <h3>Association I.D.E.E.S</h3>
-                <h4>Bénévolat</h4>
-                <p>Accompagnement scolaire et pédagogique.</p>
+            <!-- Fnac Darty -->
+            <div class="exp-card" data-category="stage" data-keywords="fnac darty siège support technicien ivanti landesk mtr teams rooms reconditionnement parc helpdesk n2">
+                <div class="exp-card-header">
+                    <div class="exp-icon" style="background:rgba(255,214,10,0.1); border-color:rgba(255,214,10,0.25); color:var(--accent-yellow);">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <div class="exp-info">
+                        <span class="exp-badge exp-badge-stage">Stage</span>
+                        <span class="exp-date">Juin – Juillet 2025</span>
+                    </div>
+                </div>
+                <h3 class="exp-company">Fnac Darty <span style="color:var(--text-secondary); font-size:1rem; font-weight:500;">(Siège)</span></h3>
+                <p class="exp-role">Support Technicien Informatique — DSI</p>
+                <ul class="exp-missions">
+                    <li>Gestion et suivi d'incidents via Ivanti Landesk (niveaux N1/N2)</li>
+                    <li>Déploiement de salles de réunion Microsoft Teams Rooms (MTR)</li>
+                    <li>Reconditionnement et renouvellement du parc informatique</li>
+                    <li>Rédaction de procédures techniques et documentation opérationnelle</li>
+                </ul>
+                <div class="exp-tags">
+                    <span class="tech-tag">Support N2</span>
+                    <span class="tech-tag">Ivanti</span>
+                    <span class="tech-tag">Teams Rooms</span>
+                    <span class="tech-tag">Hardware</span>
+                </div>
+                <div class="exp-card-footer">
+                    <button class="exp-more-btn" onclick="openExpModal('fnac')">
+                        <i class="fas fa-building"></i> En savoir plus sur l'entreprise
+                    </button>
+                    <button class="exp-dossier-btn" onclick="openInfoModal('rapport')">
+                        <i class="fas fa-folder-open"></i> Dossier de stage
+                    </button>
+                </div>
             </div>
 
+            <!-- TD Synnex -->
+            <div class="exp-card" data-category="stage" data-keywords="td synnex distribution it logistique configuration matériel contrôle qualité postes">
+                <div class="exp-card-header">
+                    <div class="exp-icon" style="background:rgba(10,132,255,0.1); border-color:rgba(10,132,255,0.25); color:var(--accent-blue);">
+                        <i class="fas fa-boxes"></i>
+                    </div>
+                    <div class="exp-info">
+                        <span class="exp-badge exp-badge-stage">Stage</span>
+                        <span class="exp-date">Juin – Juillet 2024</span>
+                    </div>
+                </div>
+                <h3 class="exp-company">TD Synnex</h3>
+                <p class="exp-role">Préparation Matériel — Logistique IT</p>
+                <ul class="exp-missions">
+                    <li>Configuration et maintenance de postes informatiques avant livraison</li>
+                    <li>Contrôle qualité logiciel et vérification des équipements</li>
+                    <li>Gestion logistique : réception, étiquetage et expédition de matériel IT</li>
+                </ul>
+                <div class="exp-tags">
+                    <span class="tech-tag">Logistique</span>
+                    <span class="tech-tag">Configuration</span>
+                    <span class="tech-tag">Qualité</span>
+                    <span class="tech-tag">Hardware</span>
+                </div>
+                <div class="exp-card-footer">
+                    <button class="exp-more-btn" onclick="openExpModal('tdsynnex')">
+                        <i class="fas fa-building"></i> En savoir plus sur l'entreprise
+                    </button>
+                </div>
+            </div>
+
+            <!-- LIDL -->
+            <div class="exp-card" data-category="pro" data-keywords="lidl équipier polyvalent grande distribution rigueur ponctualité esprit équipe gestion priorités service">
+                <div class="exp-card-header">
+                    <div class="exp-icon" style="background:rgba(48,209,88,0.1); border-color:rgba(48,209,88,0.25); color:var(--accent-green);">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="exp-info">
+                        <span class="exp-badge exp-badge-pro">Expérience pro</span>
+                        <span class="exp-date">2024 – aujourd'hui</span>
+                    </div>
+                </div>
+                <h3 class="exp-company">LIDL</h3>
+                <p class="exp-role">Équipier Polyvalent</p>
+                <ul class="exp-missions">
+                    <li>Rigueur et respect des process dans un environnement exigeant à fort rythme</li>
+                    <li>Gestion des priorités et polyvalence face aux imprévus quotidiens</li>
+                    <li>Esprit d'équipe, ponctualité et sens du service client</li>
+                    <li>Adaptation rapide à différents postes et horaires variables</li>
+                </ul>
+                <div class="exp-tags">
+                    <span class="tech-tag">Rigueur</span>
+                    <span class="tech-tag">Polyvalence</span>
+                    <span class="tech-tag">Esprit d'équipe</span>
+                    <span class="tech-tag">Gestion des priorités</span>
+                </div>
+                <div class="exp-card-footer">
+                    <button class="exp-more-btn" onclick="openExpModal('lidl')">
+                        <i class="fas fa-building"></i> En savoir plus sur l'entreprise
+                    </button>
+                </div>
+            </div>
+
+            <!-- Association I.D.E.E.S -->
+            <div class="exp-card" data-category="benevolat" data-keywords="association idees bénévolat accompagnement scolaire pédagogie écoute aide jeunes">
+                <div class="exp-card-header">
+                    <div class="exp-icon" style="background:rgba(100,210,255,0.1); border-color:rgba(100,210,255,0.25); color:var(--accent-cyan);">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <div class="exp-info">
+                        <span class="exp-badge exp-badge-benevolat">Bénévolat</span>
+                        <span class="exp-date">Depuis 2023</span>
+                    </div>
+                </div>
+                <h3 class="exp-company">Association I.D.E.E.S</h3>
+                <p class="exp-role">Bénévole — Accompagnement scolaire</p>
+                <ul class="exp-missions">
+                    <li>Accompagnement pédagogique de jeunes en difficulté scolaire</li>
+                    <li>Écoute active et adaptation à chaque profil d'élève</li>
+                    <li>Coordination avec l'équipe de bénévoles et les responsables de l'association</li>
+                </ul>
+                <div class="exp-tags">
+                    <span class="tech-tag">Pédagogie</span>
+                    <span class="tech-tag">Écoute</span>
+                    <span class="tech-tag">Coordination</span>
+                </div>
+                <div class="exp-card-footer">
+                    <button class="exp-more-btn" onclick="openExpModal('idees')">
+                        <i class="fas fa-building"></i> En savoir plus
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Message vide -->
+        <div class="exp-empty" id="exp-empty">
+            <i class="fas fa-search"></i>
+            <p>Aucune expérience ne correspond à votre recherche.</p>
         </div>
     </section>
 
@@ -195,14 +380,16 @@
             <a href="#" style="color: var(--text-primary); transition:0.3s;"><i class="fab fa-github"></i></a>
             <a href="mailto:tonemail@gmail.com" style="color: var(--text-primary); transition:0.3s;"><i class="fas fa-envelope"></i></a>
         </div>
-        <p style="margin-top: 40px; font-size: 0.8rem; color:var(--text-tertiary);">© 2025 Ayoub Leboss.</p>
+        <p style="margin-top: 40px; font-size: 0.8rem; color:var(--text-tertiary);">© 2025 Ayoub Touil.</p>
     </footer>
 
+    <!-- Modale aperçu document (CV/LM) -->
     <div id="imageModal" class="modal" onclick="closeModal()">
         <span class="close-modal">&times;</span>
         <img id="modalImage" src="" alt="Document en grand">
     </div>
 
+    <!-- Modale infos dossier de stage -->
     <div id="infoModal" class="modal" onclick="closeInfoModal(event)">
         <div class="info-modal-content" onclick="event.stopPropagation()">
             <span class="close-modal" onclick="document.getElementById('infoModal').style.display='none'" style="position:absolute; top:15px; right:20px; font-size:30px; color:var(--text-primary); cursor:pointer;">&times;</span>
@@ -214,6 +401,90 @@
         </div>
     </div>
 
+    <!-- Modale entreprise -->
+    <div id="expModal" class="modal" onclick="if(event.target===this)this.style.display='none'">
+        <div class="info-modal-content" onclick="event.stopPropagation()" style="max-width:480px;">
+            <span onclick="document.getElementById('expModal').style.display='none'" style="position:absolute;top:15px;right:20px;font-size:28px;cursor:pointer;color:var(--text-secondary);">&times;</span>
+            <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
+                <div style="width:52px;height:52px;border-radius:16px;background:var(--tag-bg);border:1px solid var(--border-glass);display:flex;align-items:center;justify-content:center;font-size:1.4rem;">
+                    <i id="expModal-icon" class="fas fa-building"></i>
+                </div>
+                <div>
+                    <h2 id="expModal-name" style="color:var(--text-primary);font-size:1.3rem;margin:0 0 4px;"></h2>
+                    <p id="expModal-sector" style="color:var(--text-secondary);font-size:0.82rem;margin:0;"></p>
+                </div>
+            </div>
+            <p id="expModal-desc" style="color:var(--text-secondary);font-size:0.9rem;line-height:1.7;margin-bottom:24px;"></p>
+            <a id="expModal-link" href="#" target="_blank" rel="noopener" class="btn-main" style="font-size:0.85rem;padding:10px 22px;">
+                <i class="fas fa-external-link-alt"></i> Visiter le site
+            </a>
+        </div>
+    </div>
+
     <script src="script.js" defer></script>
+
+    <script>
+        // ====== DONNÉES ENTREPRISES ======
+        const expData = {
+            outscale: { name: 'Outscale', sector: 'Cloud souverain — Filiale Dassault Systèmes', icon: 'fa-cloud', color: 'var(--accent-purple)', desc: "3DS Outscale est un fournisseur de cloud souverain certifié SecNumCloud par l'ANSSI, filiale de Dassault Systèmes. Spécialisé dans l'infrastructure cloud pour les acteurs sensibles (défense, santé, industrie), il propose des solutions IaaS entièrement hébergées en France.", link: 'https://outscale.com' },
+            fnac: { name: 'Fnac Darty', sector: 'Retail & DSI — Support informatique siège', icon: 'fa-store', color: 'var(--accent-yellow)', desc: "Fnac Darty est un groupe de distribution spécialisé dans les produits culturels, électroniques et électroménagers. Le siège social, basé en région parisienne, abrite une DSI importante gérant plusieurs milliers de postes de travail.", link: 'https://fnacdarty.com' },
+            tdsynnex: { name: 'TD Synnex', sector: 'Distribution IT — Logistique & Configuration', icon: 'fa-boxes', color: 'var(--accent-blue)', desc: "TD Synnex est l'un des premiers distributeurs mondiaux de produits et services informatiques. Le site France s'occupe de la réception, configuration et expédition de matériels IT pour le compte de revendeurs et entreprises clientes.", link: 'https://tdsynnex.com' },
+            lidl: { name: 'LIDL', sector: 'Grande distribution — Équipier polyvalent', icon: 'fa-shopping-cart', color: 'var(--accent-green)', desc: "LIDL est une enseigne internationale de grande distribution. En tant qu'équipier polyvalent, ce poste m'a permis de développer des compétences comportementales clés : rigueur, gestion du rythme, polyvalence, sens du service et esprit d'équipe dans un environnement exigeant.", link: 'https://lidl.fr' },
+            idees: { name: 'Association I.D.E.E.S', sector: 'Bénévolat — Accompagnement scolaire', icon: 'fa-hands-helping', color: 'var(--accent-cyan)', desc: "Association d'accompagnement scolaire et pédagogique. Ce bénévolat m'a permis d'exercer ma capacité d'écoute, ma pédagogie et mon sens du service auprès de jeunes en difficulté scolaire.", link: '#' }
+        };
+
+        // ====== RECHERCHE + FILTRES ======
+        (function(){
+            const cards = document.querySelectorAll('.exp-card');
+            const searchInput = document.getElementById('exp-search');
+            const clearBtn = document.getElementById('exp-search-clear');
+            const filterBtns = document.querySelectorAll('.exp-filter-btn');
+            const emptyMsg = document.getElementById('exp-empty');
+            let activeFilter = 'all';
+
+            function applyFilters(){
+                const q = searchInput.value.toLowerCase().trim();
+                clearBtn.style.display = q ? 'block' : 'none';
+                let visible = 0;
+                cards.forEach(card => {
+                    const cat = card.dataset.category;
+                    const kw = (card.dataset.keywords + ' ' + card.innerText).toLowerCase();
+                    const matchFilter = activeFilter === 'all' || cat === activeFilter;
+                    const matchSearch = !q || kw.includes(q);
+                    if(matchFilter && matchSearch){ card.classList.remove('hidden'); visible++; }
+                    else { card.classList.add('hidden'); }
+                });
+                if(emptyMsg) emptyMsg.style.display = visible === 0 ? 'block' : 'none';
+            }
+
+            searchInput.addEventListener('input', applyFilters);
+            clearBtn.addEventListener('click', () => { searchInput.value = ''; applyFilters(); searchInput.focus(); });
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    activeFilter = btn.dataset.filter;
+                    applyFilters();
+                });
+            });
+
+            // Modale entreprise
+            window.openExpModal = function(key){
+                const d = expData[key];
+                if(!d) return;
+                const m = document.getElementById('expModal');
+                document.getElementById('expModal-icon').className = 'fas ' + d.icon;
+                document.getElementById('expModal-icon').style.color = d.color;
+                document.getElementById('expModal-name').textContent = d.name;
+                document.getElementById('expModal-sector').textContent = d.sector;
+                document.getElementById('expModal-desc').textContent = d.desc;
+                const lnk = document.getElementById('expModal-link');
+                lnk.href = d.link;
+                lnk.style.display = d.link === '#' ? 'none' : 'inline-flex';
+                m.style.display = 'flex';
+            };
+        })();
+    </script>
 </body>
 </html>

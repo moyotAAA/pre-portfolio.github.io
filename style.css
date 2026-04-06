@@ -84,15 +84,6 @@
         }
 
         /* --- UI ELEMENTS --- */
-        .theme-toggle-btn {
-            position: fixed; top: 20px; right: 30px; width: 50px; height: 50px;
-            border-radius: 50%; background: var(--nav-glass); border: 1px solid var(--border-glass);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            color: var(--text-primary); font-size: 1.2rem; cursor: pointer;
-            z-index: 1001; display: flex; align-items: center; justify-content: center;
-            transition: all 0.3s ease; box-shadow: 0 4px 15px var(--shadow-color);
-        }
-        .theme-toggle-btn:hover { transform: scale(1.1); }
 
         .liquid-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; overflow: hidden; }
         .blob { position: absolute; border-radius: 50%; filter: blur(100px); opacity: var(--blob-opacity); animation: float 10s infinite ease-in-out alternate; transition: 0.5s; }
@@ -104,54 +95,71 @@
         /* --- NAVIGATION --- */
         nav {
             position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-            background: var(--nav-glass); backdrop-filter: blur(20px);
-            padding: 0 14px; height: 60px;
+            width: calc(100% - 48px); max-width: 1200px;
+            background: var(--nav-glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 0 10px 0 24px; height: 64px;
             border-radius: 50px; border: 1px solid var(--border-glass);
-            z-index: 1000; display: flex; align-items: center; justify-content: center; gap: 5px;
+            z-index: 1000; display: flex; align-items: center; justify-content: space-between; gap: 10px;
             box-shadow: 0 10px 30px var(--shadow-color); transition: all 0.5s ease;
         }
 
-        /* Identité dans la navbar */
-        .nav-brand {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            line-height: 1;
-            padding: 0 14px 0 6px;
-            margin-right: 4px;
-            border-right: 1px solid var(--border-glass);
-            gap: 2px;
-            user-select: none;
-        }
-        .nav-brand-last {
-            font-size: 0.82rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: var(--accent-cyan);
-            text-transform: uppercase;
-        }
-        .nav-brand-first {
-            font-size: 0.7rem;
-            font-weight: 400;
-            color: var(--text-secondary);
-            letter-spacing: 0.3px;
-        }
+        /* Nom dans la navbar */
+        .nav-brand { display: flex; align-items: baseline; gap: 5px; text-decoration: none; flex-shrink: 0; }
+        .nb-first { font-size: 0.92rem; font-weight: 600; color: var(--text-primary); letter-spacing: 0.2px; transition: color 0.5s; }
+        .nb-last { font-size: 0.92rem; font-weight: 800; color: var(--accent-cyan); letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.5s; }
 
-        .nav-item { position: relative; padding: 0 15px; height: 100%; display: flex; align-items: center; }
-        .nav-item a { text-decoration: none; color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; transition: 0.3s; }
-        .nav-item a:hover { color: var(--text-primary); }
+        /* Liens centraux */
+        .nav-links { display: flex; align-items: center; gap: 0; }
+        .nav-item { position: relative; padding: 0 13px; height: 64px; display: flex; align-items: center; }
+        .nav-item a { text-decoration: none; color: var(--text-secondary); font-size: 0.88rem; font-weight: 500; transition: color 0.3s; white-space: nowrap; }
+        .nav-item a:hover, .nav-item.active-page a { color: var(--text-primary); }
+        .nav-item.active-page a { font-weight: 700; color: var(--accent-cyan); }
 
-        .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        /* Dropdown */
+        .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
         .dropdown-menu {
-            position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
-            width: 180px; background: var(--nav-glass); backdrop-filter: blur(20px);
+            position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(10px);
+            width: 200px; background: var(--nav-glass); backdrop-filter: blur(20px);
             border: 1px solid var(--border-glass); border-radius: 20px; padding: 10px;
             display: flex; flex-direction: column; opacity: 0; visibility: hidden;
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            box-shadow: 0 10px 40px var(--shadow-color); margin-top: 10px;
+            box-shadow: 0 10px 40px var(--shadow-color);
         }
-        .dropdown-menu a { display: block; padding: 10px; border-radius: 10px; text-align: center; }
+        .dropdown-menu a { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; transition: all 0.2s; }
         .dropdown-menu a:hover { background: var(--tag-bg); color: var(--text-primary); }
+
+        /* Actions droite */
+        .nav-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+
+        /* Theme toggle (dans la nav maintenant) */
+        .theme-toggle-btn {
+            width: 40px; height: 40px;
+            border-radius: 50%; background: var(--tag-bg); border: 1px solid var(--border-glass);
+            color: var(--text-primary); font-size: 1rem; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .theme-toggle-btn:hover { background: var(--border-glass); transform: scale(1.08); }
+
+        /* Bouton CV */
+        .nav-cv-btn {
+            display: inline-flex; align-items: center; gap: 7px;
+            background: var(--btn-bg); color: var(--btn-text);
+            padding: 9px 20px; border-radius: 30px;
+            font-size: 0.83rem; font-weight: 700; text-decoration: none; letter-spacing: 0.3px;
+            transition: all 0.3s ease; white-space: nowrap;
+        }
+        .nav-cv-btn:hover { background: var(--accent-blue); color: #fff; transform: translateY(-1px); }
+
+        /* Suppression ancien nav-brand */
+        .nav-brand-last, .nav-brand-first { display: none; }
+
+        /* Responsive nav */
+        @media (max-width: 960px) {
+            nav { width: calc(100% - 24px); padding: 0 8px 0 16px; }
+            .nav-links { display: none; }
+            .nb-first, .nb-last { font-size: 0.85rem; }
+        }
 
         /* --- HERO --- */
         header {
@@ -198,11 +206,15 @@
             transition: all 0.5s ease;
         }
 
-        h1 {
-            font-size: 5.2rem; font-weight: 800; letter-spacing: -3px;
-            color: var(--text-primary);
-            margin-bottom: 18px; line-height: 1.05; transition: all 0.5s ease;
+        /* Accent sur le nom dans le hero */
+        .hero-name-accent {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
+
+        h1 { font-size: 5rem; font-weight: 800; letter-spacing: -2px; color: var(--text-primary); margin-bottom: 16px; line-height: 1.05; transition: all 0.5s ease; }
 
         /* Ligne d'animation typing */
         .typing-row {
@@ -437,9 +449,7 @@
             .bento-grid { grid-template-columns: 1fr; }
             .span-1, .span-2, .span-4 { grid-column: span 1; }
             .row-2 { grid-row: span 1; }
-            .theme-toggle-btn { top: auto; bottom: 20px; right: 20px; }
-            nav { width: 95%; height: auto; padding: 10px; flex-wrap: wrap; border-radius: 24px; }
-            .nav-brand { display: none; } /* masqué sur mobile pour ne pas surcharger */
+            nav { width: 95%; height: auto; padding: 10px 12px; flex-wrap: wrap; border-radius: 24px; }
             .hero-ctas { flex-direction: column; gap: 12px; }
             .btn-main, .btn-outline { width: 100%; justify-content: center; }
             .dropdown:hover .dropdown-menu { position: static; width: 100%; display: flex; transform: none; opacity: 1; visibility: visible; margin-top:10px;}
