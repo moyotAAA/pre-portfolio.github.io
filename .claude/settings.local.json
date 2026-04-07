@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sed -n '12,974p' \"C:/Users/ayoub/Documents/pre-portfolio/index.html\")",
+      "Bash(\"C:/Users/ayoub/Documents/pre-portfolio/css/style.css\")",
+      "Bash(sed -n '1777,1920p' \"C:/Users/ayoub/Documents/pre-portfolio/index.html\")",
+      "Bash(\"C:/Users/ayoub/Documents/pre-portfolio/js/script.js\")",
+      "Bash(python3 -:*)",
+      "Bash(python -:*)",
+      "Bash(sed -i 's|href=\"\"css/style.css\"\"|href=\"\"style.css\"\"|g' \"C:/Users/ayoub/Documents/pre-portfolio/index.html\")",
+      "Bash(sed -i 's|src=\"\"js/script.js\"\"|src=\"\"script.js\"\"|g' \"C:/Users/ayoub/Documents/pre-portfolio/index.html\")",
+      "Bash(sed -i 's|src=\"\"test_avatar.png\"\"|src=\"\"annexes/test_avatar.png\"\"|g' \"C:/Users/ayoub/Documents/pre-portfolio/index.html\")",
+      "Bash(sed -i 's|src=\"\"CV-M\\\\.TOUIL-Ayoub-9\\\\.jpg\"\"|src=\"\"annexes/CV-M.TOUIL-Ayoub-9.jpg\"\"|g' \"C:/Users/ayoub/Documents/pre-portfolio/index.html\")",
+      "Bash(sed -i 's|src=\"\"LM-M\\\\.TOUIL-Ayoub\\\\.jpg\"\"|src=\"\"annexes/LM-M.TOUIL-Ayoub.jpg\"\"|g' \"C:/Users/ayoub/Documents/pre-portfolio/index.html\")",
+      "Bash(sed -i 's|\"\"CV-M\\\\.TOUIL-Ayoub-9\\\\.jpg\"\"|\"\"annexes/CV-M.TOUIL-Ayoub-9.jpg\"\"|g' \"C:/Users/ayoub/Documents/pre-portfolio/script.js\")",
+      "Bash(sed -i 's|\"\"LM-M\\\\.TOUIL-Ayoub\\\\.jpg\"\"|\"\"annexes/LM-M.TOUIL-Ayoub.jpg\"\"|g' \"C:/Users/ayoub/Documents/pre-portfolio/script.js\")",
+      "Read(//c/Users/ayoub/AppData/Roaming/Claude/local-agent-mode-sessions/skills-plugin/71ed0e9a-ff4b-4636-850c-1fbe6c9d861a/5eb70936-8eea-4f17-a8a2-3fedbeb4d015/skills/docx/**)",
+      "Bash(pandoc \"C:/Users/ayoub/Downloads/Veille_Zero_Trust_ZTNA.docx\" -t plain)",
+      "WebFetch(domain:archanight.github.io)",
+      "WebFetch(domain:ilyasseddiki.fr)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(copy \"C:\\\\Users\\\\ayoub\\\\Downloads\\\\Veille_ZTNA_Outscale_Final.docx\" \"C:\\\\Users\\\\ayoub\\\\Documents\\\\pre-portfolio\\\\annexes\\\\Veille_ZTNA_Outscale_Final.docx\")",
+      "Bash(ls /mnt/c/Users/ayoub/Downloads/*.docx)",
+      "Bash(pandoc --version)",
+      "Bash(powershell -Command \":*)",
+      "Bash(ls \"C:\\\\Users\\\\ayoub\\\\Documents\\\\pre-portfolio\\\\annexes\"\" | findstr /i \".pdf \")",
+      "Bash(dir \"C:\\\\Users\\\\ayoub\\\\Documents\\\\pre-portfolio\\\\annexes\" /b)",
+      "Bash(findstr /i \".pdf\")",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:ayoub-touil.fr)",
+      "WebFetch(domain:moyotaaa.github.io)"
+    ]
+  }
+}
