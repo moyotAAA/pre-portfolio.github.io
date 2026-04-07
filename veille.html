@@ -1270,11 +1270,16 @@
         </div>
 
         <!-- CTA dans le hero -->
-        <div class="veille-cta-bar" style="padding: 28px 20px 0;">
+        <div class="veille-cta-bar" style="padding: 28px 20px 0; gap: 12px; flex-wrap: wrap;">
             <button class="veille-cta-btn" id="veille-pdf-toggle" onclick="toggleVeillePDF()">
                 <i class="fas fa-file-pdf"></i>
                 Consulter ma veille
                 <i class="fas fa-chevron-down" id="veille-pdf-arrow"></i>
+            </button>
+            <button class="veille-cta-btn" id="veille-rss-toggle" onclick="toggleVeilleRSS()" style="background:linear-gradient(135deg,rgba(255,159,10,0.1),rgba(255,100,10,0.1));border-color:rgba(255,159,10,0.3);color:var(--accent-yellow);">
+                <i class="fas fa-rss"></i>
+                Configuration flux RSS — Inoreader
+                <i class="fas fa-chevron-down" id="veille-rss-arrow"></i>
             </button>
         </div>
     </header>
@@ -1301,6 +1306,26 @@
             </div>
         </div>
         <iframe class="veille-pdf-embed" src="about:blank" id="veille-pdf-frame" title="Synthèse de veille Zero Trust ZTNA"></iframe>
+    </div>
+
+    <!-- Visionneuse RSS inline — Configuration Inoreader -->
+    <!-- NOTE : configurer src ci-dessous avec le chemin vers votre guide RSS (PDF ou lien externe) -->
+    <div class="veille-pdf-viewer" id="veille-rss-viewer">
+        <div class="veille-pdf-toolbar">
+            <div class="veille-pdf-toolbar-left">
+                <i class="fas fa-rss" style="color:var(--accent-yellow);"></i>
+                <span>Configuration flux RSS — Inoreader</span>
+            </div>
+            <div class="veille-pdf-toolbar-right">
+                <a href="https://www.inoreader.com" target="_blank" class="vpdf-btn vpdf-btn-newtab">
+                    <i class="fas fa-external-link-alt"></i> Ouvrir Inoreader
+                </a>
+                <button class="vpdf-btn vpdf-btn-close" onclick="toggleVeilleRSS()">
+                    <i class="fas fa-times"></i> Fermer
+                </button>
+            </div>
+        </div>
+        <iframe class="veille-pdf-embed" src="about:blank" id="veille-rss-frame" title="Configuration flux RSS Inoreader"></iframe>
     </div>
 
     <!-- ===== SUBNAV INTERNE — pill flottante ===== -->
@@ -1982,6 +2007,26 @@
             }
 
             // Scroller vers la visionneuse si on l'ouvre
+            if (!isOpen) {
+                setTimeout(() => viewer.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+            }
+        }
+
+        function toggleVeilleRSS() {
+            const viewer = document.getElementById('veille-rss-viewer');
+            const arrow  = document.getElementById('veille-rss-arrow');
+            const frame  = document.getElementById('veille-rss-frame');
+            const isOpen = viewer.classList.contains('open');
+
+            viewer.classList.toggle('open');
+            arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+            arrow.style.transition = 'transform 0.3s ease';
+
+            // Charger Inoreader seulement à la première ouverture (lazy load)
+            if (!isOpen && frame && frame.src === 'about:blank') {
+                frame.src = 'https://www.inoreader.com';
+            }
+
             if (!isOpen) {
                 setTimeout(() => viewer.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
             }
