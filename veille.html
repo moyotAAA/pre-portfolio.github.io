@@ -1280,7 +1280,7 @@
     </header>
 
     <!-- Visionneuse PDF inline -->
-    <!-- NOTE : placer la version PDF de la veille dans annexes/Veille_ZTNA_Outscale_Final.pdf -->
+    <!-- NOTE : placer la version PDF de la veille dans annexes/Veille-ZTNA-TOUIL-Ayoub.pdf -->
     <!-- (Ouvrir le .docx dans Word → Fichier → Enregistrer une copie → PDF) -->
     <div class="veille-pdf-viewer" id="veille-pdf-viewer">
         <div class="veille-pdf-toolbar">
@@ -1292,7 +1292,7 @@
                 <a href="annexes/Veille_ZTNA_Outscale_Final.docx" download class="vpdf-btn vpdf-btn-download">
                     <i class="fas fa-download"></i> Télécharger (.docx)
                 </a>
-                <a href="annexes/Veille_ZTNA_Outscale_Final.pdf" target="_blank" class="vpdf-btn vpdf-btn-newtab">
+                <a href="annexes/Veille-ZTNA-TOUIL-Ayoub.pdf" target="_blank" class="vpdf-btn vpdf-btn-newtab">
                     <i class="fas fa-external-link-alt"></i> Ouvrir
                 </a>
                 <button class="vpdf-btn vpdf-btn-close" onclick="toggleVeillePDF()">
@@ -1978,7 +1978,7 @@
 
             // Charger le PDF seulement à la première ouverture (lazy load)
             if (!isOpen && frame && frame.src === 'about:blank') {
-                frame.src = 'annexes/Veille_ZTNA_Outscale_Final.pdf';
+                frame.src = 'annexes/Veille-ZTNA-TOUIL-Ayoub.pdf';
             }
 
             // Scroller vers la visionneuse si on l'ouvre

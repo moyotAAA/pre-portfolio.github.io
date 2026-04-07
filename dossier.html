@@ -21,10 +21,26 @@
             color: var(--text-tertiary);
             margin-bottom: 6px;
         }
+        /* Layout côte à côte — 2 colonnes */
+        .doc-side-by-side {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+        .doc-col {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        /* Ancienne grille gardée pour compatibilité */
         .doc-premium-grid {
             display: flex;
             flex-direction: column;
             gap: 20px;
+        }
+        @media (max-width: 900px) {
+            .doc-side-by-side { grid-template-columns: 1fr; }
         }
         .doc-premium-card {
             background: var(--card-glass);
