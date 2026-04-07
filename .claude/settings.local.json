@@ -25,7 +25,10 @@
       "Bash(powershell -Command \":*)",
       "Bash(ls \"C:\\\\Users\\\\ayoub\\\\Documents\\\\pre-portfolio\\\\annexes\"\" | findstr /i \".pdf \")",
       "Bash(dir \"C:\\\\Users\\\\ayoub\\\\Documents\\\\pre-portfolio\\\\annexes\" /b)",
-      "Bash(findstr /i \".pdf\")"
+      "Bash(findstr /i \".pdf\")",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:ayoub-touil.fr)",
+      "WebFetch(domain:moyotaaa.github.io)"
     ]
   }
 }
