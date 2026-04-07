@@ -69,7 +69,18 @@
                     <img src="Photos-outscale/IMG_3451.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Outscale 19">
                 </div>
             `,
-            'outs_rapport': '<p>Rapport Outscale à venir...</p>',
+            'outs_rapport': `
+                <div style="display:flex; align-items:center; gap:15px; background:var(--card-glass); padding:18px; border-radius:12px; border:1px solid var(--border-glass);">
+                    <i class="fas fa-file-pdf" style="font-size:2.2rem; color:#e74c3c; flex-shrink:0;"></i>
+                    <div style="flex:1;">
+                        <strong style="font-size:0.95rem;">Rapport de stage — Outscale</strong><br>
+                        <span style="font-size:0.8rem; color:var(--text-secondary);">Infrastructure Cloud · Février – Mars 2026</span>
+                    </div>
+                    <a href="annexes/Rapport_Stage_Outscale_Touil_Ayoub.pdf" target="_blank" class="btn-main" style="padding:8px 18px; font-size:0.85rem; flex-shrink:0;">
+                        <i class="fas fa-external-link-alt"></i> Ouvrir
+                    </a>
+                </div>
+            `,
             'photos': `
                 <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px;">
                     <img src="Photos-fnac-darty/IMG_7218.JPG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Fnac Darty 1">
@@ -88,14 +99,15 @@
                 </div>
             `,
             'rapport': `
-                <p>Téléchargez ou consultez le rapport complet.</p>
-                <div style="background:var(--card-glass); padding:15px; border-radius:10px; margin-top:15px; display:flex; align-items:center; gap:15px;">
-                    <i class="fas fa-file-pdf" style="font-size:2rem; color:red;"></i>
-                    <div>
-                        <strong>Rapport_Stage_Ayoub.pdf</strong><br>
-                        <span style="font-size:0.8rem;">2.4 MB • PDF</span>
+                <div style="display:flex; align-items:center; gap:15px; background:var(--card-glass); padding:18px; border-radius:12px; border:1px solid var(--border-glass);">
+                    <i class="fas fa-file-pdf" style="font-size:2.2rem; color:#e74c3c; flex-shrink:0;"></i>
+                    <div style="flex:1;">
+                        <strong style="font-size:0.95rem;">Rapport de stage — Fnac Darty</strong><br>
+                        <span style="font-size:0.8rem; color:var(--text-secondary);">Support DSI Siège · Juin – Juillet 2025</span>
                     </div>
-                    <a href="#" class="btn-main" style="padding:5px 15px; margin-left:auto; font-size:0.8rem;">Télécharger</a>
+                    <a href="annexes/Rapport_Stage_FnacDarty_Touil_Ayoub.pdf" target="_blank" class="btn-main" style="padding:8px 18px; font-size:0.85rem; flex-shrink:0;">
+                        <i class="fas fa-external-link-alt"></i> Ouvrir
+                    </a>
                 </div>
             `,
             'competences': `
