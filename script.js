@@ -76,7 +76,7 @@
                         <strong style="font-size:0.95rem;">Rapport de stage — Outscale</strong><br>
                         <span style="font-size:0.8rem; color:var(--text-secondary);">Infrastructure Cloud · Février – Mars 2026</span>
                     </div>
-                    <a href="annexes/Rapport_Stage_Outscale_Touil_Ayoub.pdf" target="_blank" class="btn-main" style="padding:8px 18px; font-size:0.85rem; flex-shrink:0;">
+                    <a href="annexes/Rapport de stage Outscale V.F (1).pdf" target="_blank" class="btn-main" style="padding:8px 18px; font-size:0.85rem; flex-shrink:0;">
                         <i class="fas fa-external-link-alt"></i> Ouvrir
                     </a>
                 </div>
@@ -105,7 +105,7 @@
                         <strong style="font-size:0.95rem;">Rapport de stage — Fnac Darty</strong><br>
                         <span style="font-size:0.8rem; color:var(--text-secondary);">Support DSI Siège · Juin – Juillet 2025</span>
                     </div>
-                    <a href="annexes/Rapport_Stage_FnacDarty_Touil_Ayoub.pdf" target="_blank" class="btn-main" style="padding:8px 18px; font-size:0.85rem; flex-shrink:0;">
+                    <a href="annexes/Rapport de stage FNAC V.F .pdf" target="_blank" class="btn-main" style="padding:8px 18px; font-size:0.85rem; flex-shrink:0;">
                         <i class="fas fa-external-link-alt"></i> Ouvrir
                     </a>
                 </div>
