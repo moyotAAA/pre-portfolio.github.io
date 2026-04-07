@@ -39,6 +39,20 @@
             flex-direction: column;
             gap: 20px;
         }
+        /* Corps de carte en colonne quand côte à côte */
+        .doc-col .doc-premium-body {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .doc-col .doc-premium-actions {
+            width: 100%;
+            display: flex;
+        }
+        .doc-col .doc-btn-download,
+        .doc-col .doc-btn-open {
+            flex: 1;
+            justify-content: center;
+        }
         @media (max-width: 900px) {
             .doc-side-by-side { grid-template-columns: 1fr; }
         }
