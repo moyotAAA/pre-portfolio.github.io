@@ -22,7 +22,10 @@
       "Bash(copy \"C:\\\\Users\\\\ayoub\\\\Downloads\\\\Veille_ZTNA_Outscale_Final.docx\" \"C:\\\\Users\\\\ayoub\\\\Documents\\\\pre-portfolio\\\\annexes\\\\Veille_ZTNA_Outscale_Final.docx\")",
       "Bash(ls /mnt/c/Users/ayoub/Downloads/*.docx)",
       "Bash(pandoc --version)",
-      "Bash(powershell -Command \":*)"
+      "Bash(powershell -Command \":*)",
+      "Bash(ls \"C:\\\\Users\\\\ayoub\\\\Documents\\\\pre-portfolio\\\\annexes\"\" | findstr /i \".pdf \")",
+      "Bash(dir \"C:\\\\Users\\\\ayoub\\\\Documents\\\\pre-portfolio\\\\annexes\" /b)",
+      "Bash(findstr /i \".pdf\")"
     ]
   }
 }
