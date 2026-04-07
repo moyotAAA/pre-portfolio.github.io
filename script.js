@@ -46,13 +46,45 @@
 
         // --- MODALE STAGE (INFO MODAL) ---
         const stageData = {
-            'outs_photos': '<p>Photos Outscale à venir...</p>',
+            'outs_photos': `
+                <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px;">
+                    <img src="Photos-outscale/IMG_1553.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Outscale 1">
+                    <img src="Photos-outscale/IMG_1554.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Outscale 2">
+                    <img src="Photos-outscale/IMG_1555.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Outscale 3">
+                    <img src="Photos-outscale/IMG_1556.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Outscale 4">
+                    <img src="Photos-outscale/IMG_1557.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Outscale 5">
+                    <img src="Photos-outscale/IMG_1558.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Outscale 6">
+                    <img src="Photos-outscale/IMG_1559.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Outscale 7">
+                    <img src="Photos-outscale/IMG_1560.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Outscale 8">
+                    <img src="Photos-outscale/IMG_1563.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Outscale 9">
+                    <img src="Photos-outscale/IMG_1564.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Outscale 10">
+                    <img src="Photos-outscale/IMG_1738.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Outscale 11">
+                    <img src="Photos-outscale/IMG_1835.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Outscale 12">
+                    <img src="Photos-outscale/IMG_1836.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Outscale 13">
+                    <img src="Photos-outscale/IMG_1838.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Outscale 14">
+                    <img src="Photos-outscale/IMG_1840.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Outscale 15">
+                    <img src="Photos-outscale/IMG_1841.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Outscale 16">
+                    <img src="Photos-outscale/IMG_1842.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Outscale 17">
+                    <img src="Photos-outscale/IMG_3450.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Outscale 18">
+                    <img src="Photos-outscale/IMG_3451.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Outscale 19">
+                </div>
+            `,
             'outs_rapport': '<p>Rapport Outscale à venir...</p>',
             'photos': `
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-                    <img src="https://via.placeholder.com/300x200?text=Serveurs" style="width:100%; border-radius:10px;" alt="Photo 1">
-                    <img src="https://via.placeholder.com/300x200?text=Bureau" style="width:100%; border-radius:10px;" alt="Photo 2">
-                    <p style="grid-column:span 2; font-size:0.9rem; margin-top:10px;">Vues du siège et des équipements.</p>
+                <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px;">
+                    <img src="Photos-fnac-darty/IMG_7218.JPG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Fnac Darty 1">
+                    <img src="Photos-fnac-darty/IMG_7239.JPG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Fnac Darty 2">
+                    <img src="Photos-fnac-darty/IMG_7240.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Fnac Darty 3">
+                    <img src="Photos-fnac-darty/IMG_7241.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Fnac Darty 4">
+                    <img src="Photos-fnac-darty/IMG_7335.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Fnac Darty 5">
+                    <img src="Photos-fnac-darty/IMG_7359.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Fnac Darty 6">
+                    <img src="Photos-fnac-darty/IMG_7406.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Fnac Darty 7">
+                    <img src="Photos-fnac-darty/IMG_7408.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Fnac Darty 8">
+                    <img src="Photos-fnac-darty/IMG_7519.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Fnac Darty 9">
+                    <img src="Photos-fnac-darty/IMG_7520.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Fnac Darty 10">
+                    <img src="Photos-fnac-darty/IMG_7528.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Fnac Darty 11">
+                    <img src="Photos-fnac-darty/IMG_7698.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Fnac Darty 12">
+                    <img src="Photos-fnac-darty/photo-47_singular_display_fullPicture.JPEG" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="this.requestFullscreen&&this.requestFullscreen()" alt="Fnac Darty 13">
                 </div>
             `,
             'rapport': `

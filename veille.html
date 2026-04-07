@@ -1317,8 +1317,8 @@
                 <span>Configuration flux RSS — Inoreader</span>
             </div>
             <div class="veille-pdf-toolbar-right">
-                <a href="https://www.inoreader.com" target="_blank" class="vpdf-btn vpdf-btn-newtab">
-                    <i class="fas fa-external-link-alt"></i> Ouvrir Inoreader
+                <a href="Configuration_Flux_RSS_Touil_Ayoub.pdf" target="_blank" class="vpdf-btn vpdf-btn-newtab">
+                    <i class="fas fa-external-link-alt"></i> Ouvrir le PDF
                 </a>
                 <button class="vpdf-btn vpdf-btn-close" onclick="toggleVeilleRSS()">
                     <i class="fas fa-times"></i> Fermer
@@ -2022,9 +2022,9 @@
             arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
             arrow.style.transition = 'transform 0.3s ease';
 
-            // Charger Inoreader seulement à la première ouverture (lazy load)
+            // Charger le PDF seulement à la première ouverture (lazy load)
             if (!isOpen && frame && frame.src === 'about:blank') {
-                frame.src = 'https://www.inoreader.com';
+                frame.src = 'Configuration_Flux_RSS_Touil_Ayoub.pdf';
             }
 
             if (!isOpen) {
